@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://rstockp4ilwi"]
+
+[ext_resource type="Script" path="res://ui/falling_cookie.gd" id="1_wga2v"]
+
+[node name="main" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_wga2v")
+
+[node name="WebView" type="WebView" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
