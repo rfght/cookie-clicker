@@ -3,94 +3,300 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<meta name="description" content="Cookie Clicker Mega — кликай печеньки, зарабатывай деньги, прокачивай завод и стань легендой! Более 70 достижений, 8 скинов, гоп-магазин и многое другое.">
-<meta name="theme-color" content="#0f0c29">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Cookie Mega">
-<meta property="og:title" content="Cookie Clicker Mega">
-<meta property="og:description" content="Кликай печеньки, зарабатывай деньги, прокачивай завод!">
-<meta property="og:type" content="game">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍪</text></svg>">
-<link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍪</text></svg>">
 <title>Cookie Clicker Mega v2.0 — Финальный Релиз</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;user-select:none;-webkit-tap-highlight-color:transparent}body{font-family:'SF Pro Display',system-ui,-apple-system,'Segoe UI',Arial,sans-serif;overflow:hidden;touch-action:pan-y;-webkit-font-smoothing:antialiased}:root{--bg1:#0f0c29;--bg2:#1a0f3a;--bg3:#2d1b4e;--gold:#f5c068;--gold2:#e8a54b;--green:#2ecc71;--purple:#6c5ce7;--red:#e74c3c;--glass:rgba(255,255,255,.06);--glass-border:rgba(255,255,255,.1);--glass-blur:blur(12px)}#game{position:fixed;inset:0;background:linear-gradient(135deg,var(--bg1),var(--bg2),var(--bg3),#1a0f2e);display:flex;flex-direction:column;align-items:center;z-index:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:100px;animation:bgShift 25s ease-in-out infinite}@keyframes bgShift{0%,100%{background:linear-gradient(135deg,#0f0c29,#1a0f3a,#2d1b4e,#1a0f2e)}33%{background:linear-gradient(135deg,#1a0f2e,#0f0c29,#2d1b4e,#3d1b5e)}66%{background:linear-gradient(135deg,#2d1b4e,#1a0f2e,#0f0c29,#1a0f3a)}}#game::before{content:"";position:fixed;inset:0;background:radial-gradient(2px 2px at 20% 30%,rgba(255,255,255,.15),transparent),radial-gradient(2px 2px at 60% 70%,rgba(255,200,100,.1),transparent),radial-gradient(1px 1px at 80% 10%,rgba(255,255,255,.1),transparent),radial-gradient(1px 1px at 40% 80%,rgba(232,165,75,.1),transparent),radial-gradient(2px 2px at 90% 50%,rgba(255,255,255,.08),transparent);pointer-events:none;z-index:0;animation:starDrift 60s linear infinite}@keyframes starDrift{0%{transform:translateY(0)}100%{transform:translateY(-100px)}}#topbar{width:100%;padding:10px 12px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap;z-index:10;background:rgba(15,12,41,.4);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);border-bottom:1px solid var(--glass-border)}.tbtn{background:var(--glass);color:#fff;border:1px solid var(--glass-border);border-radius:14px;padding:8px 18px;font-size:13px;cursor:pointer;transition:all .3s cubic-bezier(.34,1.56,.64,1);white-space:nowrap;box-shadow:0 2px 12px rgba(0,0,0,.15);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}.tbtn:hover{background:rgba(255,255,255,.18);transform:translateY(-3px);box-shadow:0 6px 20px rgba(0,0,0,.3)}.tbtn:active{transform:translateY(0) scale(.97)}.tbtn.active{background:linear-gradient(135deg,var(--gold2),var(--gold));color:#1a0f05;border-color:var(--gold);box-shadow:0 0 20px rgba(232,165,75,.5),0 4px 12px rgba(0,0,0,.2)}#stats{margin-top:10px;text-align:center;color:#fff;z-index:5}#coinCount{font-size:16px;color:#ffd700;font-weight:bold;text-shadow:0 0 12px rgba(255,215,0,.5)}#cookieCount{font-size:30px;font-weight:bold;color:#fff;text-shadow:0 0 20px rgba(255,200,100,.6),0 0 40px rgba(255,200,100,.3);animation:cookieBounce .3s ease}@keyframes cookieBounce{0%{transform:scale(1)}50%{transform:scale(1.1)}100%{transform:scale(1)}}#cpsDisplay{font-size:13px;color:rgba(255,255,255,.5);margin-top:3px}#cookieWrap{margin-top:14px;position:relative;z-index:5}#bigCookie{width:220px;height:220px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:110px;background:radial-gradient(circle at 35% 30%,#f5d088,#e8a54b 40%,#b8732a 80%,#8a5a1a);border:4px solid #8a5a1a;box-shadow:0 0 40px rgba(255,200,100,.4),0 0 80px rgba(255,200,100,.2),inset 0 -10px 30px rgba(0,0,0,.3),inset 0 10px 20px rgba(255,255,255,.15);transition:all .15s cubic-bezier(.34,1.56,.64,1);user-select:none;animation:cookieGlow 3s ease-in-out infinite;position:relative}#bigCookie:active{transform:scale(.88)}#bigCookie:hover{box-shadow:0 0 60px rgba(255,200,100,.6),0 0 120px rgba(255,200,100,.3),inset 0 -10px 30px rgba(0,0,0,.3),inset 0 10px 20px rgba(255,255,255,.2);transform:scale(1.05)}@keyframes cookieGlow{0%,100%{box-shadow:0 0 40px rgba(255,200,100,.3),0 0 80px rgba(255,200,100,.15),inset 0 -10px 30px rgba(0,0,0,.3),inset 0 10px 20px rgba(255,255,255,.15)}50%{box-shadow:0 0 55px rgba(255,200,100,.5),0 0 100px rgba(255,200,100,.25),inset 0 -10px 30px rgba(0,0,0,.3),inset 0 10px 20px rgba(255,255,255,.2)}}#bigCookie.choco{background:radial-gradient(circle at 35% 30%,#7d4a2a,#5d3a1a 50%,#3d2510 80%);border-color:#3d2510;box-shadow:0 0 50px rgba(93,58,26,.6),inset 0 -10px 30px rgba(0,0,0,.4),inset 0 10px 20px rgba(255,255,255,.1);animation:none}#bigCookie.oatmeal{background:radial-gradient(circle at 35% 30%,#e4c4a0,#d4a574 50%,#b8860b 80%);border-color:#8b6914;box-shadow:0 0 45px rgba(212,165,116,.5),inset 0 -10px 30px rgba(0,0,0,.2),inset 0 10px 20px rgba(255,255,255,.15);animation:none}#bigCookie.raisin{background:radial-gradient(circle at 35% 30%,#a05a23,#8b4513 50%,#4a2509 80%);border-color:#5d2f0a;box-shadow:0 0 45px rgba(139,69,19,.5),inset 0 -10px 30px rgba(0,0,0,.4),inset 0 10px 20px rgba(255,255,255,.08);animation:none}#bigCookie.rainbow{background:linear-gradient(135deg,#ff6b6b,#feca57,#48dbfb,#a55eea,#ff6b6b);border-color:#fff;box-shadow:0 0 50px rgba(255,255,255,.4),inset 0 -10px 30px rgba(0,0,0,.2);animation:rbSpin 3s linear infinite}@keyframes rbSpin{0%{filter:hue-rotate(0deg)}100%{filter:hue-rotate(360deg)}}#bigCookie.gold{background:radial-gradient(circle at 35% 30%,#fff8d0,#ffd700 40%,#daa520 80%);border-color:#b8860b;box-shadow:0 0 60px rgba(255,215,0,.6),0 0 120px rgba(255,215,0,.3),inset 0 -10px 30px rgba(0,0,0,.2),inset 0 10px 20px rgba(255,255,255,.2);animation:goldShimmer 2s ease-in-out infinite}@keyframes goldShimmer{0%,100%{box-shadow:0 0 50px rgba(255,215,0,.4),0 0 100px rgba(255,215,0,.2)}50%{box-shadow:0 0 70px rgba(255,215,0,.8),0 0 140px rgba(255,215,0,.4)}}#bigCookie.sprinkle{background:radial-gradient(circle at 35% 30%,#f5d088,#e8a54b 40%,#b8732a);border-color:#8a5a1a;box-shadow:0 0 50px rgba(232,165,75,.5),inset 0 -10px 30px rgba(0,0,0,.3);position:relative;animation:none}#bigCookie.sprinkle::after{content:"";position:absolute;inset:0;border-radius:50%;background:repeating-radial-gradient(circle at 30% 40%,#ff6b6b 0 2px,transparent 2px 8px),repeating-radial-gradient(circle at 70% 60%,#48dbfb 0 2px,transparent 2px 10px),repeating-radial-gradient(circle at 50% 80%,#feca57 0 2px,transparent 2px 9px);opacity:.5;pointer-events:none}#bigCookie.filled{background:radial-gradient(circle at 35% 30%,#fff5d0,#f5e6ca 40%,#e8a54b 80%);border-color:#c4962a;box-shadow:0 0 50px rgba(245,230,202,.5),inset 0 -10px 30px rgba(0,0,0,.2);animation:none}#bigCookie.filled::after{content:"";position:absolute;inset:25%;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff8e7,#f5deb3);box-shadow:0 0 15px rgba(255,255,255,.3);pointer-events:none}#bigCookie.caramel{background:radial-gradient(circle at 35% 30%,#f5d050,#d4a017 50%,#8b6914 80%);border-color:#6b4f0a;box-shadow:0 0 55px rgba(212,160,23,.5),inset 0 -10px 30px rgba(0,0,0,.3),inset 0 10px 20px rgba(255,255,255,.1);animation:none}#bigCookie.caramel::after{content:"";position:absolute;inset:15%;border-radius:50%;background:repeating-linear-gradient(45deg,transparent 0 4px,rgba(255,255,255,.1) 4px 6px);pointer-events:none}#bigCookie.mega{background:radial-gradient(circle at 35% 30%,#ffb050,#ff9500 40%,#e8a54b 70%,#b8732a);border-color:#8a5a1a;box-shadow:0 0 70px rgba(255,149,0,.6),0 0 140px rgba(255,149,0,.3),inset 0 -10px 30px rgba(0,0,0,.2),inset 0 10px 20px rgba(255,255,255,.2);animation:megaPulse 1s ease-in-out infinite}@keyframes megaPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}#clickNum{position:absolute;font-size:26px;font-weight:bold;color:#ffd700;pointer-events:none;animation:floatUp 1s ease-out forwards;z-index:100;text-shadow:0 0 8px rgba(0,0,0,.5),0 0 15px rgba(255,215,0,.3)}@keyframes floatUp{0%{opacity:1;transform:translateY(0)}100%{opacity:0;transform:translateY(-70px)}}#upgrades{margin-top:16px;display:flex;flex-direction:column;gap:8px;align-items:center;z-index:5;width:290px;max-width:90vw}.upg{display:flex;justify-content:space-between;align-items:center;background:var(--glass);color:#fff;border:1px solid var(--glass-border);border-radius:14px;padding:11px 18px;cursor:pointer;transition:all .3s cubic-bezier(.34,1.56,.64,1);font-size:13px;box-shadow:0 4px 12px rgba(0,0,0,.15);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}.upg:hover{background:rgba(255,255,255,.15);transform:translateX(6px);box-shadow:0 6px 20px rgba(0,0,0,.25)}.upg:active{transform:scale(.97)}.upg.disabled{opacity:.4;cursor:not-allowed}#cheatIcon{position:fixed;bottom:20px;right:20px;width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#9b59b6,#6c5ce7);display:flex;align-items:center;justify-content:center;font-size:26px;cursor:pointer;z-index:200;box-shadow:0 4px 20px rgba(108,92,231,.4);transition:all .2s cubic-bezier(.34,1.56,.64,1);touch-action:none}#cheatIcon:active{transform:scale(.85)}#cheatIcon.dragging{opacity:.7}#cheatIcon:hover{transform:scale(1.12);box-shadow:0 4px 30px rgba(155,89,182,.6)}#cheatPanel{position:fixed;background:rgba(26,26,46,.85);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);color:#fff;border:1px solid rgba(108,92,231,.4);border-radius:14px;padding:14px;z-index:300;display:none;flex-direction:column;gap:8px;width:240px;max-width:90vw;box-shadow:0 12px 40px rgba(0,0,0,.5)}#cheatPanel.open{display:flex}.cheatBtn{background:rgba(108,92,231,.15);color:#fff;border:1px solid rgba(108,92,231,.3);border-radius:8px;padding:7px 12px;cursor:pointer;font-size:12px;transition:all .2s;text-align:left}.cheatBtn:hover{background:rgba(108,92,231,.35);transform:translateX(2px)}.cheatBtn.danger{background:rgba(231,76,60,.15);border-color:rgba(231,76,60,.3)}.cheatBtn.danger:hover{background:rgba(231,76,60,.4)}.cheatRow{display:flex;gap:4px;flex-wrap:wrap}.cheatRow .cheatBtn{flex:1;min-width:60px;text-align:center}#cheatInput{background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.2);color:#fff;border-radius:8px;padding:6px 10px;font-size:12px;width:100%}.cheatLabel{font-size:11px;color:rgba(255,255,255,.5);margin-top:4px}.cheatSlider{width:100%;accent-color:#9b59b6}.modal{position:fixed;inset:0;background:rgba(0,0,0,.75);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;z-index:400;padding:20px}.modal.open{display:flex}.modalContent{background:linear-gradient(135deg,rgba(26,26,46,.95),rgba(22,33,62,.95));backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);border:1px solid var(--glass-border);border-radius:20px;padding:20px;max-width:500px;width:100%;max-height:85vh;overflow-y:auto;color:#fff;box-shadow:0 20px 60px rgba(0,0,0,.5),0 0 40px rgba(108,92,231,.1);animation:modalPop .4s cubic-bezier(.34,1.56,.64,1)}@keyframes modalPop{0%{transform:scale(.85);opacity:0}100%{transform:scale(1);opacity:1}}.modalContent h2{margin-bottom:12px;font-size:18px;text-align:center}.modalClose{position:sticky;top:0;float:right;background:rgba(231,76,60,.25);border:1px solid rgba(231,76,60,.3);color:#fff;border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:16px;margin:-4px -4px 0 0;transition:all .2s}.modalClose:hover{background:rgba(231,76,60,.6);transform:rotate(180deg) scale(1.1)}#lbTable{width:100%;border-collapse:collapse;font-size:12px;margin-top:10px}#lbTable th{background:rgba(255,255,255,.08);padding:6px;text-align:center;border-bottom:1px solid var(--glass-border)}#lbTable td{padding:5px;text-align:center;border-bottom:1px solid rgba(255,255,255,.03)}#lbTable tr.me{background:rgba(232,165,75,.15);font-weight:bold}#lbTable tr.banned{opacity:.4}#lbTable tr.muted{opacity:.6}#lbTable tr.muted td:last-child::after{content:" 🔇"}#lbTable tr.banned td:last-child::after{content:" 🚫"}.skinGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:12px}.skinCard{background:var(--glass);border:2px solid var(--glass-border);border-radius:16px;padding:12px;text-align:center;cursor:pointer;transition:all .3s cubic-bezier(.34,1.56,.64,1);box-shadow:0 4px 12px rgba(0,0,0,.15);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}.skinCard:hover{border-color:rgba(255,255,255,.3);transform:translateY(-4px);box-shadow:0 8px 25px rgba(0,0,0,.3)}.skinCard.owned{border-color:var(--green)}.skinCard.active{border-color:var(--gold);background:rgba(232,165,75,.12)}.skinCard.locked{opacity:.5;cursor:not-allowed}.skinPreview{width:55px;height:55px;border-radius:50%;margin:0 auto 8px;display:flex;align-items:center;justify-content:center;font-size:30px}.skinName{font-size:12px;font-weight:bold}.skinPrice{font-size:11px;color:#ffd700;margin-top:4px}.skinPrice.owned{color:var(--green)}.settingRow{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.04)}.settingRow label{font-size:13px}.settingRow input[type=range]{width:120px;accent-color:var(--gold)}.settingRow input[type=checkbox]{width:20px;height:20px;accent-color:var(--gold)}#botSpeedSlider{width:100%;accent-color:var(--gold);margin-top:4px}#adminPanel{margin-top:12px;border-top:1px solid rgba(231,76,60,.3);padding-top:10px}#adminPanel h3{color:#e74c3c;font-size:14px;margin-bottom:8px;text-align:center}.botAdminList{display:flex;flex-direction:column;gap:4px;margin-bottom:10px;max-height:200px;overflow-y:auto}.botAdminRow{display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,.04);border-radius:8px;padding:5px 10px;font-size:12px}.botAdminRow .botName{cursor:pointer}.botAdminRow .botName:hover{text-decoration:underline;color:#e74c3c}.botAdminBtns{display:flex;gap:4px}.botAdminBtns button{background:rgba(231,76,60,.15);border:1px solid rgba(231,76,60,.25);color:#fff;border-radius:6px;padding:3px 10px;cursor:pointer;font-size:11px;transition:all .2s}.botAdminBtns button:hover{background:rgba(231,76,60,.4)}#adminCmdInput{background:rgba(0,0,0,.3);border:1px solid rgba(231,76,60,.3);color:#fff;border-radius:8px;padding:6px 10px;font-size:12px;width:100%;margin-bottom:6px}#hackBtn{width:100%;background:linear-gradient(135deg,#c0392b,#7f1f1f);color:#fff;border:2px solid #e74c3c;border-radius:12px;padding:12px;font-size:14px;font-weight:bold;cursor:pointer;transition:all .3s;margin-top:8px;animation:hackPulse 1.5s ease-in-out infinite}#hackBtn:hover{background:linear-gradient(135deg,#e74c3c,#c0392b);box-shadow:0 0 30px rgba(231,76,60,.6);transform:scale(1.03)}@keyframes hackPulse{0%,100%{box-shadow:0 0 10px rgba(231,76,60,.3)}50%{box-shadow:0 0 25px rgba(231,76,60,.5)}}#hackOverlay{position:fixed;inset:0;z-index:9999;display:none;overflow:hidden;background:#000}#hackOverlay.active{display:block;animation:hackShake .15s infinite}@keyframes hackShake{0%{transform:translate(0,0)}25%{transform:translate(-5px,3px)}50%{transform:translate(4px,-2px)}75%{transform:translate(-3px,4px)}100%{transform:translate(2px,-3px)}}#hackScan{position:absolute;left:0;right:0;height:4px;background:linear-gradient(90deg,transparent,#ff0000,transparent);box-shadow:0 0 20px #f00;animation:scanMove 1.5s linear infinite}@keyframes scanMove{0%{top:0}100%{top:100%}}#hackText{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px}.hackLine{font-family:'Courier New',monospace;font-size:14px;color:#ff0000;text-shadow:0 0 10px #f00;opacity:0;animation:hackLineShow .3s forwards}@keyframes hackLineShow{0%{opacity:0;transform:translateX(-20px)}100%{opacity:1;transform:translateX(0)}}#hackFlash{position:absolute;inset:0;background:#ff0000;opacity:0;animation:hackFlash .2s infinite}@keyframes hackFlash{0%,100%{opacity:0}50%{opacity:.15}}#hackGlitch{position:absolute;inset:0;mix-blend-mode:screen;opacity:.3;animation:glitchShift .1s infinite}@keyframes glitchShift{0%{transform:translate(0,0)}50%{transform:translate(-3px,2px)}100%{transform:translate(3px,-2px)}}.cheatTabs{display:flex;gap:2px;margin-bottom:8px}.cheatTab{flex:1;background:rgba(108,92,231,.12);color:rgba(255,255,255,.5);border:1px solid rgba(108,92,231,.25);border-radius:8px 8px 0 0;padding:7px 4px;cursor:pointer;font-size:11px;text-align:center;transition:all .2s}.cheatTab:hover{background:rgba(108,92,231,.25)}.cheatTab.active{background:rgba(108,92,231,.35);color:#fff;border-color:var(--purple)}.cheatTabContent{display:none}.cheatTabContent.active{display:flex;flex-direction:column;gap:6px}.cheatSection{font-size:11px;color:rgba(255,255,255,.5);margin-top:6px;border-top:1px solid rgba(255,255,255,.04);padding-top:6px}#cheatPasswordModal{position:fixed;inset:0;background:rgba(0,0,0,.8);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;z-index:500;padding:20px}#cheatPasswordModal.open{display:flex}#cheatPasswordBox{background:linear-gradient(135deg,rgba(26,26,46,.95),rgba(45,27,78,.95));backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);border:2px solid rgba(108,92,231,.5);border-radius:20px;padding:28px;max-width:320px;width:100%;text-align:center;color:#fff;box-shadow:0 20px 60px rgba(108,92,231,.3);animation:modalPop .4s cubic-bezier(.34,1.56,.64,1)}#cheatPasswordBox h3{font-size:18px;margin-bottom:8px;color:#a29bfe}#cheatPasswordBox p{font-size:12px;color:rgba(255,255,255,.5);margin-bottom:14px}#cheatPasswordInput{background:rgba(0,0,0,.4);border:1px solid rgba(108,92,231,.4);color:#fff;border-radius:10px;padding:12px 16px;font-size:14px;width:100%;margin-bottom:10px;text-align:center;letter-spacing:2px}#cheatPasswordInput:focus{outline:none;border-color:var(--purple);box-shadow:0 0 15px rgba(108,92,231,.3)}#cheatPasswordError{color:#e74c3c;font-size:12px;margin-bottom:8px;display:none}.cheatPwBtn{width:100%;background:linear-gradient(135deg,var(--purple),#4834d4);color:#fff;border:none;border-radius:10px;padding:12px;font-size:14px;cursor:pointer;transition:all .2s}.cheatPwBtn:hover{background:linear-gradient(135deg,#7f6fe8,#5d44e0);box-shadow:0 0 20px rgba(108,92,231,.4)}.cheatPwCancel{background:rgba(255,255,255,.08);border:1px solid var(--glass-border);margin-top:8px}.cheatPwCancel:hover{background:rgba(255,255,255,.18);box-shadow:none}.musicSelect{display:flex;flex-direction:column;gap:6px;margin-top:8px}.musicTrackBtn{display:flex;align-items:center;gap:8px;background:var(--glass);border:1px solid var(--glass-border);border-radius:10px;padding:10px 14px;cursor:pointer;transition:all .2s;font-size:12px;color:#fff}.musicTrackBtn:hover{background:rgba(255,255,255,.15)}.musicTrackBtn.active{background:rgba(232,165,75,.15);border-color:var(--gold)}.musicTrackBtn .musicIcon{font-size:18px}.musicTrackBtn .musicName{flex:1;text-align:left}.musicTrackBtn .musicCheck{color:var(--gold);font-size:14px}#musicBtn{position:fixed;bottom:20px;left:20px;width:48px;height:48px;border-radius:50%;background:var(--glass);border:1px solid var(--glass-border);display:flex;align-items:center;justify-content:center;font-size:22px;cursor:pointer;z-index:200;transition:all .2s cubic-bezier(.34,1.56,.64,1);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}#musicBtn:hover{background:rgba(255,255,255,.22);transform:scale(1.1)}#musicBtn.playing{background:rgba(46,204,113,.2);border-color:var(--green);animation:musicPulse 2s ease-in-out infinite}@keyframes musicPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}.bgItem{position:absolute;opacity:.12;font-size:24px;pointer-events:none;animation:fallDown linear forwards;z-index:0}@keyframes fallDown{0%{transform:translateY(-50px) rotate(0deg)}100%{transform:translateY(110vh) rotate(360deg)}}.factoryInfo{background:rgba(0,0,0,.3);border-radius:10px;padding:10px;margin-bottom:10px;font-size:12px;color:rgba(255,255,255,.6)}.factoryInfo b{color:var(--gold)}.factorySizes{display:flex;gap:8px;margin-bottom:12px}.factorySizeCard{flex:1;background:var(--glass);border:1px solid var(--glass-border);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;transition:all .2s;font-size:11px;color:#fff}.factorySizeCard:hover{background:rgba(255,255,255,.15)}.factorySizeCard.active{background:rgba(232,165,75,.15);border-color:var(--gold);box-shadow:0 0 15px rgba(232,165,75,.2)}.factorySizeCard.owned{border-color:var(--green)}.factorySizeCard .fsIcon{font-size:24px}.factorySizeCard .fsName{font-weight:bold;margin:4px 0 2px}.factorySizeCard .fsPrice{color:#ffd700;font-size:10px}.factorySizeCard .fsSlots{color:rgba(255,255,255,.5);font-size:10px}.factoryGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:10px 0}.factorySlot{aspect-ratio:1;background:rgba(0,0,0,.3);border:1px dashed rgba(255,255,255,.12);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:22px;cursor:pointer;transition:all .2s;position:relative}.factorySlot:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.3)}.factorySlot.hasMachine{border-style:solid;border-color:var(--gold);background:rgba(232,165,75,.1)}.factorySlot.locked{opacity:.3;cursor:not-allowed}.factorySlot .slotLevel{position:absolute;bottom:1px;right:2px;font-size:8px;color:var(--gold);font-weight:bold}.machinePicker{display:flex;gap:6px;margin:10px 0;flex-wrap:wrap}.machineCard{flex:1;min-width:80px;background:var(--glass);border:1px solid var(--glass-border);border-radius:10px;padding:8px;text-align:center;cursor:pointer;transition:all .2s;font-size:11px;color:#fff}.machineCard:hover{background:rgba(255,255,255,.15)}.machineCard.selected{background:rgba(108,92,231,.15);border-color:var(--purple)}.machineCard .mcIcon{font-size:20px}.machineCard .mcName{font-weight:bold;margin:2px 0}.machineCard .mcPrice{color:#ffd700;font-size:10px}.machineCard .mcProd{color:var(--green);font-size:10px}.factoryStats{background:rgba(46,204,113,.08);border:1px solid rgba(46,204,113,.3);border-radius:10px;padding:10px;margin:10px 0;font-size:12px;color:var(--green)}.factoryHint{font-size:11px;color:rgba(255,255,255,.4);margin-top:8px;text-align:center}.wipeConfirm{background:rgba(231,76,60,.15);border:1px solid rgba(231,76,60,.3);color:#fff;border-radius:8px;padding:8px;cursor:pointer;font-size:12px;width:100%;margin-top:4px;transition:all .2s}.wipeConfirm:hover{background:rgba(231,76,60,.4)}.achGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px}.achCard{background:var(--glass);border:1px solid var(--glass-border);border-radius:14px;padding:10px;display:flex;gap:10px;align-items:center;transition:all .2s;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}.achCard.unlocked{border-color:var(--green);background:rgba(46,204,113,.06)}.achCard.unlocked .achIcon{filter:none}.achIcon{font-size:30px;filter:grayscale(1) opacity(.4);flex-shrink:0}.achInfo{flex:1;min-width:0}.achName{font-size:12px;font-weight:bold;color:#fff}.achCard:not(.unlocked) .achName{color:rgba(255,255,255,.3)}.achDesc{font-size:10px;color:rgba(255,255,255,.4);margin-top:3px}.achProgress{font-size:10px;color:var(--gold);margin-top:3px}.achBar{height:3px;background:rgba(255,255,255,.08);border-radius:2px;margin-top:4px;overflow:hidden}.achBarFill{height:100%;background:linear-gradient(90deg,var(--gold2),var(--gold));transition:width .3s}.achHeader{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}.achCounter{font-size:14px;color:var(--gold);font-weight:bold}#achToast{position:fixed;top:20px;left:50%;transform:translateX(-50%) translateY(-100px);background:linear-gradient(135deg,rgba(26,26,46,.95),rgba(22,33,62,.95));backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);border:2px solid var(--green);border-radius:12px;padding:10px 16px;display:flex;gap:8px;align-items:center;z-index:600;box-shadow:0 8px 30px rgba(0,0,0,.5),0 0 15px rgba(46,204,113,.2);transition:transform .4s cubic-bezier(.34,1.56,.64,1);pointer-events:none}#achToast.show{transform:translateX(-50%) translateY(0)}#achToast .toastIcon{font-size:24px}#achToast .toastText{color:#fff}#achToast .toastTitle{font-size:12px;font-weight:bold;color:var(--green)}#achToast .toastSub{font-size:10px;color:rgba(255,255,255,.5)}#tabBar{width:100%;display:flex;gap:0;padding:0 12px;margin-top:4px;z-index:10}.tabBtn{flex:1;background:var(--glass);color:rgba(255,255,255,.5);border:1px solid var(--glass-border);border-radius:14px 14px 0 0;padding:10px 14px;font-size:14px;cursor:pointer;transition:all .3s;text-align:center;font-weight:bold;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}.tabBtn.active{background:linear-gradient(135deg,var(--gold2),var(--gold));color:#1a0f05;border-color:var(--gold);box-shadow:0 0 20px rgba(232,165,75,.4),0 4px 12px rgba(0,0,0,.15)}.tabBtn:hover:not(.active){background:rgba(255,255,255,.15);color:#fff}#moneySection{display:none;flex-direction:column;align-items:center;z-index:5;margin-top:10px}#moneySection.active{display:flex}#moneyCount{font-size:30px;font-weight:bold;color:var(--green);text-shadow:0 0 20px rgba(46,204,113,.5),0 0 40px rgba(46,204,113,.25)}#moneyCpsDisplay{font-size:13px;color:rgba(255,255,255,.5);margin-top:3px}#moneyCoinWrap{margin-top:14px;position:relative}#bigMoneyCoin{width:220px;height:220px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:110px;background:radial-gradient(circle at 35% 30%,#6fdead,#2ecc71 40%,#27ae60 80%,#1e8449);border:4px solid #1e8449;box-shadow:0 0 40px rgba(46,204,113,.4),0 0 80px rgba(46,204,113,.2),inset 0 -10px 30px rgba(0,0,0,.3),inset 0 10px 20px rgba(255,255,255,.15);transition:all .15s cubic-bezier(.34,1.56,.64,1);animation:moneyGlow 3s ease-in-out infinite}#bigMoneyCoin:active{transform:scale(.88)}#bigMoneyCoin:hover{transform:scale(1.05);box-shadow:0 0 60px rgba(46,204,113,.6),0 0 120px rgba(46,204,113,.3),inset 0 -10px 30px rgba(0,0,0,.3),inset 0 10px 20px rgba(255,255,255,.2)}@keyframes moneyGlow{0%,100%{box-shadow:0 0 40px rgba(46,204,113,.3),0 0 80px rgba(46,204,113,.15),inset 0 -10px 30px rgba(0,0,0,.3),inset 0 10px 20px rgba(255,255,255,.15)}50%{box-shadow:0 0 55px rgba(46,204,113,.5),0 0 100px rgba(46,204,113,.25),inset 0 -10px 30px rgba(0,0,0,.3),inset 0 10px 20px rgba(255,255,255,.2)}}#moneyUpgrades{margin-top:14px;width:100%;max-width:400px;padding:0 12px;overflow-y:auto;max-height:40vh}.moneyUpg{display:flex;justify-content:space-between;align-items:center;background:var(--glass);border:1px solid var(--glass-border);border-radius:14px;padding:12px 18px;margin-bottom:8px;cursor:pointer;transition:all .3s cubic-bezier(.34,1.56,.64,1);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}.moneyUpg:hover{background:rgba(255,255,255,.15);transform:translateX(6px)}.moneyUpg.disabled{opacity:.5}.moneyUpg span:first-child{font-size:13px;color:#fff}.moneyUpg span:last-child{font-size:12px;color:var(--green);font-weight:bold}#cookieSection{display:flex;flex-direction:column;align-items:center}#cookieSection.hidden{display:none}#levelPanel{position:fixed;left:0;top:50%;transform:translateY(-50%);width:200px;background:rgba(15,12,41,.5);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);border-right:2px solid rgba(232,165,75,.4);border-radius:0 16px 16px 0;padding:14px;z-index:5;display:flex;flex-direction:column;gap:10px;box-shadow:4px 0 20px rgba(0,0,0,.3)}#levelPanel.hidden{display:none}.levelBadge{font-size:38px;text-align:center;filter:drop-shadow(0 0 12px rgba(232,165,75,.6));animation:badgeFloat 3s ease-in-out infinite}@keyframes badgeFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}.levelNum{font-size:22px;font-weight:bold;color:var(--gold);text-align:center}.levelNum small{font-size:12px;color:rgba(255,255,255,.4);font-weight:normal}.levelBar{width:100%;height:10px;background:rgba(255,255,255,.08);border-radius:5px;overflow:hidden;box-shadow:inset 0 1px 2px rgba(0,0,0,.3)}.levelBarFill{height:100%;background:linear-gradient(90deg,var(--gold2),#ffd700,var(--gold));border-radius:5px;transition:width .3s;box-shadow:0 0 10px rgba(232,165,75,.4)}.levelXP{font-size:10px;color:rgba(255,255,255,.4);text-align:center}.levelText{font-size:11px;color:rgba(255,255,255,.6);text-align:center;padding:6px;line-height:1.4;background:rgba(255,255,255,.04);border-radius:10px}.levelUpToast{position:fixed;top:18%;left:210px;transform:translateY(0);background:rgba(15,12,41,.85);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);border:2px solid var(--gold);border-radius:12px;padding:10px 14px;z-index:100;text-align:center;box-shadow:0 6px 20px rgba(0,0,0,.4),0 0 15px rgba(232,165,75,.2);animation:levelUpPop .5s cubic-bezier(.34,1.56,.64,1)}.levelUpToast .lu-icon{font-size:22px}.levelUpToast .lu-text{font-size:12px;color:var(--gold);margin-top:3px;font-weight:bold}.levelUpToast .lu-desc{font-size:9px;color:rgba(255,255,255,.5);margin-top:2px}@keyframes levelUpPop{0%{transform:translateX(-30px) scale(.8);opacity:0}50%{transform:translateX(5px) scale(1.05);opacity:1}100%{transform:translateX(0) scale(1);opacity:1}}::-webkit-scrollbar{width:8px;height:8px}::-webkit-scrollbar-track{background:rgba(255,255,255,.03)}::-webkit-scrollbar-thumb{background:rgba(232,165,75,.3);border-radius:4px}::-webkit-scrollbar-thumb:hover{background:rgba(232,165,75,.5)}
-
-/* ===== RELEASE v2.0 POLISH ===== */
-/* Loading Screen */
-#loadingScreen{position:fixed;inset:0;z-index:99999;background:linear-gradient(135deg,#0f0c29,#1a0f3a,#2d1b4e);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;transition:opacity .6s ease}#loadingScreen.hidden{opacity:0;pointer-events:none}#loadLogo{font-size:80px;animation:loadBounce 1.2s ease-in-out infinite}#loadLogo .cookie-spin{display:inline-block;animation:loadSpin 3s linear infinite}@keyframes loadSpin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}@keyframes loadBounce{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-12px) scale(1.05)}}#loadTitle{font-size:28px;font-weight:800;background:linear-gradient(135deg,#f5c068,#e8a54b,#ffd700);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;text-align:center;letter-spacing:1px}#loadSub{font-size:13px;color:rgba(255,255,255,.4);text-align:center;margin-top:-12px}#loadBarWrap{width:220px;height:6px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden;margin-top:8px}#loadBar{height:100%;width:0;background:linear-gradient(90deg,#e8a54b,#ffd700,#2ecc71);border-radius:3px;transition:width .3s ease;box-shadow:0 0 10px rgba(232,165,75,.5)}#loadPct{font-size:12px;color:rgba(255,255,255,.4);margin-top:4px;font-family:monospace}#loadTips{max-width:300px;text-align:center;font-size:11px;color:rgba(255,255,255,.25);font-style:italic;margin-top:10px;line-height:1.5;min-height:30px}
-
-/* Version Badge */
-#versionBadge{position:fixed;bottom:6px;right:50%;transform:translateX(50%);font-size:9px;color:rgba(255,255,255,.15);font-family:monospace;z-index:50;pointer-events:none;user-select:none;letter-spacing:.5px;white-space:nowrap}
-
-/* Changelog Modal */
-#modalChangelog .modalContent{max-width:420px}
-#modalChangelog h2{background:linear-gradient(135deg,#f5c068,#ffd700);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;font-size:20px}
-.changelogItem{display:flex;gap:8px;align-items:flex-start;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px;color:rgba(255,255,255,.7)}
-.changelogItem:last-child{border-bottom:none}
-.changelogTag{flex-shrink:0;font-size:9px;font-weight:bold;padding:2px 6px;border-radius:4px;text-transform:uppercase;letter-spacing:.5px}
-.changelogTag.new{background:rgba(46,204,113,.15);color:#2ecc71;border:1px solid rgba(46,204,113,.3)}
-.changelogTag.fix{background:rgba(232,165,75,.15);color:#e8a54b;border:1px solid rgba(232,165,75,.3)}
-.changelogTag.imp{background:rgba(108,92,231,.15);color:#a29bfe;border:1px solid rgba(108,92,231,.3)}
-.changelogTag.fun{background:rgba(231,76,60,.15);color:#e74c3c;border:1px solid rgba(231,76,60,.3)}
-
-/* What's New button */
-#whatsNewBtn{position:fixed;top:8px;right:8px;background:linear-gradient(135deg,rgba(46,204,113,.2),rgba(46,204,113,.1));border:1px solid rgba(46,204,113,.4);color:#2ecc71;border-radius:10px;padding:4px 10px;font-size:10px;font-weight:bold;cursor:pointer;z-index:201;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);transition:all .2s cubic-bezier(.34,1.56,.64,1);animation:newPulse 2s ease-in-out infinite}#whatsNewBtn:hover{background:rgba(46,204,113,.3);transform:scale(1.05)}@keyframes newPulse{0%,100%{box-shadow:0 0 5px rgba(46,204,113,.2)}50%{box-shadow:0 0 15px rgba(46,204,113,.4)}}
-
-/* First-time welcome */
-#welcomeOverlay{position:fixed;inset:0;z-index:99998;background:rgba(0,0,0,0);backdrop-filter:blur(0px);-webkit-backdrop-filter:blur(0px);display:none;align-items:center;justify-content:center;padding:20px;transition:background .6s ease,backdrop-filter .6s ease,-webkit-backdrop-filter .6s ease}
-#welcomeOverlay.show{display:flex;background:rgba(0,0,0,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
-#welcomeBox{background:linear-gradient(135deg,rgba(26,26,46,.96),rgba(22,33,62,.96));border:1px solid rgba(232,165,75,.35);border-radius:28px;padding:32px 28px;max-width:380px;width:100%;text-align:center;color:#fff;box-shadow:0 24px 70px rgba(0,0,0,.55),0 0 50px rgba(232,165,75,.12);opacity:0;transform:translateY(40px) scale(.92);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
-#welcomeOverlay.show #welcomeBox{opacity:1;transform:translateY(0) scale(1)}
-#welcomeBox .w-icon{font-size:56px;filter:drop-shadow(0 0 16px rgba(255,200,100,.5));animation:loadBounce 3s ease-in-out infinite}
-#welcomeBox h2{font-size:22px;font-weight:800;background:linear-gradient(135deg,#f5c068,#ffd700);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin:14px 0 6px}
-#welcomeBox .w-sub{font-size:12px;color:rgba(232,165,75,.6);font-style:italic;margin-bottom:14px;letter-spacing:.5px}
-#welcomeBox .w-intro{font-size:13px;color:rgba(255,255,255,.65);margin-bottom:18px;line-height:1.6}
-#welcomeBox .w-features{display:flex;flex-direction:column;gap:8px;margin-bottom:22px;text-align:left}
-#welcomeBox .w-feature{display:flex;align-items:flex-start;gap:10px;font-size:12px;color:rgba(255,255,255,.75);line-height:1.4;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:8px 10px;opacity:0;transform:translateX(-24px);transition:opacity .5s cubic-bezier(.22,1,.36,1),transform .5s cubic-bezier(.22,1,.36,1),background .3s ease,border-color .3s ease}
-#welcomeBox.show #welcomeBox .w-feature,
-#welcomeOverlay.show .w-feature{opacity:1;transform:translateX(0)}
-#welcomeBox .w-feature:hover{background:rgba(232,165,75,.08);border-color:rgba(232,165,75,.2)}
-#welcomeBox .w-feature span:first-child{font-size:18px;flex-shrink:0;line-height:1.2}
-#welcomeBox .w-feature b{color:#f5c068;font-weight:700;font-size:12px;display:block;margin-bottom:1px}
-#welcomeBox .w-feature small{font-size:11px;color:rgba(255,255,255,.55);display:block}
-#welcomeBox .w-tip{font-size:10px;color:rgba(255,255,255,.35);margin-bottom:14px;letter-spacing:.3px}
-#welcomeBox .w-btn{width:100%;background:linear-gradient(135deg,#e8a54b,#f5c068);color:#1a0f05;border:none;border-radius:16px;padding:15px;font-size:15px;font-weight:bold;cursor:pointer;transition:all .25s cubic-bezier(.22,1,.36,1);opacity:0;transform:translateY(16px)}
-#welcomeOverlay.show .w-btn{opacity:1;transform:translateY(0);transition-delay:.9s}
-#welcomeBox .w-btn:hover{transform:translateY(-2px) scale(1.02);box-shadow:0 8px 26px rgba(232,165,75,.45)}
-#welcomeBox .w-btn:active{transform:scale(.98)}
-#welcomeOverlay.hide{background:rgba(0,0,0,0)!important;backdrop-filter:blur(0)!important;-webkit-backdrop-filter:blur(0)!important}
-#welcomeOverlay.hide #welcomeBox{opacity:0;transform:translateY(30px) scale(.95)}
-
-/* Polish: better top bar */
-#topbar{box-shadow:0 4px 20px rgba(0,0,0,.2)}
-
-/* Stats shimmer */
-#cookieCount{animation:cookieShimmer 4s ease-in-out infinite,cookieBounce .3s ease}
-@keyframes cookieShimmer{0%,100%{text-shadow:0 0 20px rgba(255,200,100,.6),0 0 40px rgba(255,200,100,.3)}50%{text-shadow:0 0 30px rgba(255,200,100,.8),0 0 60px rgba(255,200,100,.4)}}
-
-/* Community stats bar */
-#communityBar{position:fixed;bottom:0;left:0;right:0;height:24px;background:rgba(15,12,41,.6);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;gap:16px;z-index:50;pointer-events:none;font-size:10px;color:rgba(255,255,255,.2);font-family:monospace}
-#communityBar .cb-item{display:flex;align-items:center;gap:4px}
-#communityBar .cb-dot{width:6px;height:6px;border-radius:50%;background:#2ecc71;animation:cbPulse 2s ease-in-out infinite}
-@keyframes cbPulse{0%,100%{opacity:.5}50%{opacity:1}}
-
-/* Optimization hints */
-#bigCookie,#bigMoney{will-change:transform,box-shadow}
-.modal{content-visibility:hidden;contain-intrinsic-size:500px}
-.modal.open{content-visibility:visible}
-#upgrades{content-visibility:auto;contain-intrinsic-size:400px}
-.toast,.achToast{will-change:transform,opacity}
-.bgItem{will-change:transform,opacity}
-
+*{margin:0;padding:0;box-sizing:border-box;user-select:none;-webkit-tap-highlight-color:transparent}
+body{font-family:'SF Pro Display',system-ui,-apple-system,'Segoe UI',Arial,sans-serif;overflow:hidden;touch-action:pan-y;background:#0f0c29;color:#fff}
+:root{--gold:#f5c068;--gold2:#e8a54b;--green:#2ecc71;--purple:#6c5ce7;--red:#e74c3c}
+#game{position:fixed;inset:0;background:linear-gradient(135deg,#0f0c29,#1a0f3a,#2d1b4e,#1a0f2e);display:flex;flex-direction:column;align-items:center;z-index:1;overflow-y:auto;padding-bottom:100px}
+#game::before{content:"";position:fixed;inset:0;background:radial-gradient(2px 2px at 20% 30%,rgba(255,255,255,.15),transparent),radial-gradient(2px 2px at 60% 70%,rgba(255,200,100,.1),transparent),radial-gradient(1px 1px at 80% 10%,rgba(255,255,255,.1),transparent);pointer-events:none;z-index:0}
+#topbar{width:100%;padding:10px 12px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap;z-index:10;background:rgba(15,12,41,.4);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.1)}
+.tbtn{background:rgba(255,255,255,.06);color:#fff;border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:8px 18px;font-size:13px;cursor:pointer;transition:.3s;white-space:nowrap;box-shadow:0 2px 12px rgba(0,0,0,.15)}
+.tbtn:hover{background:rgba(255,255,255,.18);transform:translateY(-3px)}
+.tbtn:active{transform:translateY(0) scale(.97)}
+.tbtn.active{background:linear-gradient(135deg,var(--gold2),var(--gold));color:#1a0f05;border-color:var(--gold)}
+#tabBar{width:100%;display:flex;gap:0;padding:0 12px;margin-top:4px;z-index:10}
+.tabBtn{flex:1;background:rgba(255,255,255,.06);color:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.1);border-radius:14px 14px 0 0;padding:10px 14px;font-size:14px;cursor:pointer;transition:.3s;text-align:center;font-weight:bold}
+.tabBtn.active{background:linear-gradient(135deg,var(--gold2),var(--gold));color:#1a0f05;border-color:var(--gold)}
+#stats{margin-top:10px;text-align:center;z-index:5}
+#nickDisplay{font-size:13px;color:#e8a54b;margin-bottom:2px}
+#coinCount{font-size:16px;color:#ffd700;font-weight:bold;text-shadow:0 0 12px rgba(255,215,0,.5)}
+#cookieCount{font-size:30px;font-weight:bold;text-shadow:0 0 20px rgba(255,200,100,.6);animation:cookieBounce .3s ease}
+@keyframes cookieBounce{50%{transform:scale(1.1)}}
+#cpsDisplay{font-size:13px;color:rgba(255,255,255,.5);margin-top:3px}
+#cookieWrap{margin-top:14px;position:relative;z-index:5}
+#bigCookie{width:220px;height:220px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:110px;background:radial-gradient(circle at 35% 30%,#f5d088,#e8a54b 40%,#b8732a 80%,#8a5a1a);border:4px solid #8a5a1a;box-shadow:0 0 40px rgba(255,200,100,.4),inset 0 -10px 30px rgba(0,0,0,.3);transition:transform .15s cubic-bezier(.34,1.56,.64,1);animation:cookieGlow 3s ease-in-out infinite}
+#bigCookie:active{transform:scale(.88)}
+#bigCookie:hover{transform:scale(1.05)}
+@keyframes cookieGlow{50%{box-shadow:0 0 55px rgba(255,200,100,.5),inset 0 -10px 30px rgba(0,0,0,.3)}}
+#bigCookie.choco{background:radial-gradient(circle at 35% 30%,#7d4a2a,#5d3a1a 50%,#3d2510 80%);border-color:#3d2510;animation:none}
+#bigCookie.oatmeal{background:radial-gradient(circle at 35% 30%,#e4c4a0,#d4a574 50%,#b8860b 80%);border-color:#8b6914;animation:none}
+#bigCookie.raisin{background:radial-gradient(circle at 35% 30%,#a05a23,#8b4513 50%,#4a2509 80%);border-color:#5d2f0a;animation:none}
+#bigCookie.rainbow{background:linear-gradient(135deg,#ff6b6b,#feca57,#48dbfb,#a55eea,#ff6b6b);border-color:#fff;animation:rbSpin 3s linear infinite}
+@keyframes rbSpin{100%{filter:hue-rotate(360deg)}}
+#bigCookie.gold{background:radial-gradient(circle at 35% 30%,#fff8d0,#ffd700 40%,#daa520 80%);border-color:#b8860b;animation:goldShimmer 2s ease-in-out infinite}
+@keyframes goldShimmer{50%{box-shadow:0 0 70px rgba(255,215,0,.8),inset 0 -10px 30px rgba(0,0,0,.2)}}
+#bigCookie.sprinkle::after{content:"";position:absolute;inset:0;border-radius:50%;background:repeating-radial-gradient(circle at 30% 40%,#ff6b6b 0 2px,transparent 2px 8px),repeating-radial-gradient(circle at 70% 60%,#48dbfb 0 2px,transparent 2px 10px);opacity:.5;pointer-events:none}
+#bigCookie.filled::after{content:"";position:absolute;inset:25%;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff8e7,#f5deb3);pointer-events:none}
+#bigCookie.caramel::after{content:"";position:absolute;inset:15%;border-radius:50%;background:repeating-linear-gradient(45deg,transparent 0 4px,rgba(255,255,255,.1) 4px 6px);pointer-events:none}
+#bigCookie.mega{background:radial-gradient(circle at 35% 30%,#ffb050,#ff9500 40%,#e8a54b 70%,#b8732a);animation:megaPulse 1s ease-in-out infinite}
+@keyframes megaPulse{50%{transform:scale(1.05)}}
+#clickNum{position:fixed;font-size:26px;font-weight:bold;color:#ffd700;pointer-events:none;animation:floatUp 1s ease-out forwards;z-index:100;text-shadow:0 0 8px #000}
+@keyframes floatUp{to{opacity:0;transform:translateY(-70px)}}
+#upgrades{margin-top:16px;display:flex;flex-direction:column;gap:8px;align-items:center;z-index:5;width:290px;max-width:90vw}
+.upg{display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:11px 18px;cursor:pointer;transition:.3s;font-size:13px;width:100%;box-shadow:0 4px 12px rgba(0,0,0,.15)}
+.upg:hover{background:rgba(255,255,255,.15);transform:translateX(6px)}
+.upg.disabled{opacity:.4;cursor:not-allowed}
+#cheatIcon{position:fixed;bottom:20px;right:20px;width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#9b59b6,#6c5ce7);display:flex;align-items:center;justify-content:center;font-size:26px;cursor:pointer;z-index:200;box-shadow:0 4px 20px rgba(108,92,231,.4);transition:.2s;touch-action:none}
+#cheatIcon:hover{transform:scale(1.12)}
+#cheatIcon:active{transform:scale(.85)}
+#cheatPanel{position:fixed;background:rgba(26,26,46,.85);backdrop-filter:blur(12px);color:#fff;border:1px solid rgba(108,92,231,.4);border-radius:14px;padding:14px;z-index:300;display:none;flex-direction:column;gap:8px;width:240px;max-width:90vw;box-shadow:0 12px 40px rgba(0,0,0,.5)}
+#cheatPanel.open{display:flex}
+.cheatBtn{background:rgba(108,92,231,.15);color:#fff;border:1px solid rgba(108,92,231,.3);border-radius:8px;padding:7px 12px;cursor:pointer;font-size:12px;transition:.2s;text-align:left}
+.cheatBtn:hover{background:rgba(108,92,231,.35);transform:translateX(2px)}
+.cheatBtn.danger{background:rgba(231,76,60,.15);border-color:rgba(231,76,60,.3)}
+.cheatBtn.danger:hover{background:rgba(231,76,60,.4)}
+.cheatRow{display:flex;gap:4px;flex-wrap:wrap}
+.cheatRow .cheatBtn{flex:1;min-width:60px;text-align:center}
+#cheatInput{background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.2);color:#fff;border-radius:8px;padding:6px 10px;font-size:12px;width:100%}
+.cheatLabel{font-size:11px;color:rgba(255,255,255,.5);margin-top:4px}
+.cheatSlider{width:100%;accent-color:#9b59b6}
+.cheatTabs{display:flex;gap:2px;margin-bottom:8px}
+.cheatTab{flex:1;background:rgba(108,92,231,.12);color:rgba(255,255,255,.5);border:1px solid rgba(108,92,231,.25);border-radius:8px 8px 0 0;padding:7px 4px;cursor:pointer;font-size:11px;text-align:center}
+.cheatTab.active{background:rgba(108,92,231,.35);color:#fff}
+.cheatTabContent{display:none;flex-direction:column;gap:6px}
+.cheatTabContent.active{display:flex}
+#cheatPasswordModal{position:fixed;inset:0;background:rgba(0,0,0,.8);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;z-index:500;padding:20px}
+#cheatPasswordModal.open{display:flex}
+#cheatPasswordBox{background:linear-gradient(135deg,#1a1a2e,#2d1b4e);border:2px solid rgba(108,92,231,.5);border-radius:20px;padding:28px;max-width:320px;width:100%;text-align:center;animation:modalPop .4s}
+#cheatPasswordBox h3{font-size:18px;margin-bottom:8px;color:#a29bfe}
+#cheatPasswordBox p{font-size:12px;color:rgba(255,255,255,.5);margin-bottom:14px}
+#cheatPasswordInput{background:rgba(0,0,0,.4);border:1px solid rgba(108,92,231,.4);color:#fff;border-radius:10px;padding:12px 16px;font-size:14px;width:100%;margin-bottom:10px;text-align:center;letter-spacing:2px}
+#cheatPasswordInput:focus{outline:none;border-color:var(--purple)}
+#cheatPasswordError{color:#e74c3c;font-size:12px;margin-bottom:8px;display:none}
+.cheatPwBtn{width:100%;background:linear-gradient(135deg,var(--purple),#4834d4);color:#fff;border:none;border-radius:10px;padding:12px;font-size:14px;cursor:pointer;transition:.2s}
+.cheatPwBtn:hover{background:linear-gradient(135deg,#7f6fe8,#5d44e0)}
+.cheatPwCancel{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);margin-top:8px}
+@keyframes modalPop{from{transform:scale(.85);opacity:0}}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.75);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;z-index:400;padding:20px}
+.modal.open{display:flex}
+.modalContent{background:linear-gradient(135deg,#1a1a2e,#16213e);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:20px;max-width:500px;width:100%;max-height:85vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.5);animation:modalPop .4s}
+.modalContent h2{margin-bottom:12px;font-size:18px;text-align:center}
+.modalClose{position:sticky;top:0;float:right;background:rgba(231,76,60,.25);border:1px solid rgba(231,76,60,.3);color:#fff;border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:16px;margin:-4px -4px 0 0}
+.modalClose:hover{background:rgba(231,76,60,.6);transform:rotate(180deg)}
+#lbTable{width:100%;border-collapse:collapse;font-size:12px;margin-top:10px}
+#lbTable th{background:rgba(255,255,255,.08);padding:6px;text-align:center;border-bottom:1px solid rgba(255,255,255,.1)}
+#lbTable td{padding:5px;text-align:center;border-bottom:1px solid rgba(255,255,255,.03)}
+#lbTable tr.me{background:rgba(232,165,75,.15);font-weight:bold}
+.skinGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:12px}
+.skinCard{background:rgba(255,255,255,.06);border:2px solid rgba(255,255,255,.1);border-radius:16px;padding:12px;text-align:center;cursor:pointer;transition:.3s}
+.skinCard:hover{border-color:rgba(255,255,255,.3);transform:translateY(-4px)}
+.skinCard.owned{border-color:var(--green)}
+.skinCard.active{border-color:var(--gold);background:rgba(232,165,75,.12)}
+.skinCard.locked{opacity:.5;cursor:not-allowed}
+.skinPreview{width:55px;height:55px;border-radius:50%;margin:0 auto 8px;display:flex;align-items:center;justify-content:center;font-size:30px}
+.skinName{font-size:12px;font-weight:bold}
+.skinPrice{font-size:11px;color:#ffd700;margin-top:4px}
+.skinPrice.owned{color:var(--green)}
+.settingRow{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.settingRow label{font-size:13px}
+.settingRow input[type=range]{width:120px;accent-color:var(--gold)}
+.settingRow input[type=checkbox]{width:20px;height:20px;accent-color:var(--gold)}
+.settingRow input[type=text]{background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.2);color:#fff;border-radius:6px;padding:4px 8px;font-size:12px;width:120px}
+#botSpeedSlider{width:100%;accent-color:var(--gold);margin-top:4px}
+#adminPanel{margin-top:12px;border-top:1px solid rgba(231,76,60,.3);padding-top:10px}
+#adminPanel h3{color:#e74c3c;font-size:14px;margin-bottom:8px;text-align:center}
+.botAdminList{display:flex;flex-direction:column;gap:4px;margin-bottom:10px;max-height:200px;overflow-y:auto}
+.botAdminRow{display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,.04);border-radius:8px;padding:5px 10px;font-size:12px}
+.botAdminRow .botName{cursor:pointer}
+.botAdminRow .botName:hover{color:#e74c3c}
+.botAdminBtns{display:flex;gap:4px}
+.botAdminBtns button{background:rgba(231,76,60,.15);border:1px solid rgba(231,76,60,.25);color:#fff;border-radius:6px;padding:3px 10px;cursor:pointer;font-size:11px}
+.botAdminBtns button:hover{background:rgba(231,76,60,.4)}
+#adminCmdInput{background:rgba(0,0,0,.3);border:1px solid rgba(231,76,60,.3);color:#fff;border-radius:8px;padding:6px 10px;font-size:12px;width:100%;margin-bottom:6px}
+#hackBtn{width:100%;background:linear-gradient(135deg,#c0392b,#7f1f1f);color:#fff;border:2px solid #e74c3c;border-radius:12px;padding:12px;font-size:14px;font-weight:bold;cursor:pointer;transition:.3s;margin-top:8px;animation:hackPulse 1.5s ease-in-out infinite}
+#hackBtn:hover{background:linear-gradient(135deg,#e74c3c,#c0392b);box-shadow:0 0 30px rgba(231,76,60,.6);transform:scale(1.03)}
+@keyframes hackPulse{50%{box-shadow:0 0 25px rgba(231,76,60,.5)}}
+#hackOverlay{position:fixed;inset:0;z-index:9999;display:none;overflow:hidden;background:#000}
+#hackOverlay.active{display:block;animation:hackShake .15s infinite}
+@keyframes hackShake{0%{transform:translate(0)}25%{transform:translate(-5px,3px)}50%{transform:translate(4px,-2px)}75%{transform:translate(-3px,4px)}100%{transform:translate(2px,-3px)}}
+#hackScan{position:absolute;left:0;right:0;height:4px;background:linear-gradient(90deg,transparent,#f00,transparent);box-shadow:0 0 20px #f00;animation:scanMove 1.5s linear infinite}
+@keyframes scanMove{from{top:0}to{top:100%}}
+#hackText{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:20px}
+.hackLine{font-family:'Courier New',monospace;font-size:14px;color:#f00;text-shadow:0 0 10px #f00;opacity:0;animation:hackLineShow .3s forwards}
+@keyframes hackLineShow{from{opacity:0;transform:translateX(-20px)}to{opacity:1;transform:translateX(0)}}
+#hackFlash{position:absolute;inset:0;background:#f00;opacity:0;animation:hackFlash .2s infinite;pointer-events:none}
+@keyframes hackFlash{50%{opacity:.15}}
+#hackGlitch{position:absolute;inset:0;mix-blend-mode:screen;opacity:.3;animation:glitchShift .1s infinite;pointer-events:none}
+@keyframes glitchShift{0%{transform:translate(0)}50%{transform:translate(-3px,2px)}100%{transform:translate(3px,-2px)}}
+.musicSelect{display:flex;flex-direction:column;gap:6px;margin-top:8px}
+.musicTrackBtn{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:10px 14px;cursor:pointer;transition:.2s;font-size:12px;color:#fff}
+.musicTrackBtn:hover{background:rgba(255,255,255,.15)}
+.musicTrackBtn.active{background:rgba(232,165,75,.15);border-color:var(--gold)}
+.musicTrackBtn .musicIcon{font-size:18px}
+.musicTrackBtn .musicName{flex:1;text-align:left}
+.musicTrackBtn .musicCheck{color:var(--gold);font-size:14px}
+#musicBtn{position:fixed;bottom:20px;left:20px;width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;font-size:22px;cursor:pointer;z-index:200;transition:.2s;backdrop-filter:blur(8px)}
+#musicBtn:hover{background:rgba(255,255,255,.22);transform:scale(1.1)}
+#musicBtn.playing{background:rgba(46,204,113,.2);border-color:var(--green);animation:musicPulse 2s ease-in-out infinite}
+@keyframes musicPulse{50%{transform:scale(1.1)}}
+.bgItem{position:fixed;top:-50px;font-size:24px;pointer-events:none;opacity:.12;z-index:0;animation:fallDown linear forwards}
+@keyframes fallDown{to{transform:translateY(110vh) rotate(360deg)}}
+.factoryInfo{background:rgba(0,0,0,.3);border-radius:10px;padding:10px;margin-bottom:10px;font-size:12px;color:rgba(255,255,255,.6)}
+.factorySizes{display:flex;gap:8px;margin-bottom:12px}
+.factorySizeCard{flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;transition:.2s;font-size:11px;color:#fff}
+.factorySizeCard:hover{background:rgba(255,255,255,.15)}
+.factorySizeCard.active{background:rgba(232,165,75,.15);border-color:var(--gold)}
+.factorySizeCard.owned{border-color:var(--green)}
+.factorySizeCard .fsIcon{font-size:24px}
+.factorySizeCard .fsName{font-weight:bold;margin:4px 0 2px}
+.factorySizeCard .fsPrice{color:#ffd700;font-size:10px}
+.factorySizeCard .fsSlots{color:rgba(255,255,255,.5);font-size:10px}
+.factoryGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:10px 0}
+.factorySlot{aspect-ratio:1;background:rgba(0,0,0,.3);border:1px dashed rgba(255,255,255,.12);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:22px;cursor:pointer;transition:.2s;position:relative}
+.factorySlot:hover{background:rgba(255,255,255,.08)}
+.factorySlot.hasMachine{border-style:solid;border-color:var(--gold);background:rgba(232,165,75,.1)}
+.factorySlot .slotLevel{position:absolute;bottom:1px;right:2px;font-size:8px;color:var(--gold);font-weight:bold}
+.machinePicker{display:flex;gap:6px;margin:10px 0;flex-wrap:wrap}
+.machineCard{flex:1;min-width:80px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:8px;text-align:center;cursor:pointer;transition:.2s;font-size:11px;color:#fff}
+.machineCard:hover{background:rgba(255,255,255,.15)}
+.machineCard.selected{background:rgba(108,92,231,.15);border-color:var(--purple)}
+.machineCard .mcIcon{font-size:20px}
+.machineCard .mcName{font-weight:bold;margin:2px 0}
+.machineCard .mcPrice{color:#ffd700;font-size:10px}
+.machineCard .mcProd{color:var(--green);font-size:10px}
+.factoryStats{background:rgba(46,204,113,.08);border:1px solid rgba(46,204,113,.3);border-radius:10px;padding:10px;margin:10px 0;font-size:12px;color:var(--green)}
+.factoryHint{font-size:11px;color:rgba(255,255,255,.4);margin-top:8px;text-align:center}
+.wipeConfirm{background:rgba(231,76,60,.15);border:1px solid rgba(231,76,60,.3);color:#fff;border-radius:8px;padding:8px;cursor:pointer;font-size:12px;width:100%;margin-top:4px}
+.wipeConfirm:hover{background:rgba(231,76,60,.4)}
+.achGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px}
+.achCard{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:10px;display:flex;gap:10px;align-items:center;transition:.2s}
+.achCard.unlocked{border-color:var(--green);background:rgba(46,204,113,.06)}
+.achIcon{font-size:30px;filter:grayscale(1) opacity(.4);flex-shrink:0}
+.achCard.unlocked .achIcon{filter:none}
+.achInfo{flex:1;min-width:0}
+.achName{font-size:12px;font-weight:bold}
+.achDesc{font-size:10px;color:rgba(255,255,255,.4);margin-top:3px}
+#cookieSection{display:flex;flex-direction:column;align-items:center;width:100%}
+#cookieSection.hidden{display:none !important}
+#moneySection{display:none;flex-direction:column;align-items:center;margin-top:10px;width:100%}
+#moneySection.active{display:flex}
+#moneyCount{font-size:30px;font-weight:bold;color:var(--green);text-shadow:0 0 20px rgba(46,204,113,.5)}
+#moneyCpsDisplay{font-size:13px;color:rgba(255,255,255,.5);margin-top:3px}
+#moneyTotalDisplay{font-size:12px;color:#888;margin-top:2px}
+#moneyCoinWrap{margin-top:14px}
+#bigMoneyCoin{width:220px;height:220px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:110px;background:radial-gradient(circle at 35% 30%,#6fdead,#2ecc71 40%,#27ae60 80%,#1e8449);border:4px solid #1e8449;box-shadow:0 0 40px rgba(46,204,113,.4),inset 0 -10px 30px rgba(0,0,0,.3);transition:.15s}
+#bigMoneyCoin:active{transform:scale(.88)}
+#bigMoneyCoin:hover{transform:scale(1.05)}
+#moneyUpgrades{margin-top:14px;width:100%;max-width:400px;padding:0 12px}
+.moneyUpg{display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:12px 18px;margin-bottom:8px;cursor:pointer;transition:.3s}
+.moneyUpg:hover{background:rgba(255,255,255,.15);transform:translateX(6px)}
+.moneyUpg.disabled{opacity:.5}
+.moneyUpg span:first-child{font-size:13px}
+.moneyUpg span:last-child{color:var(--green);font-weight:bold;font-size:12px}
+#levelPanel{position:fixed;left:0;top:50%;transform:translateY(-50%);width:200px;background:rgba(15,12,41,.5);backdrop-filter:blur(12px);border-right:2px solid rgba(232,165,75,.4);border-radius:0 16px 16px 0;padding:14px;z-index:5;display:flex;flex-direction:column;gap:10px}
+#levelPanel.hidden{display:none}
+.levelBadge{font-size:38px;text-align:center;filter:drop-shadow(0 0 12px rgba(232,165,75,.6));animation:badgeFloat 3s ease-in-out infinite}
+@keyframes badgeFloat{50%{transform:translateY(-3px)}}
+.levelNum{font-size:22px;font-weight:bold;color:var(--gold);text-align:center}
+.levelNum small{font-size:12px;color:rgba(255,255,255,.4);font-weight:normal}
+.levelBar{width:100%;height:10px;background:rgba(255,255,255,.08);border-radius:5px;overflow:hidden}
+.levelBarFill{height:100%;background:linear-gradient(90deg,var(--gold2),#ffd700);border-radius:5px;transition:width .3s}
+.levelXP{font-size:10px;color:rgba(255,255,255,.4);text-align:center}
+.levelText{font-size:11px;color:rgba(255,255,255,.6);text-align:center;padding:6px;line-height:1.4;background:rgba(255,255,255,.04);border-radius:10px}
+#achToast{position:fixed;top:20px;left:50%;transform:translateX(-50%) translateY(-100px);background:rgba(26,26,46,.95);border:2px solid var(--green);border-radius:12px;padding:10px 16px;display:flex;gap:8px;align-items:center;z-index:600;box-shadow:0 8px 30px rgba(0,0,0,.5);transition:transform .4s cubic-bezier(.34,1.56,.64,1);pointer-events:none}
+#achToast.show{transform:translateX(-50%) translateY(0)}
+#achToast .toastIcon{font-size:24px}
+#achToast .toastTitle{font-size:12px;font-weight:bold;color:var(--green)}
+#achToast .toastSub{font-size:10px;color:rgba(255,255,255,.5)}
+#loadingScreen{position:fixed;inset:0;z-index:99999;background:linear-gradient(135deg,#0f0c29,#1a0f3a,#2d1b4e);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;transition:opacity .6s}
+#loadingScreen.hidden{opacity:0;pointer-events:none}
+#loadLogo{font-size:80px;animation:loadBounce 1.2s ease-in-out infinite}
+@keyframes loadBounce{50%{transform:translateY(-12px) scale(1.05)}}
+#loadTitle{font-size:28px;font-weight:800;background:linear-gradient(135deg,#f5c068,#ffd700);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;text-align:center}
+#loadSub{font-size:13px;color:rgba(255,255,255,.4);text-align:center;margin-top:-12px}
+#loadBarWrap{width:220px;height:6px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden}
+#loadBar{height:100%;width:0;background:linear-gradient(90deg,#e8a54b,#ffd700,#2ecc71);border-radius:3px;transition:width .3s}
+#loadPct{font-size:12px;color:rgba(255,255,255,.4);font-family:monospace}
+#loadTips{max-width:300px;text-align:center;font-size:11px;color:rgba(255,255,255,.25);font-style:italic;min-height:30px}
+#versionBadge{position:fixed;bottom:6px;left:50%;transform:translateX(-50%);font-size:9px;color:rgba(255,255,255,.15);font-family:monospace;z-index:50;pointer-events:none}
+#fpsCounter{position:fixed;right:8px;top:50%;transform:translateY(-50%);background:rgba(0,0,0,.5);backdrop-filter:blur(8px);color:#4ade80;padding:6px 10px;border-radius:8px;font-family:monospace;font-size:14px;font-weight:bold;z-index:9999;pointer-events:none;border:1px solid rgba(255,255,255,.1)}
+#errorLog{position:fixed;bottom:0;left:0;right:0;max-height:30vh;overflow:auto;background:rgba(180,0,0,.92);color:#fff;font-family:monospace;font-size:10px;padding:6px;z-index:999999;display:none;white-space:pre-wrap;line-height:1.3}
+::-webkit-scrollbar{width:8px}
+::-webkit-scrollbar-thumb{background:rgba(232,165,75,.3);border-radius:4px}
+@media(max-width:700px){#levelPanel{display:none}}
 </style>
 </head>
 <body>
 
+<!-- ============================================================
+     ЗАГРУЗОЧНЫЙ СКРИПТ — ВЫПОЛНЯЕТСЯ САМЫМ ПЕРВЫМ
+     Работает даже если игровой код упадёт
+     ============================================================ -->
+<div id="errorLog"></div>
+<script>
+(function(){
+  // Ловим все ошибки — показываем в красном логе
+  function logError(msg){
+    try{
+      var log = document.getElementById("errorLog");
+      if(!log) return;
+      log.style.display = "block";
+      log.textContent += msg + "\n";
+    }catch(e){}
+  }
+  window.addEventListener("error", function(ev){
+    logError("❌ " + (ev.message || ev.error) + " @ " + (ev.filename||"") + ":" + (ev.lineno||""));
+  });
+  window.addEventListener("unhandledrejection", function(ev){
+    logError("❌ Promise: " + (ev.reason && ev.reason.message || ev.reason));
+  });
+
+  // Прогресс-бар (на setTimeout, работает везде)
+  try{
+    var progress = 0;
+    function update(){
+      progress += 12;
+      if(progress > 100) progress = 100;
+      var bar = document.getElementById("loadBar");
+      var pct = document.getElementById("loadPct");
+      var tipsEl = document.getElementById("loadTips");
+      if(bar) bar.style.width = progress + "%";
+      if(pct) pct.textContent = Math.floor(progress) + "%";
+      if(tipsEl){
+        var tips = ["Совет: зажми печеньку на 3 сек! 🍪","Совет: нажми «Z» 🥚","Совет: 5 тапов по звезде! ⭐","Совет: магазин 🛒","Совет: завод 🏭","Совет: скины 🎨","Факт: 70+ достижений 🏅"];
+        tipsEl.textContent = tips[(Math.floor(progress/15)) % tips.length];
+      }
+      if(progress < 100){
+        setTimeout(update, 150);
+      } else {
+        var ls = document.getElementById("loadingScreen");
+        if(ls){
+          ls.style.opacity = "0";
+          setTimeout(function(){ ls.style.display = "none"; }, 600);
+        }
+      }
+    }
+    setTimeout(update, 100);
+
+    // Предохранитель: если через 6 сек загрузка висит — убираем
+    setTimeout(function(){
+      var ls = document.getElementById("loadingScreen");
+      if(ls && ls.style.display !== "none"){
+        ls.style.opacity = "0";
+        setTimeout(function(){ ls.style.display = "none"; }, 400);
+      }
+    }, 6000);
+  }catch(e){
+    logError("Load error: " + e.message);
+    try{ document.getElementById("loadingScreen").style.display = "none"; }catch(e2){}
+  }
+})();
+</script>
+
 <!-- LOADING SCREEN -->
 <div id="loadingScreen">
-  <div id="loadLogo"><span class="cookie-spin">🍪</span></div>
+  <div id="loadLogo">🍪</div>
   <div id="loadTitle">Cookie Clicker Mega</div>
   <div id="loadSub">v2.0 — Финальный Релиз</div>
   <div id="loadBarWrap"><div id="loadBar"></div></div>
@@ -98,57 +304,12 @@
   <div id="loadTips">Загрузка печенек...</div>
 </div>
 
-<!-- WELCOME OVERLAY -->
-<div id="welcomeOverlay">
-  <div id="welcomeBox">
-    <div class="w-icon">🍪</div>
-    <h2>Добро пожаловать!</h2>
-    <div class="w-sub">в твою печенечную империю</div>
-    <div class="w-intro">Перед тобой — целый мир печенек. Один маленький клик — и начинается большое приключение. Пеки, зарабатывай, прокачивайся и открывай всё новые горизонты вкуса.</div>
-    <div class="w-features">
-      <div class="w-feature" style="transition-delay:.3s"><span>🍪</span><span><b>Печеньки</b><small>Кликай и покупай апгрейды — от автопекарни до корпорации</small></span></div>
-      <div class="w-feature" style="transition-delay:.4s"><span>💰</span><span><b>Деньги</b><small>Вторая валюта — открой кассу, трейдинг и холдинг</small></span></div>
-      <div class="w-feature" style="transition-delay:.5s"><span>🎨</span><span><b>Скины</b><small>10 уникальных образов печеньки — от шоколадной до мега</small></span></div>
-      <div class="w-feature" style="transition-delay:.6s"><span>🏭</span><span><b>Завод</b><small>Построй конвейеры и смотри, как печеньки делают сами себя</small></span></div>
-      <div class="w-feature" style="transition-delay:.7s"><span>🛒</span><span><b>Гоп-магазин</b><small>Зелья и бусты — залетай, братик, тут всё по-честному</small></span></div>
-      <div class="w-feature" style="transition-delay:.8s"><span>🏅</span><span><b>70 достижений</b><small>От первых кликов до печенечного миллиардера</small></span></div>
-      <div class="w-feature" style="transition-delay:.85s"><span>🐔</span><span><b>Секреты</b><small>Пасхалки спрятаны везде — тряси телефон, ищи золотую курицу...</small></span></div>
-    </div>
-    <div class="w-tip">Прогресс сохраняется автоматически</div>
-    <button class="w-btn" id="welcomeStart">Начать играть! 🚀</button>
-  </div>
-</div>
-
-<!-- WHATS NEW BUTTON -->
-<button id="whatsNewBtn" onclick="document.getElementById('modalChangelog').classList.add('open')">🆕 Что нового?</button>
-
-<!-- CHANGELOG MODAL -->
-<div class="modal" id="modalChangelog">
-  <div class="modalContent">
-    <button class="modalClose" data-modal="modalChangelog">✕</button>
-    <h2>🍪 Cookie Clicker Mega v2.0</h2>
-    <p style="text-align:center;color:#888;font-size:11px;margin:4px 0 10px;font-style:italic">Финальный релиз — спасибо всем, кто кликал! 💛</p>
-    <div class="changelogItem"><span class="changelogTag new">New</span><span>Магазин «ШОП С ГОП-СТОПА» — 13 предметов за деньги, гопник-стиль</span></div>
-    <div class="changelogItem"><span class="changelogTag new">New</span><span>Пасхалки для телефона: тряска, долгое нажатие, тапы по звезде</span></div>
-    <div class="changelogItem"><span class="changelogTag new">New</span><span>FPS-счётчик с цветовой индикацией</span></div>
-    <div class="changelogItem"><span class="changelogTag new">New</span><span>Смешные фразы во всех вкладках</span></div>
-    <div class="changelogItem"><span class="changelogTag imp">Imp</span><span>Полная оптимизация: кэш DOM, троттлинг рендера, content-visibility</span></div>
-    <div class="changelogItem"><span class="changelogTag imp">Imp</span><span>Космический интерфейс: aurora-свечение, звёзды, glassmorphism</span></div>
-    <div class="changelogItem"><span class="changelogTag fix">Fix</span><span>Пасхалки на iPhone — запрос DeviceMotion permission</span></div>
-    <div class="changelogItem"><span class="changelogTag fix">Fix</span><span>Долгое нажатие на печеньку — правильный ID элемента</span></div>
-    <div class="changelogItem"><span class="changelogTag fix">Fix</span><span>Магазин: все покупки за деньги (💰)</span></div>
-    <div class="changelogItem"><span class="changelogTag fun">Fun</span><span>Гопник-стиль магазина — «Залетай, братик!»</span></div>
-    <div class="changelogItem"><span class="changelogTag fun">Fun</span><span>Золотая курица даёт +7777 монет</span></div>
-  </div>
-</div>
-
-
 <div id="game">
   <div id="topbar">
     <button class="tbtn" id="btnLeader">🏆 Рейтинг</button>
     <button class="tbtn" id="btnSkins">🎨 Скины</button>
     <button class="tbtn" id="btnSettings">⚙️ Настройки</button>
-    <button class="tbtn" id="btnWipe">🛒 Магазин</button>
+    <button class="tbtn" id="btnShop">🛒 Магазин</button>
     <button class="tbtn" id="btnFactory">🏭 Завод</button>
     <button class="tbtn" id="btnAch">🏅 Достижения</button>
   </div>
@@ -157,135 +318,116 @@
     <div class="tabBtn" id="tabMoney">💰 Деньги</div>
   </div>
 
-  <div id="levelPanel" class="hidden">
+  <div id="levelPanel">
     <div class="levelBadge">⭐</div>
     <div class="levelNum">Ур. <span id="lvlNum">1</span><br><small>/ 1000</small></div>
     <div class="levelBar"><div class="levelBarFill" id="lvlBarFill" style="width:0%"></div></div>
     <div class="levelXP" id="lvlXP">0 / 100 XP</div>
-    <div class="levelText" id="lvlText">Новичок с пустыми руками. Но не сдаётся!</div>
+    <div class="levelText" id="lvlText">Новичок с пустыми руками!</div>
   </div>
+
   <div id="cookieSection">
-  <div id="stats">
-    <div id="nickDisplay" style="font-size:13px;color:#e8a54b;margin-bottom:2px"></div>
-    <div id="coinCount">🪙 0 монет</div>
-    <div id="cookieCount">0 печенек</div>
-    <div id="cpsDisplay">0/сек</div>
+    <div id="stats">
+      <div id="nickDisplay"></div>
+      <div id="coinCount">🪙 0 монет</div>
+      <div id="cookieCount">0 печенек</div>
+      <div id="cpsDisplay">0/сек</div>
+    </div>
+    <div id="cookieWrap"><div id="bigCookie">🍪</div></div>
+    <div id="upgrades"></div>
   </div>
-  <div id="cookieWrap">
-    <div id="bigCookie">🍪</div>
+
+  <div id="moneySection">
+    <div id="moneyCount">💰 0</div>
+    <div id="moneyCpsDisplay">0/сек</div>
+    <div id="moneyTotalDisplay">Всего: 0 | Клики: 0</div>
+    <div id="moneyCoinWrap"><div id="bigMoneyCoin">💰</div></div>
+    <div id="moneyUpgrades"></div>
   </div>
-  <div id="upgrades"></div>
 </div>
 
-<div id="moneySection">
-  <div id="moneyCount">💰 0</div>
-  <div id="moneyCpsDisplay">0/сек</div>
-  <div id="moneyTotalDisplay" style="font-size:12px;color:#888;margin-top:2px">Всего: 0 | Клики: 0</div>
-  <div id="moneyCoinWrap">
-    <div id="bigMoneyCoin">💰</div>
-  </div>
-  <div id="moneyUpgrades"></div>
-</div>
-
-</div>
-
-
+<div id="musicBtn">🎵</div>
 <div id="cheatIcon">😈</div>
 <div id="cheatPanel"></div>
 
-<div class="modal" id="modalLeader">
-  <div class="modalContent">
-    <button class="modalClose" data-modal="modalLeader">✕</button>
-    <h2>🏆 Рейтинг</h2>
-    <p style="text-align:center;color:#888;font-size:12px;margin:4px 0 8px;font-style:italic">Кто тут король печенек? Спойлер: не ты... пока что 🍪</p>
-    <table id="lbTable">
-      <thead><tr><th>#</th><th>Имя</th><th>Всего</th><th>Клики</th><th>/сек</th><th>Сила</th><th>Апгр</th><th>Статус</th></tr></thead>
-      <tbody id="lbBody"></tbody>
-    </table>
-  </div>
-</div>
+<div class="modal" id="modalLeader"><div class="modalContent">
+  <button class="modalClose" data-close="modalLeader">✕</button>
+  <h2>🏆 Рейтинг</h2>
+  <table id="lbTable"><thead><tr><th>#</th><th>Имя</th><th>Всего</th><th>Клики</th><th>/сек</th></tr></thead><tbody id="lbBody"></tbody></table>
+</div></div>
 
-<div class="modal" id="modalSkins">
-  <div class="modalContent">
-    <button class="modalClose" data-modal="modalSkins">✕</button>
-    <h2>🎨 Скины</h2>
-    <p style="text-align:center;color:#888;font-size:12px;margin:4px 0 8px;font-style:italic">Поменяй шкурку, будто ты змея. Только не сбрасывай её на бабушку 🐍</p>
-    <div style="text-align:center;color:#ffd700;font-size:14px;margin-bottom:8px">Монет: <span id="skinCoins">0</span></div>
-    <div class="skinGrid" id="skinGrid"></div>
-  </div>
-</div>
+<div class="modal" id="modalSkins"><div class="modalContent">
+  <button class="modalClose" data-close="modalSkins">✕</button>
+  <h2>🎨 Скины</h2>
+  <div style="text-align:center;color:#ffd700;margin-bottom:8px">Монет: <span id="skinCoins">0</span></div>
+  <div class="skinGrid" id="skinGrid"></div>
+</div></div>
 
-<div class="modal" id="modalSettings">
-  <div class="modalContent">
-    <button class="modalClose" data-modal="modalSettings">✕</button>
-    <h2>⚙️ Настройки</h2>
-    <p style="text-align:center;color:#888;font-size:12px;margin:4px 0 8px;font-style:italic">Крути-верти, пока не настроишь. Или пока не сломал 🔧</p>
-    <h3 style="color:#e8a54b;margin:8px 0 4px">👤 Профиль</h3>
-    <div class="settingRow"><label>Ваш никнейм</label><div style="display:flex;gap:4px;align-items:center"><input type="text" id="setNick" maxlength="16" placeholder="Введите ник" style="background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.2);color:#fff;border-radius:6px;padding:4px 8px;font-size:12px;width:120px"><button class="cheatBtn" id="saveNick" style="padding:4px 8px;font-size:11px">OK</button></div></div>
-    <h3 style="color:#e8a54b;margin:8px 0 4px">⭐ Уровень игрока</h3>
-    <div id="settingsLevelInfo" style="background:rgba(232,165,75,.08);border:1px solid rgba(232,165,75,.3);border-radius:8px;padding:8px;margin-bottom:4px;text-align:center">
-      <div style="font-size:28px">⭐</div>
-      <div style="font-size:18px;font-weight:bold;color:#e8a54b">Уровень <span id="setLvlNum">1</span> / 1000</div>
-      <div style="height:6px;background:rgba(255,255,255,.1);border-radius:3px;overflow:hidden;margin:6px 0"><div id="setLvlBar" style="height:100%;background:linear-gradient(90deg,#e8a54b,#ffd700);border-radius:3px;transition:width .3s;width:0%"></div></div>
-      <div style="font-size:11px;color:#888"><span id="setLvlXP">0 / 100 XP</span></div>
-      <div style="font-size:11px;color:#ccc;margin-top:4px;font-style:italic" id="setLvlText">Новичок с пустыми руками. Но не сдаётся!</div>
-    </div>
-    <h3 style="color:#e8a54b;margin:8px 0 4px">🎮 Геймплей</h3>
-    <div class="settingRow"><label>Циферки при клике</label><input type="checkbox" id="setNumbers" checked></div>
-    <div class="settingRow"><label>Крошки при клике</label><input type="checkbox" id="setCrumbs" checked></div>
-    <div class="settingRow"><label>Фон (падающие сладости)</label><input type="checkbox" id="setBg" checked></div>
-    <div class="settingRow"><label>📳 Вибрация при тапе</label><input type="checkbox" id="setVibration" checked></div>
-    <div class="settingRow"><label>Скорость ботов</label><span id="botSpeedVal" style="color:#aaa;font-size:12px">×1.0</span></div>
-    <input type="range" id="botSpeedSlider" min="0" max="3" step="0.1" value="1">
-    <h3 style="color:#e8a54b;margin:8px 0 4px">🔊 Звук</h3>
-    <div class="settingRow"><label>Звук клика</label><input type="checkbox" id="setSound" checked></div>
-    <div class="settingRow"><label>Громкость клика</label><span id="clickVolVal" style="color:#aaa;font-size:12px">60%</span></div>
-    <input type="range" id="clickVolSlider" min="0" max="100" step="5" value="60">
-    <div class="settingRow"><label>Громкость музыки</label><span id="musicVolVal" style="color:#aaa;font-size:12px">80%</span></div>
-    <input type="range" id="musicVolSlider" min="0" max="100" step="5" value="80">
-    <h3 style="color:#e8a54b;margin:8px 0 4px">🎵 Музыка</h3>
-    <div class="settingRow"><label>Текущий трек</label><span id="musicTrackName" style="color:#e8a54b;font-size:12px">Весёлая</span></div>
-    <div class="musicSelect" id="musicSelect"></div>
-    <h3 style="color:#e8a54b;margin:8px 0 4px">💾 Сохранение</h3>
+<div class="modal" id="modalSettings"><div class="modalContent">
+  <button class="modalClose" data-close="modalSettings">✕</button>
+  <h2>⚙️ Настройки</h2>
+  <h3 style="color:#e8a54b;margin:8px 0 4px">👤 Профиль</h3>
+  <div class="settingRow"><label>Никнейм</label><input type="text" id="setNick" maxlength="16" placeholder="Игрок"></div>
+  <h3 style="color:#e8a54b;margin:8px 0 4px">🎮 Геймплей</h3>
+  <div class="settingRow"><label>Циферки при клике</label><input type="checkbox" id="setNumbers" checked></div>
+  <div class="settingRow"><label>Крошки при клике</label><input type="checkbox" id="setCrumbs" checked></div>
+  <div class="settingRow"><label>Фон (падающие сладости)</label><input type="checkbox" id="setBg" checked></div>
+  <div class="settingRow"><label>📳 Вибрация</label><input type="checkbox" id="setVibration" checked></div>
+  <div class="settingRow"><label>Скорость ботов</label><span id="botSpeedVal" style="color:#aaa;font-size:12px">×1.0</span></div>
+  <input type="range" id="botSpeedSlider" min="0" max="3" step="0.1" value="1">
+  <h3 style="color:#e8a54b;margin:8px 0 4px">🔊 Звук</h3>
+  <div class="settingRow"><label>Звук клика</label><input type="checkbox" id="setSound" checked></div>
+  <div class="settingRow"><label>Громкость клика</label><span id="clickVolVal" style="color:#aaa;font-size:12px">60%</span></div>
+  <input type="range" id="clickVolSlider" min="0" max="100" step="5" value="60">
+  <div class="settingRow"><label>Громкость музыки</label><span id="musicVolVal" style="color:#aaa;font-size:12px">80%</span></div>
+  <input type="range" id="musicVolSlider" min="0" max="100" step="5" value="80">
+  <h3 style="color:#e8a54b;margin:8px 0 4px">🎵 Музыка</h3>
+  <div class="settingRow"><label>Текущий трек</label><span id="musicTrackName" style="color:#e8a54b;font-size:12px">Весёлая</span></div>
+  <div class="musicSelect" id="musicSelect"></div>
+  <h3 style="color:#e8a54b;margin:8px 0 4px">💾 Сохранение</h3>
+  <div style="display:flex;gap:4px;margin-bottom:6px">
+    <button class="tbtn" style="flex:1;text-align:center" id="exportSave">📤 Экспорт</button>
+    <button class="tbtn" style="flex:1;text-align:center" id="importSave">📥 Импорт</button>
+    <button class="tbtn" style="flex:1;text-align:center" id="copySave">📋 Копировать</button>
+  </div>
+  <textarea id="saveTextArea" style="display:none;width:100%;height:60px;background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.2);color:#fff;border-radius:6px;padding:4px;font-size:10px;resize:none" placeholder="Вставьте код сохранения..."></textarea>
+  <h3 style="color:#e74c3c;margin:8px 0 4px">🔴 Админ-панель</h3>
+  <div id="adminPanel">
+    <div class="botAdminList" id="botAdminList"></div>
+    <input type="text" id="adminCmdInput" placeholder="/ban CookieBot, /mute all, /unban all">
     <div style="display:flex;gap:4px;margin-bottom:6px">
-      <button class="cheatBtn" style="flex:1;text-align:center" id="exportSave">📤 Экспорт</button>
-      <button class="cheatBtn" style="flex:1;text-align:center" id="importSave">📥 Импорт</button>
-      <button class="cheatBtn" style="flex:1;text-align:center" id="copySave">📋 Копировать</button>
+      <button class="cheatBtn" style="flex:1;text-align:center" id="adminUnbanAll">Разбанить всех</button>
     </div>
-    <textarea id="saveTextArea" style="display:none;width:100%;height:60px;background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.2);color:#fff;border-radius:6px;padding:4px;font-size:10px;resize:none" placeholder="Вставьте код сохранения сюда..."></textarea>
-    <h3 style="color:#e74c3c;margin:8px 0 4px">🔴 Админ-панель</h3>
-    <div id="adminPanel">
-      <div class="botAdminList" id="botAdminList"></div>
-      <input type="text" id="adminCmdInput" placeholder="/ban CookieBot, /mute all, /unban all">
-      <div style="display:flex;gap:4px;margin-bottom:6px">
-        <button class="cheatBtn" style="flex:1;text-align:center" id="adminUnbanAll">Разбанить всех</button>
-      </div>
-      <button id="hackBtn">💥 ВЗЛОМАТЬ ВСЮ ИГРУ</button>
-    </div>
-    <button class="wipeConfirm" id="wipeConfirm" style="display:none">Подтвердить вайп!</button>
-    <button class="wipeConfirm" id="actualWipe" style="display:none;background:rgba(231,76,60,.4)">Точно удалить всё?</button>
+    <button id="hackBtn">💥 ВЗЛОМАТЬ ВСЮ ИГРУ</button>
   </div>
-</div>
+  <button class="wipeConfirm" id="wipeConfirm" style="display:none">Подтвердить вайп!</button>
+  <button class="wipeConfirm" id="actualWipe" style="display:none;background:rgba(231,76,60,.4)">Точно удалить всё?</button>
+</div></div>
 
-<div class="modal" id="modalShop">
-  <div class="modalContent" style="max-width:400px">
-    <button class="modalClose" data-modal="modalShop">✕</button>
-    <h2 style="background:linear-gradient(135deg,#fbbf24,#f59e0b,#fbbf24);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;font-size:22px;margin-bottom:4px">🛒 ШОП С ГОП-СТОПА</h2>
-    <p style="margin-bottom:10px;color:#aaa;font-size:11px">Залетай, братик! Тут всё по-честному! Без обмана! (наверное) · Возврату и обмену не подлежит, ты же не в Магнитке 🛒</p>
-    <div id="shopMoney" style="text-align:center;font-size:15px;font-weight:700;color:#fbbf24;margin-bottom:10px;padding:6px;background:rgba(251,191,36,0.1);border-radius:8px">💰 Денег: 0</div>
-    <div id="shopItems" style="max-height:300px;overflow-y:auto;padding-right:4px"></div>
+<div class="modal" id="modalShop"><div class="modalContent" style="max-width:400px">
+  <button class="modalClose" data-close="modalShop">✕</button>
+  <h2 style="background:linear-gradient(135deg,#fbbf24,#f59e0b);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;font-size:22px">🛒 ШОП С ГОП-СТОПА</h2>
+  <p style="margin-bottom:10px;color:#aaa;font-size:11px">Залетай, братик! Тут всё по-честному! Без обмана! (наверное)</p>
+  <div id="shopMoney" style="text-align:center;font-size:15px;font-weight:700;color:#fbbf24;margin-bottom:10px;padding:6px;background:rgba(251,191,36,0.1);border-radius:8px">💰 Денег: 0</div>
+  <div id="shopItems" style="max-height:300px;overflow-y:auto;padding-right:4px"></div>
+</div></div>
+
+<div class="modal" id="modalFactory"><div class="modalContent" style="max-width:420px">
+  <button class="modalClose" data-close="modalFactory">✕</button>
+  <h2>🏭 Завод печенек</h2>
+  <p style="text-align:center;color:#888;font-size:12px;margin:4px 0 8px;font-style:italic">Тут печеньки делают сами себя.</p>
+  <div id="factoryContent"></div>
+</div></div>
+
+<div class="modal" id="modalAch"><div class="modalContent" style="max-width:450px">
+  <button class="modalClose" data-close="modalAch">✕</button>
+  <h2>🏅 Достижения</h2>
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+    <span style="font-size:13px;color:#aaa">Открыто:</span>
+    <span class="achCounter" id="achCounter" style="color:#f5c068;font-weight:bold">0 / 0</span>
   </div>
-</div>
-
-
-<div class="modal" id="modalFactory">
-  <div class="modalContent" style="max-width:420px">
-    <button class="modalClose" data-modal="modalFactory">✕</button>
-    <h2>🏭 Завод печенек</h2>
-    <p style="text-align:center;color:#888;font-size:12px;margin:4px 0 8px;font-style:italic">Тут печеньки делают сами себя. Ты только типа начальник 👨‍💼</p>
-    <div id="factoryContent"></div>
-  </div>
-</div>
+  <div class="achGrid" id="achGrid"></div>
+</div></div>
 
 <div id="hackOverlay">
   <div id="hackFlash"></div>
@@ -305,24 +447,1516 @@
   </div>
 </div>
 
-<div class="modal" id="modalAch">
-  <div class="modalContent" style="max-width:450px">
-    <button class="modalClose" data-modal="modalAch">✕</button>
-    <h2>🏅 Достижения</h2>
-    <p style="text-align:center;color:#888;font-size:12px;margin:4px 0 8px;font-style:italic">Собери их все! Или хотя бы попробуй. Никто не осудит... почти 🫂</p>
-    <div class="achHeader">
-      <span style="font-size:13px;color:#aaa">Открыто достижений:</span>
-      <span class="achCounter" id="achCounter">0 / 70</span>
-    </div>
-    <div style="height:4px;background:rgba(255,255,255,.1);border-radius:2px;overflow:hidden;margin-bottom:4px">
-      <div id="achProgressBar" style="height:100%;width:0%;background:linear-gradient(90deg,#e8a54b,#2ecc71);transition:width .3s"></div>
-    </div>
-    <div class="achGrid" id="achGrid"></div>
+<div id="achToast">
+  <div class="toastIcon">🏅</div>
+  <div>
+    <div class="toastTitle">Достижение!</div>
+    <div class="toastSub"></div>
   </div>
 </div>
 
-<div id="musicBtn">🎵</div>
-<div id="achToast"><div class="toastIcon">🏅</div><div class="toastText"><div class="toastTitle">Достижение!</div><div class="toastSub"></div></div></div>
+<div id="fpsCounter">FPS: 60</div>
+<div id="versionBadge">Cookie Clicker Mega v2.0 · Universal</div>
 
 <script>
-var _0x636f6f6b6965="Cgp2YXIgUyA9IHsKICBjb29raWVzOjAsIHRvdGFsQ29va2llczowLCBjb2luczowLCBjbGlja3M6MCwKICBuaWNrOiLQktGLIiwKICBjbGlja1Bvd2VyOjEsIGNwczowLAogIHVwZ3JhZGVzOlsKICAgIHtpZDowLG5hbWU6ItCh0LjQu9CwINC60LvQuNC60LAgKzEiLGJhc2U6MTUsY291bnQ6MCx0eXBlOiJjbGljayJ9LAogICAge2lkOjEsbmFtZToi0J/QvtC80L7RidC90LjQuiDQv9C10LrQsNGA0Y8iLGJhc2U6NTAsY291bnQ6MCx0eXBlOiJjcHMiLHZhbDoxfSwKICAgIHtpZDoyLG5hbWU6ItCR0LDQsdGD0YjQutCwIixiYXNlOjIwMCxjb3VudDowLHR5cGU6ImNwcyIsdmFsOjV9LAogICAge2lkOjMsbmFtZToi0KTQtdGA0LzQsCIsYmFzZTo1MDAsY291bnQ6MCx0eXBlOiJjcHMiLHZhbDoyMH0sCiAgICB7aWQ6NCxuYW1lOiLQn9C10LrQsNGA0L3RjyIsYmFzZToyMDAwLGNvdW50OjAsdHlwZToiY3BzIix2YWw6ODB9LAogICAge2lkOjUsbmFtZToi0JrQvtC90LTQuNGC0LXRgNGB0LrQsNGPIixiYXNlOjUwMDAsY291bnQ6MCx0eXBlOiJjcHMiLHZhbDozMDB9LAogICAge2lkOjYsbmFtZToi0JzRg9C60L7QvNC+0LvRjNC90Y8iLGJhc2U6MjAwMDAsY291bnQ6MCx0eXBlOiJjcHMiLHZhbDoxMjAwfSwKICAgIHtpZDo3LG5hbWU6ItCh0LDRhdCw0YDQvdGL0Lkg0LfQsNCy0L7QtCIsYmFzZToxMDAwMDAsY291bnQ6MCx0eXBlOiJjcHMiLHZhbDo1MDAwfSwKICAgIHtpZDo4LG5hbWU6ItCh0LjQu9CwINC60LvQuNC60LAgKzUiLGJhc2U6MjAwMDAwLGNvdW50OjAsdHlwZToiY2xpY2siLHZhbDo1fSwKICAgIHtpZDo5LG5hbWU6ItCc0L7Qu9C+0YfQvdCw0Y8g0YTQtdGA0LzQsCIsYmFzZTo1MDAwMDAsY291bnQ6MCx0eXBlOiJjcHMiLHZhbDoyMDAwMH0sCiAgICB7aWQ6MTAsbmFtZToi0JvQvtCz0LjRgdGC0LjRh9C10YHQutC40Lkg0YbQtdC90YLRgCIsYmFzZToyMDAwMDAwLGNvdW50OjAsdHlwZToiY3BzIix2YWw6MTAwMDAwfSwKICAgIHtpZDoxMSxuYW1lOiLQotC+0YDQs9C+0LLQsNGPINGB0LXRgtGMIixiYXNlOjEwMDAwMDAwLGNvdW50OjAsdHlwZToiY3BzIix2YWw6NTAwMDAwfSwKICAgIHtpZDoxMixuYW1lOiLQpdC+0LvQtNC40L3QsyIsYmFzZTo1MDAwMDAwMCxjb3VudDowLHR5cGU6ImNwcyIsdmFsOjIwMDAwMDB9LAogICAge2lkOjEzLG5hbWU6ItCh0LjQu9CwINC60LvQuNC60LAgKzEwIixiYXNlOjMwMDAwMDAwLGNvdW50OjAsdHlwZToiY2xpY2siLHZhbDoxMH0sCiAgICB7aWQ6MTQsbmFtZToi0JzQtdC20LTRg9C90LDRgNC+0LTQvdCw0Y8g0LrQvtGA0L/QvtGA0LDRhtC40Y8iLGJhc2U6MjAwMDAwMDAwLGNvdW50OjAsdHlwZToiY3BzIix2YWw6MTAwMDAwMDB9CiAgXSwKICBwbGF5ZXJMZXZlbDoxLCBwbGF5ZXJYUDowLAogIHNraW5zOlsKICAgIHtpZDowLG5hbWU6ItCa0LvQsNGB0YHQuNC60LAiLGljb246IvCfjaoiLHByaWNlOjAsY2xzOiIifSwKICAgIHtpZDoxLG5hbWU6ItCo0L7QutC+0LvQsNC00L3QsNGPIixpY29uOiLwn42rIixwcmljZTo1MDAsY2xzOiJjaG9jbyJ9LAogICAge2lkOjIsbmFtZToi0J7QstGB0Y/QvdCw0Y8iLGljb246IvCfq5MiLHByaWNlOjgwMCxjbHM6Im9hdG1lYWwifSwKICAgIHtpZDozLG5hbWU6ItChINC40LfRjtC80L7QvCIsaWNvbjoi8J+NqiIscHJpY2U6MTIwMCxjbHM6InJhaXNpbiJ9LAogICAge2lkOjQsbmFtZToi0KDQsNC00YPQttC90LDRjyIsaWNvbjoi8J+MiCIscHJpY2U6MjUwMCxjbHM6InJhaW5ib3cifSwKICAgIHtpZDo1LG5hbWU6ItCX0L7Qu9C+0YLQsNGPIixpY29uOiLirZAiLHByaWNlOjMwMDAsY2xzOiJnb2xkIn0sCiAgICB7aWQ6NixuYW1lOiLQoSDQv9C+0YHRi9C/0LrQvtC5IixpY29uOiLwn42sIixwcmljZTo0MDAwLGNsczoic3ByaW5rbGUifSwKICAgIHtpZDo3LG5hbWU6ItChINC90LDRh9C40L3QutC+0LkiLGljb246IvCfpa4iLHByaWNlOjU1MDAsY2xzOiJmaWxsZWQifSwKICAgIHtpZDo4LG5hbWU6ItCa0LDRgNCw0LzQtdC70YzQvdCw0Y8iLGljb246IvCfja8iLHByaWNlOjcwMDAsY2xzOiJjYXJhbWVsIn0sCiAgICB7aWQ6OSxuYW1lOiLQnNC10LPQsC3Qv9C10YfQtdC90YzQutCwIixpY29uOiLwn42pIixwcmljZToxMDAwMCxjbHM6Im1lZ2EifQogIF0sCiAgYWN0aXZlU2tpbjowLCBvd25lZFNraW5zOlswXSwKICBib3RzOlsKICAgIHtuYW1lOiJDb29raWVCb3QiLGNvb2tpZXM6MCx0b3RhbDowLGNsaWNrczowLGNwczowLGNsaWNrUG93ZXI6MSx1cGdyYWRlczpbMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDBdLGJhc2VTcGVlZDowLjgsbW9vZDoxLG1vb2RUaW1lcjowLHN0cmF0ZWd5OiJjbGlja2VyIixiYW5uZWQ6ZmFsc2UsbXV0ZWQ6ZmFsc2UsbmV4dEJ1eTo1fSwKICAgIHtuYW1lOiJHcmFuZG1hQUkiLGNvb2tpZXM6MCx0b3RhbDowLGNsaWNrczowLGNwczowLGNsaWNrUG93ZXI6MSx1cGdyYWRlczpbMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDBdLGJhc2VTcGVlZDowLjYsbW9vZDoxLG1vb2RUaW1lcjowLHN0cmF0ZWd5OiJwYXNzaXZlIixiYW5uZWQ6ZmFsc2UsbXV0ZWQ6ZmFsc2UsbmV4dEJ1eTo4fSwKICAgIHtuYW1lOiJDbGlja2VyUHJvIixjb29raWVzOjAsdG90YWw6MCxjbGlja3M6MCxjcHM6MCxjbGlja1Bvd2VyOjEsdXBncmFkZXM6WzAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwXSxiYXNlU3BlZWQ6MS4wLG1vb2Q6MSxtb29kVGltZXI6MCxzdHJhdGVneToiYmFsYW5jZWQiLGJhbm5lZDpmYWxzZSxtdXRlZDpmYWxzZSxuZXh0QnV5OjZ9LAogICAge25hbWU6IlN3ZWV0VG9vdGgiLGNvb2tpZXM6MCx0b3RhbDowLGNsaWNrczowLGNwczowLGNsaWNrUG93ZXI6MSx1cGdyYWRlczpbMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDBdLGJhc2VTcGVlZDowLjUsbW9vZDoxLG1vb2RUaW1lcjowLHN0cmF0ZWd5OiJjbGlja2VyIixiYW5uZWQ6ZmFsc2UsbXV0ZWQ6ZmFsc2UsbmV4dEJ1eToxMH0sCiAgICB7bmFtZToiQ3J1bWJMb3JkIixjb29raWVzOjAsdG90YWw6MCxjbGlja3M6MCxjcHM6MCxjbGlja1Bvd2VyOjEsdXBncmFkZXM6WzAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwXSxiYXNlU3BlZWQ6MC43LG1vb2Q6MSxtb29kVGltZXI6MCxzdHJhdGVneToicGFzc2l2ZSIsYmFubmVkOmZhbHNlLG11dGVkOmZhbHNlLG5leHRCdXk6N30sCiAgICB7bmFtZToiRG91Z2hLaW5nIixjb29raWVzOjAsdG90YWw6MCxjbGlja3M6MCxjcHM6MCxjbGlja1Bvd2VyOjEsdXBncmFkZXM6WzAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwXSxiYXNlU3BlZWQ6MC45LG1vb2Q6MSxtb29kVGltZXI6MCxzdHJhdGVneToiYmFsYW5jZWQiLGJhbm5lZDpmYWxzZSxtdXRlZDpmYWxzZSxuZXh0QnV5Ojl9LAogICAge25hbWU6IlN1Z2FyUnVzaCIsY29va2llczowLHRvdGFsOjAsY2xpY2tzOjAsY3BzOjAsY2xpY2tQb3dlcjoxLHVwZ3JhZGVzOlswLDAsMCwwLDAsMCwwLDAsMCwwLDAsMCwwLDAsMF0sYmFzZVNwZWVkOjEuMyxtb29kOjEsbW9vZFRpbWVyOjAsc3RyYXRlZ3k6ImNsaWNrZXIiLGJhbm5lZDpmYWxzZSxtdXRlZDpmYWxzZSxuZXh0QnV5OjV9CiAgXSwKICBzZXR0aW5nczp7bnVtYmVyczp0cnVlLGNydW1iczp0cnVlLGJnOnRydWUsc291bmQ6dHJ1ZSxib3RTcGVlZDoxLG11c2ljVHJhY2s6MH0sCiAgY2hlYXQ6e2F1dG9DbGlja2VyOjAsbXVsdGlwbGllcjoxLHBhc3NpdmVCb29zdDoxLGJvdEZyZWV6ZTpmYWxzZSxzaG93UmFuazpmYWxzZX0sCiAgZmFjdG9yeTp7CiAgICBvd25lZFNpemU6MCwgCiAgICBvd25lZFNpemVzOltmYWxzZSxmYWxzZSxmYWxzZV0sIAogICAgc2VsZWN0ZWRNYWNoaW5lOm51bGwsIAogICAgc2xvdHM6W10sIAogICAgdG90YWxJbmNvbWU6MCwKICAgIHNlbGxNb2RlOmZhbHNlLCAKICAgIGJvb3N0VW50aWw6MCAKICB9LAogIG1vbmV5OjAsIHRvdGFsTW9uZXk6MCwgbW9uZXlDbGlja3M6MCwgbW9uZXlDbGlja1Bvd2VyOjEsIG1vbmV5Q3BzOjAsCiAgbW9uZXlVcGdyYWRlczpbCiAgICB7aWQ6MCxuYW1lOiLQodC40LvQsCDQutC70LjQutCwICsxIixiYXNlOjMwLGNvdW50OjAsdHlwZToibWNsaWNrIn0sCiAgICB7aWQ6MSxuYW1lOiLQmtCw0YHRgdC+0LLRi9C5INCw0L/Qv9Cw0YDQsNGCIixiYXNlOjE1MCxjb3VudDowLHR5cGU6Im1jcHMiLHZhbDo1fSwKICAgIHtpZDoyLG5hbWU6ItCb0LDRgNGR0LoiLGJhc2U6MTAwMCxjb3VudDowLHR5cGU6Im1jcHMiLHZhbDoyNX0sCiAgICB7aWQ6MyxuYW1lOiLQnNCw0LPQsNC30LjQvSIsYmFzZTo1MDAwLGNvdW50OjAsdHlwZToibWNwcyIsdmFsOjEwMH0sCiAgICB7aWQ6NCxuYW1lOiLQotC+0YDQs9C+0LLRi9C5INGG0LXQvdGC0YAiLGJhc2U6MjUwMDAsY291bnQ6MCx0eXBlOiJtY3BzIix2YWw6NTAwfSwKICAgIHtpZDo1LG5hbWU6ItCR0LDQvdC6IixiYXNlOjEwMDAwMCxjb3VudDowLHR5cGU6Im1jcHMiLHZhbDoyNTAwfSwKICAgIHtpZDo2LG5hbWU6ItCk0L7QvdC00L7QstCw0Y8g0LHQuNGA0LbQsCIsYmFzZTo1MDAwMDAsY291bnQ6MCx0eXBlOiJtY3BzIix2YWw6MTIwMDB9LAogICAge2lkOjcsbmFtZToi0J3QtdGE0YLRj9C90LDRjyDQstGL0YjQutCwIixiYXNlOjIwMDAwMDAsY291bnQ6MCx0eXBlOiJtY3BzIix2YWw6NTAwMDB9LAogICAge2lkOjgsbmFtZToi0JrRgNC40L/RgtC+0LzQsNC50L3QuNC90LMiLGJhc2U6MTAwMDAwMDAsY291bnQ6MCx0eXBlOiJtY3BzIix2YWw6MjAwMDAwfSwKICAgIHtpZDo5LG5hbWU6ItCa0L7RgdC80LjRh9C10YHQutC40Lkg0YLRg9GAIixiYXNlOjUwMDAwMDAwLGNvdW50OjAsdHlwZToibWNwcyIsdmFsOjgwMDAwMH0KICBdLAogIG1vbmV5TXVsdGlwbGllcjoxLAogIGFjdGl2ZVRhYjoiY29va2llcyIsCiAgYWNoaWV2ZW1lbnRzOltdIAp9Owp2YXIgTU9ORVlfUEhSQVNFUz1bCiAgItCR0LDQsdC70L4g0LrQvtC90YfQuNC70L7RgdGMLCDQsdGA0LDRgtC40Log8J+SuCIsItCU0LXQvdC10LMg0L3QtdGCLCDQvdC+INGC0Ysg0LTQtdGA0LbQuNGB0Ywg8J+knSIsItCf0LXRh9C10L3RjNC60LAg0YHQvNC+0YLRgNC40YIg0L3QsCDRgtC10LHRjyDRgSDRg9C60L7RgNC+0Lwg8J+YniIsItCi0Ysg0YDQsNC30L7RgNC40LvRgdGPINCx0YvRgdGC0YDQtdC1LCDRh9C10Lwg0L3QsNCx0YDQsNC7INGC0LXQutGB0YIg8J+TnSIsItCR0LDQsdGD0YjQutCwINCx0Ysg0YHQutCw0LfQsNC70LA6IFwi0JjQtNC4INC/0L7RgNCw0LHQvtGC0LDQuSFcIiDwn5G1Iiwi0KLRiyDQvdC1INCg0L7QutGE0LXQu9C70LXRgCwg0YPRgdC/0L7QutC+0LnRgdGPIPCfkrwiLCLQmtC+0YjQtdC70ZHQuiDQv9GD0YHRgiwg0LrQsNC6INCy0LDRiNC1INC+0LHQtdGJ0LDQvdC40LUg0LvQvtC20LjRgtGM0YHRjyDRgNCw0L3QviDwn4yZIiwi0J3QsCDQsdCw0LvQsNC90YHQtSDQvdC+0LvRjCwg0LrQsNC6INGC0LLQvtC10Lkg0LzQvtGC0LjQstCw0YbQuNC4INCyINC/0L7QvdC10LTQtdC70YzQvdC40Log8J+YtCIsItCd0LUg0YXQstCw0YLQsNC10YIhINCa0LvQuNC60LDQuSDQsdC+0LvRjNGI0LUsINGB0L/QuNGI0Ywg0LzQtdC90YzRiNC1IOKYlSIsItCf0LXRh9C10L3RjNC60LAt0LHQvtCzINC90LUg0LTQsNC70LAg0YLQtdCx0LUg0LTQtdC90LXQsyDwn5mPIiwi0KLRg9GCINC90YPQttC10L0g0LrRgNC10LTQuNGCLCDQsCDQvdC1INC60LvQuNC6IPCfj6YiLCLQk9C00LUg0LTQtdC90YzQs9C4LCDQl9C40L0/IPCfkoMiLCLQotGLINC/0YDQvtC40LPRgNCw0Lsg0LLRgdGRLCDQutGA0L7QvNC1INC90LDQtNC10LbQtNGLIPCfla/vuI8iLCLQnNC40L3Rg9GBINC90LAg0LzQuNC90YPRgSDigJQg0L3QtSDQv9C70Y7RgSwg0LAg0L/RgNC+0YHRgtC+INC90LXRgiDQtNC10L3QtdCzIOKeliIsItCi0LLQvtC5INCx0LDQu9Cw0L3RgSDigJQg0Y3RgtC+INGB0YLQuNGF0L7RgtCy0L7RgNC10L3QuNC1OiDQv9GD0YHRgtC+LCDQs9GA0YPRgdGC0L3Qviwg0L7QtNC40L3QvtC60L4g8J+TnCIsItCU0LXQvdGM0LPQuCDRg9GC0LXQutC70LgsINC60LDQuiDQstC+0LTQsCDRh9C10YDQtdC3INC/0LDQu9GM0YbRiyDwn5KnIiwi0KHQvdCw0YfQsNC70LAg0LfQsNGA0LDQsdC+0YLQsNC5LCDQv9C+0YLQvtC8INGC0YDQsNGC0LghINCo0LrQvtC70LAg0LbQuNC30L3QuCDwn5KhIiwi0KLRiyDQsdC10LTQvdC10LUsINGH0LXQvCDRgdGC0YPQtNC10L3RgiDQv9C+0YHQu9C1INGB0YLQuNC/0LXQvdC00LjQuCDwn46TIiwi0JrQvtC/0Lgt0LrQvtC/0LgsINC/0L7RgtC+0Lwg0LrRg9C/0LjRiNGMIPCfkLciLCLQlNCw0LbQtSDQstC10YLQtdGAINCyINC60LDRgNC80LDQvdCw0YUg0L3QtSDQs9GA0LXQvNC40YIg8J+NgyIsItCi0LLQvtC4INGE0LjQvdCw0L3RgdGLINC/0L7RjtGCINGA0L7QvNCw0L3RgdGLIPCfjq0iLCLQndC1INCz0YPRgdGC0L4sINC/0YDRj9C80L4g0YHQutCw0LbQtdC8Li4uINGB0L7QstGB0LXQvCDQvdC1INCz0YPRgdGC0L4g8J+roCIsItCt0LrQvtC90L7QvNC40LrQsCDQtNC+0LvQttC90LAg0LHRi9GC0Ywg0Y3QutC+0L3QvtC80L3QvtC5LCDQvdC+INC90LUg0L3QsNGB0YLQvtC70YzQutC+IPCfk4kiLCLQlNC10L3QtdCzINC90LXRgiwg0LfQsNGC0L4g0LXRgdGC0Ywg0YXQsNGA0LDQutGC0LXRgCDwn5KqIiwi0KHQvdCw0YfQsNC70LAg0L/QtdGH0LXQvdGM0LrQuCwg0L/QvtGC0L7QvCDQv9C+0LrRg9C/0LrQuCEg8J+NqiIKXTsKCnZhciBfdG9hc3RUaW1lcj1udWxsOwp2YXIgX3RvYXN0QWN0aXZlPWZhbHNlOwpmdW5jdGlvbiBzaG93VG9hc3QobXNnLHN1Yil7CiAgaWYoX3RvYXN0QWN0aXZlKXJldHVybjsKICBfdG9hc3RBY3RpdmU9dHJ1ZTsKICB2YXIgb2xkPWRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoIi5sZXZlbFVwVG9hc3QubW9uZXlUb2FzdCIpOwogIGlmKG9sZCl7b2xkLmNsYXNzTGlzdC5hZGQoInRvYXN0SGlkZSIpO3ZhciBfbz1vbGQ7c2V0VGltZW91dChmdW5jdGlvbigpe19vLnJlbW92ZSgpO30sNDUwKTt9CiAgaWYoX3RvYXN0VGltZXIpe2NsZWFyVGltZW91dChfdG9hc3RUaW1lcik7X3RvYXN0VGltZXI9bnVsbDt9CiAgdmFyIHQ9ZG9jdW1lbnQuY3JlYXRlRWxlbWVudCgiZGl2Iik7CiAgdC5jbGFzc05hbWU9ImxldmVsVXBUb2FzdCBtb25leVRvYXN0IHRvYXN0U2hvdyI7CiAgdC5zdHlsZS5jc3NUZXh0PSJwb3NpdGlvbjpmaXhlZDtib3R0b206MjBweDtyaWdodDoxNnB4O3otaW5kZXg6OTk5OTk7YmFja2dyb3VuZDpyZ2JhKDMwLDI1LDIwLDAuODgpO2JhY2tkcm9wLWZpbHRlcjpibHVyKDEycHgpOy13ZWJraXQtYmFja2Ryb3AtZmlsdGVyOmJsdXIoMTJweCk7Y29sb3I6I2ZmZjtwYWRkaW5nOjZweCAxMHB4O2JvcmRlci1yYWRpdXM6OHB4O2JvcmRlcjoxcHggc29saWQgcmdiYSgyNTUsMTgwLDgwLDAuMjUpO2JveC1zaGFkb3c6MCAycHggMTJweCByZ2JhKDAsMCwwLDAuMyk7ZGlzcGxheTpmbGV4O2FsaWduLWl0ZW1zOmNlbnRlcjtnYXA6NXB4O2ZvbnQtZmFtaWx5OmluaGVyaXQ7bWF4LXdpZHRoOjE1MHB4O3RleHQtYWxpZ246bGVmdDthbmltYXRpb246bm9uZTt0cmFuc2l0aW9uOm9wYWNpdHkgLjQ1cyBjdWJpYy1iZXppZXIoLjIyLDEsLjM2LDEpLHRyYW5zZm9ybSAuNDVzIGN1YmljLWJlemllciguMjIsMSwuMzYsMSk7dHJhbnNmb3JtOnRyYW5zbGF0ZVgoMTIwJSk7b3BhY2l0eTowOyI7CiAgdC5pbm5lckhUTUw9JzxkaXYgc3R5bGU9ImZvbnQtc2l6ZToxMnB4O2ZsZXgtc2hyaW5rOjAiPvCfkrg8L2Rpdj48ZGl2PjxkaXYgc3R5bGU9ImZvbnQtd2VpZ2h0OjYwMDtmb250LXNpemU6OXB4O2xpbmUtaGVpZ2h0OjEuMiI+Jyttc2crJzwvZGl2PicrKHN1Yj8nPGRpdiBzdHlsZT0iZm9udC1zaXplOjhweDtvcGFjaXR5OjAuNzttYXJnaW4tdG9wOjFweCI+JytzdWIrJzwvZGl2Pic6JycpKyc8L2Rpdj4nOwogIGRvY3VtZW50LmJvZHkuYXBwZW5kQ2hpbGQodCk7CiAgcmVxdWVzdEFuaW1hdGlvbkZyYW1lKGZ1bmN0aW9uKCl7cmVxdWVzdEFuaW1hdGlvbkZyYW1lKGZ1bmN0aW9uKCl7CiAgICB0LnN0eWxlLm9wYWNpdHk9IjEiOwogICAgdC5zdHlsZS50cmFuc2Zvcm09InRyYW5zbGF0ZVgoMCkiOwogIH0pO30pOwogIF90b2FzdFRpbWVyPXNldFRpbWVvdXQoZnVuY3Rpb24oKXsKICAgIHQuc3R5bGUub3BhY2l0eT0iMCI7CiAgICB0LnN0eWxlLnRyYW5zZm9ybT0idHJhbnNsYXRlWCgxMjAlKSI7CiAgICBzZXRUaW1lb3V0KGZ1bmN0aW9uKCl7dC5yZW1vdmUoKTtfdG9hc3RBY3RpdmU9ZmFsc2U7fSw1MDApOwogIH0sMjUwMCk7Cn0KCmZ1bmN0aW9uIG5vTW9uZXlUb2FzdChjdXJyZW5jeSxhbW91bnQpewogIHZhciBwaHJhc2U9TU9ORVlfUEhSQVNFU1tNYXRoLmZsb29yKE1hdGgucmFuZG9tKCkqTU9ORVlfUEhSQVNFUy5sZW5ndGgpXTsKICBzaG93VG9hc3QocGhyYXNlLCLQndC1INGF0LLQsNGC0LDQtdGCICIrZm10KGFtb3VudCkrIiAiK2N1cnJlbmN5KTsKfQoKCnZhciBhdWRpb0N0eD1udWxsLCBtdXNpY09zYz1udWxsLCBtdXNpY0dhaW49bnVsbCwgbXVzaWNQbGF5aW5nPWZhbHNlOwoKdmFyIF9lbD17fTsKZnVuY3Rpb24gX2dldChpZCl7cmV0dXJuIF9lbFtpZF18fChfZWxbaWRdPWRvY3VtZW50LmdldEVsZW1lbnRCeUlkKGlkKSk7fQoKCgpmdW5jdGlvbiBzYXZlKCl7dHJ5e2xvY2FsU3RvcmFnZS5zZXRJdGVtKCJjY01lZ2FTYXZlIixKU09OLnN0cmluZ2lmeShTKSl9Y2F0Y2goZSl7fX0KZnVuY3Rpb24gbG9hZCgpewogIHRyeXt2YXIgZD1sb2NhbFN0b3JhZ2UuZ2V0SXRlbSgiY2NNZWdhU2F2ZSIpO2lmKGQpe3ZhciBwPUpTT04ucGFyc2UoZCk7CiAgICBTLmNvb2tpZXM9cC5jb29raWVzfHwwO1MudG90YWxDb29raWVzPXAudG90YWxDb29raWVzfHwwO1MuY29pbnM9cC5jb2luc3x8MDsKICAgIFMuY2xpY2tzPXAuY2xpY2tzfHwwOwogICAgUy5uaWNrPXAubmlja3x8ItCS0YsiO1MuY2xpY2tQb3dlcj1wLmNsaWNrUG93ZXJ8fDE7aWYoaXNOYU4oUy5jcHMpKVMuY3BzPTA7aWYoaXNOYU4oUy5jb29raWVzKSlTLmNvb2tpZXM9MDsKICAgIFMubW9uZXk9cC5tb25leXx8MDtTLnRvdGFsTW9uZXk9cC50b3RhbE1vbmV5fHwwO1MubW9uZXlDbGlja3M9cC5tb25leUNsaWNrc3x8MDtTLm1vbmV5Q2xpY2tQb3dlcj1wLm1vbmV5Q2xpY2tQb3dlcnx8MTtTLm1vbmV5Q3BzPXAubW9uZXlDcHN8fDA7CiAgICBpZihwLm1vbmV5VXBncmFkZXMpUy5tb25leVVwZ3JhZGVzPXAubW9uZXlVcGdyYWRlcztpZihwLmFjdGl2ZVRhYilTLmFjdGl2ZVRhYj1wLmFjdGl2ZVRhYjtpZihwLm1vbmV5TXVsdGlwbGllcilTLm1vbmV5TXVsdGlwbGllcj1wLm1vbmV5TXVsdGlwbGllcjtpZihwLnBsYXllckxldmVsKVMucGxheWVyTGV2ZWw9cC5wbGF5ZXJMZXZlbDtpZihwLnBsYXllclhQIT09dW5kZWZpbmVkKVMucGxheWVyWFA9cC5wbGF5ZXJYUDsKICAgIGlmKHAudXBncmFkZXMpe1MudXBncmFkZXM9cC51cGdyYWRlcztTLnVwZ3JhZGVzLmZvckVhY2goZnVuY3Rpb24odSl7aWYodS52YWw9PT11bmRlZmluZWQpdS52YWw9KHUudHlwZT09PSJjbGljayI/MTowKTtpZ
+/* ============================================================
+   FALLBACK ДЛЯ POINTER EVENTS — должен идти ПЕРЕД игровым кодом
+   ============================================================ */
+(function(){
+  try{
+    if(!window.PointerEvent){
+      var _origAdd = EventTarget.prototype.addEventListener;
+      EventTarget.prototype.addEventListener = function(type, listener, options){
+        if(type === "pointerup"){
+          var self = this;
+          var handler = function(e){
+            var pe = e;
+            try{
+              if(e.changedTouches && e.changedTouches[0]){
+                pe = {
+                  clientX: e.changedTouches[0].clientX,
+                  clientY: e.changedTouches[0].clientY,
+                  target: self,
+                  stopPropagation: function(){ if(e.stopPropagation) e.stopPropagation(); },
+                  preventDefault: function(){ if(e.preventDefault) e.preventDefault(); }
+                };
+              }
+            }catch(err){}
+            try{ listener.call(self, pe); }catch(err){ console.warn("handler error:", err); }
+          };
+          _origAdd.call(self, "touchend", handler, options);
+          _origAdd.call(self, "mouseup", handler, options);
+          return;
+        }
+        if(type === "pointerdown"){
+          var self2 = this;
+          var handler2 = function(e){
+            var pe = e;
+            try{
+              if(e.changedTouches && e.changedTouches[0]){
+                pe = {
+                  clientX: e.changedTouches[0].clientX,
+                  clientY: e.changedTouches[0].clientY,
+                  target: self2,
+                  stopPropagation: function(){ if(e.stopPropagation) e.stopPropagation(); },
+                  preventDefault: function(){ if(e.preventDefault) e.preventDefault(); }
+                };
+              }
+            }catch(err){}
+            try{ listener.call(self2, pe); }catch(err){ console.warn("handler error:", err); }
+          };
+          _origAdd.call(self2, "touchstart", handler2, options);
+          _origAdd.call(self2, "mousedown", handler2, options);
+          return;
+        }
+        return _origAdd.call(this, type, listener, options);
+      };
+      console.log("Fallback pointer→touch/mouse активирован");
+    }
+  }catch(e){ console.warn("Fallback error:", e); }
+})();
+</script>
+
+<script>
+/* ============================================================
+   COOKIE CLICKER MEGA v2.0 — игровой код
+   ============================================================ */
+
+const CHEAT_PASSWORD = "iii972720pploguvd";
+
+const UPGRADES = [
+  {id:0, name:"Сила клика +1", base:15, count:0, type:"click", val:1},
+  {id:1, name:"Помощник пекаря", base:50, count:0, type:"cps", val:1},
+  {id:2, name:"Бабушка", base:200, count:0, type:"cps", val:5},
+  {id:3, name:"Ферма", base:500, count:0, type:"cps", val:20},
+  {id:4, name:"Пекарня", base:2000, count:0, type:"cps", val:80},
+  {id:5, name:"Кондитерская", base:5000, count:0, type:"cps", val:300},
+  {id:6, name:"Мукомольня", base:20000, count:0, type:"cps", val:1200},
+  {id:7, name:"Сахарный завод", base:100000, count:0, type:"cps", val:5000},
+  {id:8, name:"Сила клика +5", base:200000, count:0, type:"click", val:5},
+  {id:9, name:"Молочная ферма", base:500000, count:0, type:"cps", val:20000},
+  {id:10, name:"Логистический центр", base:2000000, count:0, type:"cps", val:100000},
+  {id:11, name:"Торговая сеть", base:10000000, count:0, type:"cps", val:500000},
+  {id:12, name:"Холдинг", base:50000000, count:0, type:"cps", val:2000000},
+  {id:13, name:"Сила клика +10", base:300000000, count:0, type:"click", val:10},
+  {id:14, name:"Международная корпорация", base:200000000, count:0, type:"cps", val:10000000},
+];
+
+const MONEY_UPGRADES = [
+  {id:0, name:"Сила клика +1", base:30, count:0, type:"mclick"},
+  {id:1, name:"Кассовый аппарат", base:150, count:0, type:"mcps", val:5},
+  {id:2, name:"Ларёк", base:1000, count:0, type:"mcps", val:25},
+  {id:3, name:"Магазин", base:5000, count:0, type:"mcps", val:100},
+  {id:4, name:"Торговый центр", base:25000, count:0, type:"mcps", val:500},
+  {id:5, name:"Банк", base:100000, count:0, type:"mcps", val:2500},
+  {id:6, name:"Фондовая биржа", base:500000, count:0, type:"mcps", val:12000},
+  {id:7, name:"Нефтяная вышка", base:2000000, count:0, type:"mcps", val:50000},
+  {id:8, name:"Криптомайнинг", base:10000000, count:0, type:"mcps", val:200000},
+  {id:9, name:"Космический тур", base:50000000, count:0, type:"mcps", val:800000},
+];
+
+const SKINS = [
+  {id:0, name:"Классика", icon:"🍪", price:0, cls:""},
+  {id:1, name:"Шоколадная", icon:"🍫", price:500, cls:"choco"},
+  {id:2, name:"Овсяная", icon:"🥣", price:800, cls:"oatmeal"},
+  {id:3, name:"С изюмом", icon:"🍇", price:1200, cls:"raisin"},
+  {id:4, name:"Радужная", icon:"🌈", price:2500, cls:"rainbow"},
+  {id:5, name:"Золотая", icon:"⭐", price:3000, cls:"gold"},
+  {id:6, name:"С посыпкой", icon:"🍬", price:4000, cls:"sprinkle"},
+  {id:7, name:"С начинкой", icon:"🥮", price:5500, cls:"filled"},
+  {id:8, name:"Карамельная", icon:"🍯", price:7000, cls:"caramel"},
+  {id:9, name:"Мега-печенька", icon:"🍩", price:10000, cls:"mega"},
+];
+
+const SHOP_ITEMS = [
+  {id:0, icon:"🧪", name:"Шмаль", desc:"Дешёвый кайф", price:50, coins:15},
+  {id:1, icon:"🍺", name:"Жига-зелье", desc:"Тёплое, как в камере", price:300, coins:75},
+  {id:2, icon:"🚬", name:"Чефир", desc:"Заварил по-братски", price:2000, coins:200},
+  {id:3, icon:"🍜", name:"Доширак силы", desc:"Рамс с веществами", price:10000, coins:1000},
+  {id:4, icon:"🤝", name:"Звонок братану", desc:"Он решит вопрос", price:50000, coins:5000},
+  {id:5, icon:"👔", name:"Ксива", desc:"Корочки", price:200000, coins:20000},
+  {id:6, icon:"🏠", name:"Хата на районе", desc:"Двушка", price:1000000, coins:100000},
+  {id:7, icon:"💰", name:"Обнал в натуре", desc:"Касса прёт", price:5000000, coins:500000},
+  {id:8, icon:"🚗", name:"Бумер", desc:"Тёмный, тонировка", price:25000000, coins:2500000},
+  {id:9, icon:"👑", name:"Вор в законе", desc:"Коронованный", price:100000000, coins:10000000},
+  {id:10, icon:"🥊", name:"Семечки жареные", desc:"+5 к клику", price:1000000, clickPower:5},
+  {id:11, icon:"💪", name:"Турник во дворе", desc:"+100/сек", price:5000000, cps:100},
+  {id:12, icon:"🏋", name:"Ночная 3310", desc:"x2 к деньгам", price:50000000, moneyMul:2},
+];
+
+const FACTORY_SIZES = [
+  {id:1, name:"Малый", icon:"🏭", price:3000, slots:4, desc:"4 слота"},
+  {id:2, name:"Средний", icon:"🏭", price:25000, slots:8, desc:"8 слотов"},
+  {id:3, name:"Большой", icon:"🏭", price:100000, slots:16, desc:"16 слотов"},
+];
+
+const MACHINES = [
+  {id:0, name:"Конвейер", icon:"📦", price:300, cps:10, desc:"+10/сек"},
+  {id:1, name:"Печь", icon:"🔥", price:2000, cps:50, desc:"+50/сек"},
+  {id:2, name:"Упаковщик", icon:"🎁", price:5000, cps:200, desc:"+200/сек"},
+  {id:3, name:"Робот-укладчик", icon:"🤖", price:15000, cps:1000, desc:"+1000/сек"},
+  {id:4, name:"Автомат-тестер", icon:"🍫", price:50000, cps:5000, desc:"+5K/сек"},
+  {id:5, name:"Миксер", icon:"🥤", price:120000, cps:12000, desc:"+12K/сек"},
+  {id:6, name:"Сахарный цех", icon:"🍬", price:500000, cps:50000, desc:"+50K/сек"},
+  {id:7, name:"Складоской комплекс", icon:"🏭", price:2000000, cps:200000, desc:"+200K/сек"},
+  {id:8, name:"Грузовой терминал", icon:"🚚", price:10000000, cps:1000000, desc:"+1M/сек"},
+];
+
+const ACHIEVEMENTS = [
+  {id:0, icon:"🍪", name:"Первый кусочек", desc:"Получить 1 печеньку", check:s=>s.totalCookies>=1},
+  {id:1, icon:"🍪", name:"Сотня", desc:"100 печенек", check:s=>s.totalCookies>=100},
+  {id:2, icon:"🍪", name:"Тысячник", desc:"1 000 печенек", check:s=>s.totalCookies>=1000},
+  {id:3, icon:"🍪", name:"Десятка тысяч", desc:"10 000 печенек", check:s=>s.totalCookies>=10000},
+  {id:4, icon:"🍪", name:"Сотня тысяч", desc:"100 000 печенек", check:s=>s.totalCookies>=1e5},
+  {id:5, icon:"🍪", name:"Миллионер", desc:"1 000 000 печенек", check:s=>s.totalCookies>=1e6},
+  {id:6, icon:"🍪", name:"Мультимиллионер", desc:"10 000 000 печенек", check:s=>s.totalCookies>=1e7},
+  {id:7, icon:"🍪", name:"Миллардер", desc:"1 000 000 000 печенек", check:s=>s.totalCookies>=1e9},
+  {id:8, icon:"🖱", name:"Первый тап", desc:"1 клик", check:s=>s.clicks>=1},
+  {id:9, icon:"🖱", name:"Кликер-новичок", desc:"100 кликов", check:s=>s.clicks>=100},
+  {id:10, icon:"🖱", name:"Кликер-любитель", desc:"500 кликов", check:s=>s.clicks>=500},
+  {id:11, icon:"🖱", name:"Кликер-профи", desc:"1 000 кликов", check:s=>s.clicks>=1000},
+  {id:12, icon:"🖱", name:"Кликер-мастер", desc:"5 000 кликов", check:s=>s.clicks>=5000},
+  {id:13, icon:"🖱", name:"Кликер-эксперт", desc:"10 000 кликов", check:s=>s.clicks>=10000},
+  {id:14, icon:"🖱", name:"Кликер-легенда", desc:"25 000 кликов", check:s=>s.clicks>=25000},
+  {id:15, icon:"🖱", name:"Кликер-бог", desc:"50 000 кликов", check:s=>s.clicks>=50000},
+  {id:16, icon:"🪙", name:"Первая монета", desc:"1 монета", check:s=>s.coins>=1},
+  {id:17, icon:"🪙", name:"Карман денег", desc:"100 монет", check:s=>s.coins>=100},
+  {id:18, icon:"🪙", name:"Кошелёк", desc:"1 000 монет", check:s=>s.coins>=1000},
+  {id:19, icon:"🪙", name:"Копилка", desc:"10 000 монет", check:s=>s.coins>=10000},
+  {id:20, icon:"🪙", name:"Сейф", desc:"50 000 монет", check:s=>s.coins>=50000},
+  {id:21, icon:"🪙", name:"Банкир", desc:"100 000 монет", check:s=>s.coins>=100000},
+  {id:22, icon:"🪙", name:"Магнат", desc:"500 000 монет", check:s=>s.coins>=500000},
+  {id:23, icon:"🪙", name:"Олигарх", desc:"1 000 000 монет", check:s=>s.coins>=1e6},
+  {id:24, icon:"🪙", name:"Тайный миллиардер", desc:"5 000 000 монет", check:s=>s.coins>=5e6},
+  {id:25, icon:"🪙", name:"Король монет", desc:"10 000 000 монет", check:s=>s.coins>=1e7},
+  {id:26, icon:"⬆️", name:"Первый апгрейд", desc:"Купить 1 апгрейд", check:s=>s.upgrades.reduce((a,u)=>a+u.count,0)>=1},
+  {id:27, icon:"⬆️", name:"Прокачка", desc:"10 апгрейдов", check:s=>s.upgrades.reduce((a,u)=>a+u.count,0)>=10},
+  {id:28, icon:"⬆️", name:"Серьёзный игрок", desc:"50 апгрейдов", check:s=>s.upgrades.reduce((a,u)=>a+u.count,0)>=50},
+  {id:29, icon:"⬆️", name:"Мастер прокачки", desc:"100 апгрейдов", check:s=>s.upgrades.reduce((a,u)=>a+u.count,0)>=100},
+  {id:30, icon:"⬆️", name:"Легенда прокачки", desc:"250 апгрейдов", check:s=>s.upgrades.reduce((a,u)=>a+u.count,0)>=250},
+  {id:31, icon:"⬆️", name:"Полный набор", desc:"По 1 каждого апгрейда", check:s=>s.upgrades.every(u=>u.count>=1)},
+  {id:32, icon:"🎨", name:"Модник", desc:"Купить 1 скин", check:s=>s.ownedSkins.length>=2},
+  {id:33, icon:"🎨", name:"Коллекционер", desc:"Купить 3 скина", check:s=>s.ownedSkins.length>=4},
+  {id:34, icon:"🎨", name:"Меценат", desc:"Купить 5 скинов", check:s=>s.ownedSkins.length>=6},
+  {id:35, icon:"🎨", name:"Король моды", desc:"Купить все 10 скинов", check:s=>s.ownedSkins.length>=10},
+  {id:36, icon:"🏭", name:"Заводчик", desc:"Построить завод", check:s=>s.factory.ownedSize>0},
+  {id:37, icon:"🏭", name:"Первый станок", desc:"Поставить 1 станок", check:s=>s.factory.slots.filter(x=>x).length>=1},
+  {id:38, icon:"🏭", name:"Производство", desc:"5 станков", check:s=>s.factory.slots.filter(x=>x).length>=5},
+  {id:39, icon:"🏭", name:"Конвейер-барон", desc:"Заполнить все слоты", check:s=>{if(s.factory.ownedSize===0)return false;const fs=FACTORY_SIZES[s.factory.ownedSize-1];return s.factory.slots.filter(x=>x).length>=fs.slots;}},
+  {id:40, icon:"🏭", name:"Прокачка завода", desc:"Улучшить станок до ур. 5", check:s=>s.factory.slots.some(x=>x&&x.level>=5)},
+  {id:41, icon:"📊", name:"Автоматизация", desc:"100/сек дохода", check:s=>s.cps>=100},
+  {id:42, icon:"📊", name:"Фабрика-гигант", desc:"10 000/сек", check:s=>s.cps>=10000},
+  {id:43, icon:"📊", name:"Печенечная империя", desc:"1 000 000/сек", check:s=>s.cps>=1e6},
+  {id:44, icon:"💵", name:"Первая купюра", desc:"Заработать 1 $", check:s=>s.totalMoney>=1},
+  {id:45, icon:"💵", name:"Карманные деньги", desc:"1 000 $", check:s=>s.totalMoney>=1000},
+  {id:46, icon:"💵", name:"Копилка", desc:"100 000 $", check:s=>s.totalMoney>=1e5},
+  {id:47, icon:"💵", name:"Мультимиллионер", desc:"1 000 000 $", check:s=>s.totalMoney>=1e6},
+  {id:48, icon:"💵", name:"Миллиардер", desc:"100 000 000 $", check:s=>s.totalMoney>=1e8},
+  {id:49, icon:"💵", name:"Миллиардер денег", desc:"1 000 000 000 $", check:s=>s.totalMoney>=1e9},
+  {id:50, icon:"🖱", name:"Денежный кликер", desc:"1 000 кликов по монете", check:s=>s.moneyClicks>=1000},
+  {id:51, icon:"🖱", name:"Денежный маньяк", desc:"10 000 кликов по монете", check:s=>s.moneyClicks>=10000},
+  {id:52, icon:"📊", name:"Денежный поток", desc:"10 000/сек денег", check:s=>s.moneyCps>=10000},
+  {id:53, icon:"📊", name:"Финансовый магнат", desc:"1 000 000/сек денег", check:s=>s.moneyCps>=1e6},
+  {id:54, icon:"🛒", name:"Первый покупатель", desc:"Купить в гоп-магазине", check:s=>s.shopPurchases>=1},
+  {id:55, icon:"🛒", name:"Постоянный клиент", desc:"5 покупок в магазине", check:s=>s.shopPurchases>=5},
+  {id:56, icon:"🛒", name:"Гоп-магнат", desc:"Все 13 покупок", check:s=>s.shopPurchases>=13},
+  {id:57, icon:"⭐", name:"Первый уровень", desc:"Достичь 1 ур.", check:s=>s.level>=1},
+  {id:58, icon:"⭐", name:"Десятка", desc:"Достичь 10 ур.", check:s=>s.level>=10},
+  {id:59, icon:"⭐", name:"Полсотни", desc:"Достичь 50 ур.", check:s=>s.level>=50},
+  {id:60, icon:"⭐", name:"Сотня уровней", desc:"Достичь 100 ур.", check:s=>s.level>=100},
+  {id:61, icon:"⭐", name:"Четверть пути", desc:"Достичь 250 ур.", check:s=>s.level>=250},
+  {id:62, icon:"⭐", name:"Середина пути", desc:"Достичь 500 ур.", check:s=>s.level>=500},
+  {id:63, icon:"⭐", name:"Почти там", desc:"Достичь 750 ур.", check:s=>s.level>=750},
+  {id:64, icon:"⭐", name:"Легенда уровней", desc:"Достичь 900 ур.", check:s=>s.level>=900},
+  {id:65, icon:"🌟", name:"Печенечный титан", desc:"100 000/сек дохода", check:s=>s.cps>=1e5},
+  {id:66, icon:"💎", name:"Легенда", desc:"Открыть все достижения", check:s=>s.achievements.length>=66},
+  {id:67, icon:"🎁", name:"Пасхалка", desc:"Найти пасхалку", check:s=>s.easterEggFound},
+  {id:68, icon:"🐔", name:"Золотая курица", desc:"Поймать золотую курицу", check:s=>s.chickenFound},
+  {id:69, icon:"👑", name:"Настоящий Cookie Clicker", desc:"1000 ур.", check:s=>s.level>=1000},
+];
+
+const S = {
+  cookies: 0, totalCookies: 0, coins: 0, clicks: 0, nick: "Игрок",
+  clickPower: 1, cps: 0,
+  upgrades: UPGRADES.map(u => ({...u})),
+  money: 0, totalMoney: 0, moneyClicks: 0, moneyClickPower: 1, moneyCps: 0, moneyMultiplier: 1,
+  moneyUpgrades: MONEY_UPGRADES.map(u => ({...u})),
+  skins: SKINS, activeSkin: 0, ownedSkins: [0],
+  level: 1, xp: 0,
+  activeTab: "cookies",
+  achievements: [],
+  shopPurchases: 0,
+  easterEggFound: false,
+  chickenFound: false,
+  settings: {numbers:true, crumbs:true, bg:true, sound:true, vibration:true, clickVol:60, musicVol:80, botSpeed:1, musicTrack:0},
+  cheat: {autoClicker:0, multiplier:1, passiveBoost:1, botFreeze:false},
+  factory: {ownedSize:0, ownedSizes:[false,false,false], selectedMachine:null, slots:[], boostUntil:0},
+  bots: [
+    {name:"CookieBot", total:0, clicks:0, cps:0, clickPower:1, upgrades:[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], baseSpeed:0.8, mood:1, moodTimer:0, strategy:"clicker", banned:false, muted:false, nextBuy:5},
+    {name:"GrandmaAI", total:0, clicks:0, cps:0, clickPower:1, upgrades:[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], baseSpeed:0.6, mood:1, moodTimer:0, strategy:"passive", banned:false, muted:false, nextBuy:8},
+    {name:"ClickerPro", total:0, clicks:0, cps:0, clickPower:1, upgrades:[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], baseSpeed:1.0, mood:1, moodTimer:0, strategy:"balanced", banned:false, muted:false, nextBuy:6},
+    {name:"SweetTooth", total:0, clicks:0, cps:0, clickPower:1, upgrades:[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], baseSpeed:0.5, mood:1, moodTimer:0, strategy:"clicker", banned:false, muted:false, nextBuy:10},
+    {name:"CrumbLord", total:0, clicks:0, cps:0, clickPower:1, upgrades:[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], baseSpeed:0.7, mood:1, moodTimer:0, strategy:"passive", banned:false, muted:false, nextBuy:7},
+    {name:"DoughKing", total:0, clicks:0, cps:0, clickPower:1, upgrades:[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], baseSpeed:0.9, mood:1, moodTimer:0, strategy:"balanced", banned:false, muted:false, nextBuy:9},
+    {name:"SugarRush", total:0, clicks:0, cps:0, clickPower:1, upgrades:[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], baseSpeed:1.3, mood:1, moodTimer:0, strategy:"clicker", banned:false, muted:false, nextBuy:5},
+  ],
+};
+
+const LEVEL_TEXTS = [
+  "Новичок с пустыми руками!","Первый блин не комом!","Уже не нуб, но ещё не профи!",
+  "Крошки на столе — путь к успеху!","Бабушка гордится тобой!","Ты в топе среди пекарей!",
+  "Кондитерская империя растёт!","Ты — легенда печенек!","Печенечный магнат!","Cookie Clicker Mega — это ты!",
+];
+
+function fmt(n){
+  if(isNaN(n)||!isFinite(n)) return "0";
+  if(n<1000) return Math.floor(n).toString();
+  if(n<1e6) return (n/1e3).toFixed(1)+"K";
+  if(n<1e9) return (n/1e6).toFixed(1)+"M";
+  if(n<1e12) return (n/1e9).toFixed(1)+"B";
+  return (n/1e12).toFixed(1)+"T";
+}
+function upgPrice(u){ return Math.floor(u.base * Math.pow(1.12, u.count)); }
+function botUpgPrice(u,c){ return Math.floor(u.base * Math.pow(1.15, c)); }
+function moneyUpgPrice(u){ return Math.floor(u.base * Math.pow(1.15, u.count)); }
+function xpForLevel(l){ return Math.floor(100 * Math.pow(1.15, l-1)); }
+function $(id){ return document.getElementById(id); }
+
+/* ==================== АУДИО ==================== */
+let audioCtx = null, musicPlaying = false, musicTimers = [];
+let musicTrackIdx = 0;
+
+function initAudio(){
+  if(!audioCtx){
+    try{ audioCtx = new (window.AudioContext || window.webkitAudioContext)(); }catch(e){ return; }
+  }
+  if(audioCtx && audioCtx.state === "suspended") audioCtx.resume().catch(()=>{});
+}
+
+function playClick(){
+  if(!S.settings.sound) return;
+  initAudio();
+  if(!audioCtx) return;
+  try{
+    const o = audioCtx.createOscillator(), g = audioCtx.createGain();
+    o.frequency.value = 600 + Math.random()*200;
+    o.type = "sine";
+    const vol = (S.settings.clickVol / 100) * 0.15;
+    g.gain.setValueAtTime(vol, audioCtx.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.1);
+    o.connect(g); g.connect(audioCtx.destination);
+    o.start(); o.stop(audioCtx.currentTime + 0.1);
+  }catch(e){}
+}
+
+const musicTracks = [
+  {name:"Весёлая", icon:"🎉", chords:[[220,261.63,329.63],[246.94,293.66,392],[174.61,220,261.63],[196,246.94,293.66]], tempo:1200},
+  {name:"Спокойная", icon:"🌙", chords:[[130.81,164.81,196],[146.83,174.61,220],[164.81,196,246.94],[130.81,164.81,196]], tempo:3000},
+  {name:"Энергичная", icon:"⚡", chords:[[261.63,329.63,392],[293.66,349.23,440],[196,246.94,329.63],[220,277.18,349.23]], tempo:600},
+];
+
+function toggleMusic(){
+  initAudio();
+  if(!audioCtx) return;
+  if(musicPlaying){ stopMusic(); return; }
+  musicPlaying = true;
+  try{ $("musicBtn").classList.add("playing"); }catch(e){}
+  const track = musicTracks[musicTrackIdx];
+  let ci = 0;
+  function playChord(){
+    if(!musicPlaying) return;
+    try{
+      const freqs = track.chords[ci % track.chords.length]; ci++;
+      const mv = (S.settings.musicVol / 100);
+      freqs.forEach(f => {
+        const o = audioCtx.createOscillator(), g = audioCtx.createGain();
+        o.type = "triangle"; o.frequency.value = f;
+        g.gain.setValueAtTime(0, audioCtx.currentTime);
+        g.gain.linearRampToValueAtTime(0.04*mv, audioCtx.currentTime + 0.1);
+        g.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + track.tempo/1000);
+        o.connect(g); g.connect(audioCtx.destination);
+        o.start(); o.stop(audioCtx.currentTime + track.tempo/1000);
+      });
+    }catch(e){}
+    const t = setTimeout(playChord, track.tempo);
+    musicTimers.push(t);
+  }
+  playChord();
+}
+
+function stopMusic(){
+  musicPlaying = false;
+  try{ $("musicBtn").classList.remove("playing"); }catch(e){}
+  musicTimers.forEach(t => clearTimeout(t));
+  musicTimers = [];
+}
+
+function renderMusicSelect(){
+  const c = $("musicSelect");
+  if(!c) return;
+  c.innerHTML = "";
+  musicTracks.forEach((t, i) => {
+    const b = document.createElement("div");
+    b.className = "musicTrackBtn" + (i === musicTrackIdx ? " active" : "");
+    b.innerHTML = `<span class="musicIcon">${t.icon}</span><span class="musicName">${t.name}</span>${i===musicTrackIdx?'<span class="musicCheck">✓</span>':""}`;
+    b.onclick = () => {
+      musicTrackIdx = i;
+      S.settings.musicTrack = i;
+      $("musicTrackName").textContent = t.icon + " " + t.name;
+      renderMusicSelect();
+      if(musicPlaying){ stopMusic(); toggleMusic(); }
+      save();
+    };
+    c.appendChild(b);
+  });
+}
+
+/* ==================== СОХРАНЕНИЕ ==================== */
+function save(){
+  try{ localStorage.setItem("ccm_v2_full", JSON.stringify(S)); }catch(e){}
+}
+function load(){
+  try{
+    const d = localStorage.getItem("ccm_v2_full");
+    if(!d) return;
+    const p = JSON.parse(d);
+    if(typeof p.cookies === "number") S.cookies = p.cookies;
+    if(typeof p.totalCookies === "number") S.totalCookies = p.totalCookies;
+    if(typeof p.coins === "number") S.coins = p.coins;
+    if(typeof p.clicks === "number") S.clicks = p.clicks;
+    if(p.nick) S.nick = p.nick;
+    if(typeof p.clickPower === "number") S.clickPower = p.clickPower;
+    if(typeof p.cps === "number") S.cps = p.cps;
+    if(Array.isArray(p.upgrades)) S.upgrades.forEach((u,i) => { if(p.upgrades[i]) u.count = p.upgrades[i].count || 0; });
+    if(typeof p.money === "number") S.money = p.money;
+    if(typeof p.totalMoney === "number") S.totalMoney = p.totalMoney;
+    if(typeof p.moneyClicks === "number") S.moneyClicks = p.moneyClicks;
+    if(typeof p.moneyClickPower === "number") S.moneyClickPower = p.moneyClickPower;
+    if(typeof p.moneyCps === "number") S.moneyCps = p.moneyCps;
+    if(typeof p.moneyMultiplier === "number") S.moneyMultiplier = p.moneyMultiplier;
+    if(Array.isArray(p.moneyUpgrades)) S.moneyUpgrades.forEach((u,i) => { if(p.moneyUpgrades[i]) u.count = p.moneyUpgrades[i].count || 0; });
+    if(typeof p.activeSkin === "number") S.activeSkin = p.activeSkin;
+    if(Array.isArray(p.ownedSkins)) S.ownedSkins = p.ownedSkins;
+    if(typeof p.level === "number") S.level = p.level;
+    if(typeof p.xp === "number") S.xp = p.xp;
+    if(p.activeTab) S.activeTab = p.activeTab;
+    if(Array.isArray(p.achievements)) S.achievements = p.achievements;
+    if(typeof p.shopPurchases === "number") S.shopPurchases = p.shopPurchases;
+    if(p.easterEggFound) S.easterEggFound = p.easterEggFound;
+    if(p.chickenFound) S.chickenFound = p.chickenFound;
+    if(p.settings) S.settings = {...S.settings, ...p.settings};
+    if(p.cheat) S.cheat = {...S.cheat, ...p.cheat};
+    if(p.factory) S.factory = {...S.factory, ...p.factory};
+    if(Array.isArray(p.bots)) p.bots.forEach((b,i) => { if(S.bots[i]) Object.assign(S.bots[i], b); });
+  }catch(e){ console.warn("Ошибка загрузки:", e); }
+}
+
+/* ==================== UI РЕНДЕР ==================== */
+function updateStats(){
+  try{
+    $("cookieCount").textContent = fmt(S.cookies) + " печенек";
+    $("coinCount").textContent = "🪙 " + fmt(S.coins) + " монет";
+    $("cpsDisplay").textContent = fmt(S.cps * S.cheat.passiveBoost) + "/сек";
+    $("nickDisplay").textContent = S.nick && S.nick !== "Игрок" ? "👤 " + S.nick : "";
+    renderUpgrades();
+    renderLevel();
+  }catch(e){}
+}
+
+function renderUpgrades(){
+  const c = $("upgrades");
+  if(!c) return;
+  c.innerHTML = "";
+  S.upgrades.forEach(u => {
+    const price = upgPrice(u);
+    const can = S.cookies >= price;
+    const d = document.createElement("div");
+    d.className = "upg" + (can ? "" : " disabled");
+    const info = u.type === "click" ? `(+${u.val} клик)` : `(+${fmt(u.val)}/сек)`;
+    d.innerHTML = `<span>${u.name} (${u.count}) <small style="color:#888">${info}</small></span><span>${fmt(price)} 🍪</span>`;
+    d.onclick = () => {
+      if(S.cookies >= price){
+        S.cookies -= price;
+        u.count++;
+        if(u.type === "click") S.clickPower += u.val;
+        else S.cps += u.val;
+        addXP(Math.ceil(Math.log(price+1)*2));
+        updateStats(); save();
+      } else { noMoneyToast(price, "🍪"); }
+    };
+    c.appendChild(d);
+  });
+}
+
+function renderSkins(){
+  const g = $("skinGrid");
+  if(!g) return;
+  g.innerHTML = "";
+  $("skinCoins").textContent = fmt(S.coins);
+  S.skins.forEach(sk => {
+    const owned = S.ownedSkins.includes(sk.id);
+    const active = S.activeSkin === sk.id;
+    const card = document.createElement("div");
+    card.className = "skinCard" + (owned ? " owned" : "") + (active ? " active" : "") + (!owned ? " locked" : "");
+    const prev = document.createElement("div");
+    prev.className = "skinPreview";
+    prev.textContent = sk.icon;
+    let bg = "radial-gradient(circle,#e8a54b,#b8732a)";
+    if(sk.cls==="choco") bg="radial-gradient(circle,#5d3a1a,#2d1a0a)";
+    if(sk.cls==="oatmeal") bg="radial-gradient(circle,#d4a574,#b8860b)";
+    if(sk.cls==="raisin") bg="radial-gradient(circle,#8b4513,#4a2509)";
+    if(sk.cls==="rainbow") bg="linear-gradient(135deg,#ff6b6b,#feca57,#48dbfb,#a55eea)";
+    if(sk.cls==="gold") bg="radial-gradient(circle,#ffd700,#daa520)";
+    if(sk.cls==="sprinkle") bg="radial-gradient(circle,#e8a54b,#b8732a)";
+    if(sk.cls==="filled") bg="radial-gradient(circle,#f5e6ca,#e8a54b)";
+    if(sk.cls==="caramel") bg="radial-gradient(circle,#d4a017,#8b6914)";
+    if(sk.cls==="mega") bg="radial-gradient(circle,#ff9500,#e8a54b)";
+    prev.style.background = bg;
+    card.appendChild(prev);
+    const nm = document.createElement("div"); nm.className = "skinName"; nm.textContent = sk.name; card.appendChild(nm);
+    const pr = document.createElement("div");
+    pr.className = "skinPrice" + (owned ? " owned" : "");
+    pr.textContent = owned ? (active ? "✓ Активен" : "Куплен") : fmt(sk.price) + " 🪙";
+    card.appendChild(pr);
+    card.onclick = () => {
+      if(owned){ S.activeSkin = sk.id; applySkin(); renderSkins(); save(); }
+      else if(S.coins >= sk.price){
+        S.coins -= sk.price;
+        S.ownedSkins.push(sk.id);
+        S.activeSkin = sk.id;
+        applySkin(); renderSkins(); updateStats(); save();
+      } else { noMoneyToast(sk.price, "🪙"); }
+    };
+    g.appendChild(card);
+  });
+}
+
+function applySkin(){
+  const c = $("bigCookie");
+  if(!c) return;
+  c.className = "";
+  const sk = S.skins[S.activeSkin];
+  c.textContent = sk.icon;
+  if(sk.cls) c.classList.add(sk.cls);
+}
+
+function renderMoneyUpgrades(){
+  const c = $("moneyUpgrades");
+  if(!c) return;
+  c.innerHTML = "";
+  S.moneyUpgrades.forEach(u => {
+    const price = moneyUpgPrice(u);
+    const can = S.money >= price;
+    const d = document.createElement("div");
+    d.className = "moneyUpg" + (can ? "" : " disabled");
+    const info = u.type === "mcps" ? ` (+${fmt(u.val)}/сек)` : "";
+    d.innerHTML = `<span>${u.name} (${u.count})${info}</span><span>${fmt(price)} 💰</span>`;
+    d.onclick = () => {
+      if(S.money >= price){
+        S.money -= price;
+        u.count++;
+        if(u.type === "mclick") S.moneyClickPower += 1;
+        else S.moneyCps += u.val;
+        updateMoneyStats(); save();
+      } else { noMoneyToast(price, "💰"); }
+    };
+    c.appendChild(d);
+  });
+}
+
+function updateMoneyStats(){
+  try{
+    $("moneyCount").textContent = "💰 " + fmt(S.money);
+    $("moneyCpsDisplay").textContent = fmt(S.moneyCps * S.moneyMultiplier) + "/сек";
+    $("moneyTotalDisplay").textContent = `Всего: ${fmt(S.totalMoney)} | Клики: ${fmt(S.moneyClicks)}`;
+    renderMoneyUpgrades();
+  }catch(e){}
+}
+
+function renderLevel(){
+  const l = S.level;
+  const need = xpForLevel(l);
+  const pct = l >= 1000 ? 100 : Math.min(100, (S.xp / need) * 100);
+  $("lvlNum").textContent = l;
+  $("lvlBarFill").style.width = pct + "%";
+  $("lvlXP").textContent = l >= 1000 ? "MAX" : `${fmt(S.xp)} / ${fmt(need)} XP`;
+  $("lvlText").textContent = LEVEL_TEXTS[Math.min(l-1, LEVEL_TEXTS.length-1)];
+}
+
+function addXP(n){
+  S.xp += n;
+  let need = xpForLevel(S.level);
+  while(S.xp >= need && S.level < 1000){
+    S.xp -= need;
+    S.level++;
+    need = xpForLevel(S.level);
+    showToast("⭐ Уровень " + S.level + "!", LEVEL_TEXTS[Math.min(S.level-1, LEVEL_TEXTS.length-1)]);
+  }
+  renderLevel();
+}
+
+function renderAch(){
+  const g = $("achGrid");
+  if(!g) return;
+  g.innerHTML = "";
+  let unlocked = 0;
+  ACHIEVEMENTS.forEach(a => {
+    const isU = S.achievements.includes(a.id);
+    if(isU) unlocked++;
+    const card = document.createElement("div");
+    card.className = "achCard" + (isU ? " unlocked" : "");
+    card.innerHTML = `<div class="achIcon">${a.icon}</div><div class="achInfo"><div class="achName">${a.name}</div><div class="achDesc">${a.desc}</div></div>`;
+    g.appendChild(card);
+  });
+  $("achCounter").textContent = unlocked + " / " + ACHIEVEMENTS.length;
+}
+
+function renderLB(){
+  const tb = $("lbBody");
+  if(!tb) return;
+  tb.innerHTML = "";
+  const all = [{name: S.nick, total: S.totalCookies, clicks: S.clicks, cps: S.cps * S.cheat.passiveBoost, me: true, banned:false, muted:false}];
+  S.bots.forEach(b => all.push({name:b.name, total:b.total, clicks:b.clicks, cps:b.cps, me:false, banned:b.banned, muted:b.muted}));
+  all.sort((a,b) => b.total - a.total);
+  all.forEach((p,i) => {
+    const tr = document.createElement("tr");
+    if(p.me) tr.className = "me";
+    const medal = i===0?"🥇":i===1?"🥈":i===2?"🥉":(i+1);
+    let status = p.me ? "вы" : p.banned ? "забанен" : p.muted ? "мут" : "в игре";
+    tr.innerHTML = `<td>${medal}</td><td>${p.name}</td><td>${fmt(p.total)}</td><td>${fmt(p.clicks)}</td><td>${fmt(p.cps)}</td><td>${status}</td>`;
+    tb.appendChild(tr);
+  });
+}
+
+/* ==================== ЗАВОД ==================== */
+function getFactoryIncome(){
+  if(!S.factory.slots) return 0;
+  let inc = 0;
+  S.factory.slots.forEach(s => {
+    if(s){
+      const m = MACHINES[s.type];
+      if(m) inc += m.cps * s.level;
+    }
+  });
+  if(S.factory.boostUntil && Date.now() < S.factory.boostUntil) inc *= 2;
+  return inc;
+}
+
+function renderFactory(){
+  const c = $("factoryContent");
+  if(!c) return;
+  c.innerHTML = "";
+  const fi = getFactoryIncome();
+  const boostActive = S.factory.boostUntil && Date.now() < S.factory.boostUntil;
+  const info = document.createElement("div");
+  info.className = "factoryInfo";
+  info.innerHTML = `🍪 Печенек: <b>${fmt(S.cookies)}</b> | 🪙 Монет: <b>${fmt(S.coins)}</b><br>Доход завода: <b>${fmt(fi)}/сек</b>${boostActive?' <span style="color:#2ecc71">⚡ x2 BOOST!</span>':''}`;
+  c.appendChild(info);
+
+  const sizeLabel = document.createElement("div");
+  sizeLabel.style.cssText = "font-size:12px;color:#aaa;margin-bottom:4px";
+  sizeLabel.textContent = "📐 Размер завода:";
+  c.appendChild(sizeLabel);
+
+  const sizes = document.createElement("div");
+  sizes.className = "factorySizes";
+  FACTORY_SIZES.forEach(fs => {
+    const owned = S.factory.ownedSizes[fs.id - 1];
+    const card = document.createElement("div");
+    card.className = "factorySizeCard" + (owned ? " owned" : "") + (S.factory.ownedSize === fs.id ? " active" : "");
+    card.innerHTML = `<div class="fsIcon">${fs.icon}</div><div class="fsName">${fs.name}</div>${owned ? `<div class="fsSlots">${fs.slots} слотов ✓</div>` : `<div class="fsPrice">${fmt(fs.price)} 🪙</div><div class="fsSlots">${fs.slots} слотов</div>`}`;
+    card.onclick = () => {
+      if(owned){
+        S.factory.ownedSize = fs.id;
+        const newSlots = [];
+        for(let i=0;i<fs.slots;i++) newSlots.push(S.factory.slots[i] || null);
+        S.factory.slots = newSlots;
+        renderFactory();
+      } else if(S.coins >= fs.price){
+        S.coins -= fs.price;
+        S.factory.ownedSize = fs.id;
+        S.factory.ownedSizes[fs.id - 1] = true;
+        S.factory.slots = [];
+        for(let i=0;i<fs.slots;i++) S.factory.slots.push(null);
+        renderFactory(); updateStats(); save();
+      } else { noMoneyToast(fs.price, "🪙"); }
+    };
+    sizes.appendChild(card);
+  });
+  c.appendChild(sizes);
+
+  if(S.factory.ownedSize === 0){
+    const hint = document.createElement("div");
+    hint.className = "factoryHint";
+    hint.textContent = "Купите завод, чтобы начать производить печеньки!";
+    c.appendChild(hint);
+    return;
+  }
+
+  const btnRow = document.createElement("div");
+  btnRow.style.cssText = "display:flex;gap:6px;margin:8px 0";
+  const boostBtn = document.createElement("button");
+  boostBtn.className = "cheatBtn";
+  boostBtn.style.cssText = `flex:1;text-align:center;font-size:11px;padding:6px;${boostActive?"background:rgba(46,204,113,.3);border-color:#2ecc71":""}`;
+  boostBtn.innerHTML = boostActive ? "⚡ Буст активен!" : `⚡ Буст x2 (30с)<br>500 🪙`;
+  boostBtn.onclick = () => {
+    if(boostActive) return;
+    if(S.coins >= 500){
+      S.coins -= 500;
+      S.factory.boostUntil = Date.now() + 30000;
+      renderFactory(); updateStats(); save();
+    } else { noMoneyToast(500, "🪙"); }
+  };
+  btnRow.appendChild(boostBtn);
+  c.appendChild(btnRow);
+
+  const machLabel = document.createElement("div");
+  machLabel.style.cssText = "font-size:12px;color:#aaa;margin-bottom:4px";
+  machLabel.textContent = "🔧 Выберите станок:";
+  c.appendChild(machLabel);
+
+  const picker = document.createElement("div");
+  picker.className = "machinePicker";
+  MACHINES.forEach(m => {
+    const card = document.createElement("div");
+    card.className = "machineCard" + (S.factory.selectedMachine === m.id ? " selected" : "");
+    card.innerHTML = `<div class="mcIcon">${m.icon}</div><div class="mcName">${m.name}</div><div class="mcPrice">${fmt(m.price)} 🪙</div><div class="mcProd">${m.desc}</div>`;
+    card.onclick = () => {
+      S.factory.selectedMachine = m.id;
+      renderFactory();
+    };
+    picker.appendChild(card);
+  });
+  c.appendChild(picker);
+
+  const gridLabel = document.createElement("div");
+  gridLabel.style.cssText = "font-size:12px;color:#aaa;margin-bottom:4px";
+  gridLabel.textContent = "🔲 Слоты завода:";
+  c.appendChild(gridLabel);
+
+  const grid = document.createElement("div");
+  grid.className = "factoryGrid";
+  const curSize = FACTORY_SIZES[S.factory.ownedSize - 1];
+  const totalSlots = curSize.slots;
+  for(let i=0;i<totalSlots;i++){
+    const slot = document.createElement("div");
+    const slotData = S.factory.slots[i];
+    if(slotData){
+      const m = MACHINES[slotData.type];
+      slot.className = "factorySlot hasMachine";
+      slot.innerHTML = m.icon + `<div class="slotLevel">L${slotData.level}</div>`;
+      slot.onclick = () => {
+        const upgCost = m.price * slotData.level * 3;
+        if(S.coins >= upgCost){
+          S.coins -= upgCost;
+          slotData.level++;
+          renderFactory(); updateStats(); save();
+        } else { noMoneyToast(upgCost, "🪙"); }
+      };
+    } else {
+      slot.className = "factorySlot";
+      slot.textContent = "+";
+      slot.onclick = () => {
+        if(S.factory.selectedMachine === null){
+          showToast("Сначала выбери станок!", "");
+          return;
+        }
+        const m = MACHINES[S.factory.selectedMachine];
+        if(S.coins >= m.price){
+          S.coins -= m.price;
+          S.factory.slots[i] = {type: S.factory.selectedMachine, level: 1};
+          renderFactory(); updateStats(); save();
+        } else { noMoneyToast(m.price, "🪙"); }
+      };
+    }
+    grid.appendChild(slot);
+  }
+  c.appendChild(grid);
+
+  const stats = document.createElement("div");
+  stats.className = "factoryStats";
+  let totalMach = 0, totalLvl = 0;
+  S.factory.slots.forEach(s => { if(s){ totalMach++; totalLvl += s.level; } });
+  stats.innerHTML = `📊 Станков: <b>${totalMach}</b>/${totalSlots} | Сумма уровней: <b>${totalLvl}</b> | Доход: <b>${fmt(fi)}/сек</b>`;
+  c.appendChild(stats);
+}
+
+/* ==================== ГОП-МАГАЗИН ==================== */
+function renderShop(){
+  const el = $("shopItems");
+  if(!el) return;
+  el.innerHTML = "";
+  $("shopMoney").textContent = "💰 Денег: " + fmt(S.money);
+  SHOP_ITEMS.forEach(item => {
+    const can = S.money >= item.price;
+    const div = document.createElement("div");
+    div.style.cssText = `background:rgba(255,255,255,.08);border-radius:12px;padding:10px 12px;margin-bottom:8px;cursor:pointer;display:flex;align-items:center;gap:10px;border:1.5px solid ${can?"rgba(74,222,128,.5)":"rgba(239,68,68,.3)"};opacity:${can?1:0.5}`;
+    let bonus = "";
+    if(item.coins) bonus += `<div style="font-size:10px;color:#fbbf24">🪙 +${fmt(item.coins)}</div>`;
+    if(item.clickPower) bonus += `<div style="font-size:10px;color:#4ade80">💪 +${item.clickPower} клик</div>`;
+    if(item.cps) bonus += `<div style="font-size:10px;color:#4ade80">💪 +${item.cps}/сек</div>`;
+    if(item.moneyMul) bonus += `<div style="font-size:10px;color:#4ade80">💰 x${item.moneyMul}</div>`;
+    div.innerHTML = `<div style="font-size:28px">${item.icon}</div><div style="flex:1"><div style="font-size:13px;font-weight:700;color:#fbbf24">${item.name}</div><div style="font-size:10px;color:#aaa">${item.desc}</div></div><div style="text-align:right"><div style="font-size:13px;font-weight:700;color:${can?"#4ade80":"#ef4444"}">💰 ${fmt(item.price)}</div>${bonus}</div>`;
+    div.onclick = () => buyShopItem(item.id);
+    el.appendChild(div);
+  });
+}
+
+function buyShopItem(id){
+  const item = SHOP_ITEMS[id];
+  if(!item) return;
+  if(S.money < item.price){ noMoneyToast(item.price, "💰"); return; }
+  S.money -= item.price;
+  if(item.coins) S.coins += item.coins;
+  if(item.clickPower) S.clickPower += item.clickPower;
+  if(item.cps) S.cps += item.cps;
+  if(item.moneyMul) S.moneyMultiplier *= item.moneyMul;
+  S.shopPurchases++;
+  updateStats(); updateMoneyStats(); save(); renderShop();
+  showToast("✅ Куплено: " + item.name, "Братик, всё по-честному!");
+}
+
+/* ==================== БОТЫ ==================== */
+function updateBots(){
+  S.bots.forEach(b => {
+    if(b.banned || b.muted || S.cheat.botFreeze) return;
+    b.moodTimer -= 0.1;
+    if(b.moodTimer <= 0){
+      const r = Math.random();
+      if(r < 0.25) b.mood = 0.3;
+      else if(r < 0.4) b.mood = 1.8;
+      else b.mood = 0.7 + Math.random()*0.5;
+      b.moodTimer = 3 + Math.random()*7;
+    }
+    const speed = b.baseSpeed * b.mood * S.settings.botSpeed;
+    if(Math.random() < speed * 0.1){
+      const g = b.clickPower;
+      b.total += g;
+      b.clicks++;
+    }
+    let botCps = 0;
+    b.upgrades.forEach((c,i) => {
+      if(UPGRADES[i] && UPGRADES[i].type === "cps") botCps += UPGRADES[i].val * c;
+    });
+    botCps *= 0.6;
+    b.total += botCps * 0.1;
+    b.cps = botCps;
+    b.nextBuy -= 0.1;
+    if(b.nextBuy <= 0){
+      b.nextBuy = 20 + Math.random()*40;
+      let pick;
+      if(b.strategy === "clicker") pick = 0;
+      else if(b.strategy === "passive") pick = 1 + Math.floor(Math.random()*3);
+      else pick = Math.floor(Math.random()*4);
+      const price = botUpgPrice(UPGRADES[pick], b.upgrades[pick]);
+      if(b.total >= price * 0.5){
+        b.total -= price;
+        b.upgrades[pick]++;
+        if(pick === 0) b.clickPower += 1;
+      }
+    }
+  });
+}
+
+function renderBotAdmin(){
+  const list = $("botAdminList");
+  if(!list) return;
+  list.innerHTML = "";
+  S.bots.forEach((b,i) => {
+    const row = document.createElement("div");
+    row.className = "botAdminRow";
+    const nm = document.createElement("span");
+    nm.className = "botName";
+    nm.textContent = b.name + (b.banned?" 🚫":"") + (b.muted?" 🔇":"");
+    nm.onclick = () => banBot(i);
+    row.appendChild(nm);
+    const btns = document.createElement("div");
+    btns.className = "botAdminBtns";
+    const bb = document.createElement("button"); bb.textContent = "Бан"; bb.onclick = e => { e.stopPropagation(); banBot(i); };
+    const mb = document.createElement("button"); mb.textContent = "Мут"; mb.onclick = e => { e.stopPropagation(); muteBot(i); };
+    const ub = document.createElement("button"); ub.textContent = "Разбан"; ub.onclick = e => { e.stopPropagation(); unbanBot(i); };
+    btns.appendChild(bb); btns.appendChild(mb); btns.appendChild(ub);
+    row.appendChild(btns);
+    list.appendChild(row);
+  });
+}
+function banBot(i){ const b = S.bots[i]; b.banned = true; b.total = 0; b.cps = 0; b.clicks = 0; renderBotAdmin(); save(); }
+function muteBot(i){ S.bots[i].muted = true; renderBotAdmin(); save(); }
+function unbanBot(i){ S.bots[i].banned = false; S.bots[i].muted = false; renderBotAdmin(); save(); }
+
+function adminCommand(){
+  const inp = $("adminCmdInput");
+  const cmd = inp.value.trim().toLowerCase();
+  inp.value = "";
+  if(!cmd) return;
+  const parts = cmd.split(/\s+/);
+  if(parts[0] === "/ban" && parts[1] === "all") S.bots.forEach((b,i) => banBot(i));
+  else if(parts[0] === "/mute" && parts[1] === "all") S.bots.forEach((b,i) => muteBot(i));
+  else if(parts[0] === "/unban" && parts[1] === "all") S.bots.forEach((b,i) => unbanBot(i));
+}
+
+/* ==================== ЧИТЫ ==================== */
+let cheatUnlocked = false;
+let cheatTabActive = "res";
+
+function renderCheatPanel(){
+  const p = $("cheatPanel");
+  if(!p) return;
+  p.innerHTML = "";
+
+  const tabs = document.createElement("div");
+  tabs.className = "cheatTabs";
+  const tabData = [["res","💪 Ресурсы"],["bots","🤖 Боты"],["game","🎮 Игра"]];
+  tabData.forEach(t => {
+    const tb = document.createElement("div");
+    tb.className = "cheatTab" + (cheatTabActive === t[0] ? " active" : "");
+    tb.textContent = t[1];
+    tb.onclick = e => { e.stopPropagation(); cheatTabActive = t[0]; renderCheatPanel(); };
+    tabs.appendChild(tb);
+  });
+  p.appendChild(tabs);
+
+  const res = document.createElement("div");
+  res.className = "cheatTabContent" + (cheatTabActive === "res" ? " active" : "");
+
+  const lbl1 = document.createElement("div"); lbl1.className = "cheatLabel"; lbl1.textContent = "🪙 Монеты:"; res.appendChild(lbl1);
+  const row1 = document.createElement("div"); row1.className = "cheatRow";
+  ["+1K","+1M","+1B"].forEach(v => {
+    const b = document.createElement("button"); b.className = "cheatBtn"; b.textContent = v;
+    const n = parseFloat(v) * (v.includes("K")?1e3:v.includes("M")?1e6:1e9);
+    b.onclick = e => { e.stopPropagation(); S.coins += n; updateStats(); renderSkins(); save(); };
+    row1.appendChild(b);
+  });
+  res.appendChild(row1);
+
+  const lbl2 = document.createElement("div"); lbl2.className = "cheatLabel"; lbl2.textContent = "🍪 Печеньки:"; res.appendChild(lbl2);
+  const row2 = document.createElement("div"); row2.className = "cheatRow";
+  ["+1K","+1M","+1B"].forEach(v => {
+    const b = document.createElement("button"); b.className = "cheatBtn"; b.textContent = v;
+    const n = parseFloat(v) * (v.includes("K")?1e3:v.includes("M")?1e6:1e9);
+    b.onclick = e => { e.stopPropagation(); S.cookies += n; S.totalCookies += n; updateStats(); save(); };
+    row2.appendChild(b);
+  });
+  res.appendChild(row2);
+
+  const inp = document.createElement("input"); inp.placeholder = "Своё число печенек";
+  inp.onpointerdown = e => e.stopPropagation();
+  res.appendChild(inp);
+  const cb = document.createElement("button"); cb.className = "cheatBtn"; cb.textContent = "Добавить печеньки";
+  cb.onclick = e => { e.stopPropagation(); const v = parseInt(inp.value); if(!isNaN(v)){ S.cookies += v; S.totalCookies += v; updateStats(); save(); } };
+  res.appendChild(cb);
+
+  const lblM = document.createElement("div"); lblM.className = "cheatLabel"; lblM.textContent = "💰 Деньги:"; res.appendChild(lblM);
+  const rowM = document.createElement("div"); rowM.className = "cheatRow";
+  ["+1K","+1M","+1B"].forEach(v => {
+    const b = document.createElement("button"); b.className = "cheatBtn"; b.textContent = v;
+    const n = parseFloat(v) * (v.includes("K")?1e3:v.includes("M")?1e6:1e9);
+    b.onclick = e => { e.stopPropagation(); S.money += n; S.totalMoney += n; updateMoneyStats(); save(); };
+    rowM.appendChild(b);
+  });
+  res.appendChild(rowM);
+
+  const os = document.createElement("button"); os.className = "cheatBtn";
+  os.textContent = "🔓 Открыть все скины";
+  os.onclick = e => { e.stopPropagation(); S.skins.forEach(sk => { if(!S.ownedSkins.includes(sk.id)) S.ownedSkins.push(sk.id); }); renderSkins(); save(); };
+  res.appendChild(os);
+
+  p.appendChild(res);
+
+  const bots = document.createElement("div");
+  bots.className = "cheatTabContent" + (cheatTabActive === "bots" ? " active" : "");
+  const lblB = document.createElement("div"); lblB.className = "cheatLabel";
+  lblB.textContent = "🤖 Автокликер: " + S.cheat.autoClicker + "/сек";
+  bots.appendChild(lblB);
+  const ac = document.createElement("input"); ac.type = "range"; ac.className = "cheatSlider";
+  ac.min = 0; ac.max = 1000; ac.step = 1; ac.value = S.cheat.autoClicker;
+  ac.onpointerdown = e => e.stopPropagation();
+  ac.oninput = e => { S.cheat.autoClicker = parseInt(e.target.value); lblB.textContent = "🤖 Автокликер: " + S.cheat.autoClicker + "/сек"; save(); };
+  bots.appendChild(ac);
+  const fr = document.createElement("button"); fr.className = "cheatBtn" + (S.cheat.botFreeze ? " danger" : "");
+  fr.textContent = S.cheat.botFreeze ? "🧊 Разморозить ботов" : "🧊 Заморозить ботов";
+  fr.onclick = e => { e.stopPropagation(); S.cheat.botFreeze = !S.cheat.botFreeze; renderCheatPanel(); save(); };
+  bots.appendChild(fr);
+  const ba = document.createElement("button"); ba.className = "cheatBtn danger";
+  ba.textContent = "🚫 Забанить всех ботов";
+  ba.onclick = e => { e.stopPropagation(); S.bots.forEach((b,i) => banBot(i)); save(); };
+  bots.appendChild(ba);
+  const uba = document.createElement("button"); uba.className = "cheatBtn";
+  uba.textContent = "✅ Разбанить всех";
+  uba.onclick = e => { e.stopPropagation(); S.bots.forEach((b,i) => unbanBot(i)); save(); };
+  bots.appendChild(uba);
+  p.appendChild(bots);
+
+  const game = document.createElement("div");
+  game.className = "cheatTabContent" + (cheatTabActive === "game" ? " active" : "");
+  const lblM2 = document.createElement("div"); lblM2.className = "cheatLabel";
+  lblM2.textContent = "💪 Множитель клика: ×" + S.cheat.multiplier;
+  game.appendChild(lblM2);
+  const ml = document.createElement("input"); ml.type = "range"; ml.className = "cheatSlider";
+  ml.min = 1; ml.max = 1000000; ml.step = 1; ml.value = S.cheat.multiplier;
+  ml.onpointerdown = e => e.stopPropagation();
+  ml.oninput = e => { S.cheat.multiplier = parseInt(e.target.value); lblM2.textContent = "💪 Множитель клика: ×" + S.cheat.multiplier; save(); };
+  game.appendChild(ml);
+
+  const lblP = document.createElement("div"); lblP.className = "cheatLabel";
+  lblP.textContent = "⚡ Бонус пассива: ×" + S.cheat.passiveBoost;
+  game.appendChild(lblP);
+  const pb = document.createElement("input"); pb.type = "range"; pb.className = "cheatSlider";
+  pb.min = 1; pb.max = 10; pb.step = 1; pb.value = S.cheat.passiveBoost;
+  pb.onpointerdown = e => e.stopPropagation();
+  pb.oninput = e => { S.cheat.passiveBoost = parseInt(e.target.value); lblP.textContent = "⚡ Бонус пассива: ×" + S.cheat.passiveBoost; save(); };
+  game.appendChild(pb);
+
+  const da = document.createElement("button"); da.className = "cheatBtn danger";
+  da.textContent = "❌ Выключить все читы";
+  da.onclick = e => { e.stopPropagation(); S.cheat = {autoClicker:0, multiplier:1, passiveBoost:1, botFreeze:false}; renderCheatPanel(); updateStats(); save(); };
+  game.appendChild(da);
+  p.appendChild(game);
+}
+
+/* ==================== АЧИВКИ UI ==================== */
+let achToastTimer = null;
+function showAchToast(icon, name, desc){
+  const t = $("achToast");
+  t.querySelector(".toastIcon").textContent = icon;
+  t.querySelector(".toastTitle").textContent = name;
+  t.querySelector(".toastSub").textContent = desc;
+  t.classList.add("show");
+  if(achToastTimer) clearTimeout(achToastTimer);
+  achToastTimer = setTimeout(() => t.classList.remove("show"), 3500);
+}
+
+let _achTick = 0;
+function checkAchievements(){
+  if(++_achTick < 5) return; _achTick = 0;
+  const newOnes = [];
+  ACHIEVEMENTS.forEach(a => {
+    if(!S.achievements.includes(a.id)){
+      try{ if(a.check(S)){ S.achievements.push(a.id); newOnes.push(a); } }catch(e){}
+    }
+  });
+  if(newOnes.length){
+    showAchToast(newOnes[0].icon, newOnes[0].name, newOnes[0].desc);
+    save();
+    if($("modalAch").classList.contains("open")) renderAch();
+  }
+}
+
+/* ==================== КЛИКИ ==================== */
+function doClick(e){
+  const gain = S.clickPower * S.cheat.multiplier;
+  S.cookies += gain; S.totalCookies += gain;
+  S.coins += 2; S.clicks++;
+  playClick();
+  if(S.settings.vibration && navigator.vibrate) navigator.vibrate(50);
+  if(S.settings.numbers) showClickNum(e, gain, "🍪");
+  if(S.settings.crumbs) spawnCrumb(e, "🍪");
+  addXP(1);
+  updateStats(); save();
+}
+
+function doMoneyClick(e){
+  const gain = S.moneyClickPower * S.moneyMultiplier;
+  S.money += gain; S.totalMoney += gain;
+  S.moneyClicks++;
+  playClick();
+  if(S.settings.vibration && navigator.vibrate) navigator.vibrate(50);
+  if(S.settings.numbers) showClickNum(e, gain, "💰");
+  if(S.settings.crumbs) spawnCrumb(e, "💰");
+  updateMoneyStats(); save();
+}
+
+function showClickNum(e, val, icon){
+  const n = document.createElement("div");
+  n.id = "clickNum";
+  n.textContent = "+" + fmt(val) + " " + icon;
+  const x = (e && (e.clientX != null)) ? e.clientX : window.innerWidth/2;
+  const y = (e && (e.clientY != null)) ? e.clientY : window.innerHeight/2;
+  n.style.left = (x-20) + "px";
+  n.style.top = (y-20) + "px";
+  document.body.appendChild(n);
+  setTimeout(() => n.remove(), 1000);
+}
+
+function spawnCrumb(e, icon){
+  const c = document.createElement("div");
+  c.style.cssText = `position:fixed;font-size:16px;pointer-events:none;z-index:100;animation:floatUp 1s ease-out forwards`;
+  c.textContent = icon;
+  c.style.left = ((e && e.clientX) || 0) + "px";
+  c.style.top = ((e && e.clientY) || 0) + "px";
+  document.body.appendChild(c);
+  setTimeout(() => c.remove(), 1000);
+}
+
+function showToast(title, sub){
+  const t = document.createElement("div");
+  t.style.cssText = `position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:rgba(30,25,20,.9);backdrop-filter:blur(12px);color:#fff;padding:10px 14px;border-radius:10px;border:1px solid rgba(255,180,80,.3);z-index:99999;font-size:12px;max-width:280px;text-align:center`;
+  t.innerHTML = `<div style="font-weight:bold;color:#ffd700;font-size:13px">${title}</div>` + (sub?`<div style="font-size:11px;opacity:.8;margin-top:3px">${sub}</div>`:"");
+  document.body.appendChild(t);
+  setTimeout(() => { t.style.opacity = "0"; t.style.transition = "opacity .4s"; }, 2500);
+  setTimeout(() => t.remove(), 3000);
+}
+
+function noMoneyToast(price, cur="🍪"){
+  showToast("Не хватает!", `Нужно ${fmt(price)} ${cur}`);
+}
+
+/* ==================== ФОН ==================== */
+function spawnBgItem(){
+  if(!S.settings.bg) return;
+  const icons = ["🍪","🍩","🧁","🍫","🍬","🥮","🍯"];
+  const el = document.createElement("div");
+  el.className = "bgItem";
+  el.textContent = icons[Math.floor(Math.random()*icons.length)];
+  el.style.left = Math.random()*100 + "vw";
+  el.style.fontSize = (16+Math.random()*20) + "px";
+  el.style.animationDuration = (8+Math.random()*8) + "s";
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 16000);
+}
+
+/* ==================== ХАК ОВЕРЛЕЙ ==================== */
+function playSiren(){
+  if(!S.settings.sound) return;
+  initAudio();
+  if(!audioCtx) return;
+  try{
+    for(let i=0;i<8;i++){
+      const o = audioCtx.createOscillator(), g = audioCtx.createGain();
+      o.type = "sawtooth";
+      const t0 = audioCtx.currentTime + i*0.3;
+      o.frequency.setValueAtTime(300, t0);
+      o.frequency.linearRampToValueAtTime(800, t0+0.15);
+      o.frequency.linearRampToValueAtTime(300, t0+0.3);
+      g.gain.setValueAtTime(0.15, t0);
+      g.gain.exponentialRampToValueAtTime(0.001, t0+0.3);
+      o.connect(g); g.connect(audioCtx.destination);
+      o.start(t0); o.stop(t0+0.3);
+    }
+  }catch(e){}
+}
+
+function hackGame(){
+  playSiren();
+  const ov = $("hackOverlay");
+  ov.classList.add("active");
+  const lines = [
+    "ИНИЦИАЛИЗАЦИЯ ВЗЛОМА...","ДОСТУП К ЯДРУ... +15%","ОБХОД ЗАЩИТЫ... +32%",
+    "ВЗЛОМ ШИФРОВАНИЯ... +51%","ДЕКОМПИЛЯЦИЯ ИГРЫ... +73%",
+    "ПЕРЕХВАТ УПРАВЛЕНИЯ... +89%","ВНИМАНИЕ! ОБНАРУЖЕН АНТИЧИТ!",
+    "ОБХОД АНТИЧИТА... +95%","УДАЛЕНИЕ ЗАЩИТЫ... +99%","ВЗЛОМ ЗАВЕРШЁН! 100%",
+    "СБРОС ВСЕХ ДАННЫХ...","Стирание печенек...","Стирание монет...","Стирание ботов...","Стирание скинов...",
+    "СИСТЕМА УНИЧТОЖЕНА","> GOODBYE :)"
+  ];
+  const lt = $("hackText");
+  lt.innerHTML = "";
+  lines.forEach((l,i) => {
+    setTimeout(() => {
+      const d = document.createElement("div");
+      d.className = "hackLine";
+      d.textContent = l;
+      lt.appendChild(d);
+    }, i*220);
+  });
+  setTimeout(() => {
+    ov.classList.remove("active");
+    S.cookies = 0; S.totalCookies = 0; S.coins = 0; S.clicks = 0;
+    S.clickPower = 1; S.cps = 0;
+    S.upgrades.forEach(u => u.count = 0);
+    S.ownedSkins = [0]; S.activeSkin = 0; applySkin();
+    S.bots.forEach(b => { b.total = 0; b.cps = 0; b.clicks = 0; b.clickPower = 1; b.upgrades = b.upgrades.map(()=>0); b.banned = false; b.muted = false; });
+    S.cheat = {autoClicker:0, multiplier:1, passiveBoost:1, botFreeze:false};
+    S.factory = {ownedSize:0, ownedSizes:[false,false,false], selectedMachine:null, slots:[], boostUntil:0};
+    S.achievements = [];
+    S.money = 0; S.totalMoney = 0; S.moneyClicks = 0; S.moneyClickPower = 1; S.moneyCps = 0;
+    S.moneyUpgrades.forEach(u => u.count = 0);
+    S.moneyMultiplier = 1; S.level = 1; S.xp = 0;
+    S.shopPurchases = 0;
+    updateStats(); renderSkins(); renderAch(); updateMoneyStats();
+    save();
+  }, lines.length*220 + 500);
+}
+
+/* ==================== ПЕРЕКЛЮЧЕНИЕ ВКЛАДОК ==================== */
+function switchTab(tab){
+  S.activeTab = tab;
+  const isCookies = tab === "cookies";
+  $("tabCookies").classList.toggle("active", isCookies);
+  $("tabMoney").classList.toggle("active", !isCookies);
+  $("cookieSection").classList.toggle("hidden", !isCookies);
+  $("moneySection").classList.toggle("active", !isCookies);
+  if(!isCookies) updateMoneyStats();
+  save();
+}
+
+/* ==================== ГЛАВНЫЙ ЦИКЛ ==================== */
+let tickCount = 0;
+setInterval(() => {
+  try{
+    tickCount++;
+    const cpsGain = S.cps * 0.1 * S.cheat.passiveBoost;
+    S.cookies += cpsGain;
+    S.totalCookies += cpsGain;
+    const fInc = getFactoryIncome();
+    if(fInc > 0){ S.cookies += fInc*0.1; S.totalCookies += fInc*0.1; }
+    if(cpsGain + fInc > 0) addXP(Math.max(1, Math.ceil(Math.log(cpsGain + fInc + 1)*2)));
+    if(S.moneyCps > 0){
+      const mGain = S.moneyCps * 0.1 * S.moneyMultiplier;
+      S.money += mGain; S.totalMoney += mGain;
+    }
+    updateBots();
+    updateStats();
+    updateMoneyStats();
+    if(tickCount % 10 === 0) checkAchievements();
+    if(tickCount % 50 === 0) save();
+  }catch(e){}
+}, 100);
+
+setInterval(spawnBgItem, 1500);
+setInterval(renderLB, 1000);
+
+let autoClickAccum = 0;
+setInterval(() => {
+  try{
+    if(S.cheat.autoClicker > 0){
+      autoClickAccum += S.cheat.autoClicker / 10;
+      while(autoClickAccum >= 1){
+        autoClickAccum--;
+        const g = S.clickPower * S.cheat.multiplier;
+        S.cookies += g; S.totalCookies += g; S.coins += 2; S.clicks++;
+      }
+      updateStats();
+    }
+  }catch(e){}
+}, 100);
+
+/* ==================== СОБЫТИЯ ==================== */
+try{
+  $("bigCookie").addEventListener("pointerup", e => { e.stopPropagation(); doClick(e); });
+  $("bigMoneyCoin").addEventListener("pointerup", e => { e.stopPropagation(); doMoneyClick(e); });
+
+  $("tabCookies").addEventListener("pointerup", e => { e.stopPropagation(); switchTab("cookies"); });
+  $("tabMoney").addEventListener("pointerup", e => { e.stopPropagation(); switchTab("money"); });
+
+  $("btnLeader").addEventListener("pointerup", e => { e.stopPropagation(); renderLB(); $("modalLeader").classList.add("open"); });
+  $("btnSkins").addEventListener("pointerup", e => { e.stopPropagation(); renderSkins(); $("modalSkins").classList.add("open"); });
+  $("btnSettings").addEventListener("pointerup", e => { e.stopPropagation(); renderBotAdmin(); renderMusicSelect(); $("modalSettings").classList.add("open"); });
+  $("btnShop").addEventListener("pointerup", e => { e.stopPropagation(); renderShop(); $("modalShop").classList.add("open"); });
+  $("btnFactory").addEventListener("pointerup", e => { e.stopPropagation(); renderFactory(); $("modalFactory").classList.add("open"); });
+  $("btnAch").addEventListener("pointerup", e => { e.stopPropagation(); renderAch(); $("modalAch").classList.add("open"); });
+
+  document.querySelectorAll(".modalClose").forEach(b => {
+    b.addEventListener("pointerup", e => {
+      e.stopPropagation();
+      const id = b.dataset.close;
+      if(id) $(id).classList.remove("open");
+    });
+  });
+
+  document.querySelectorAll(".modal").forEach(m => {
+    m.addEventListener("pointerup", e => {
+      if(e.target === m) m.classList.remove("open");
+    });
+  });
+
+  $("setNick").addEventListener("change", e => {
+    S.nick = e.target.value.trim() || "Игрок";
+    updateStats(); save();
+  });
+  $("setNumbers").addEventListener("change", e => { S.settings.numbers = e.target.checked; save(); });
+  $("setCrumbs").addEventListener("change", e => { S.settings.crumbs = e.target.checked; save(); });
+  $("setBg").addEventListener("change", e => { S.settings.bg = e.target.checked; save(); });
+  $("setVibration").addEventListener("change", e => { S.settings.vibration = e.target.checked; save(); });
+  $("setSound").addEventListener("change", e => { S.settings.sound = e.target.checked; save(); });
+  $("botSpeedSlider").addEventListener("input", e => {
+    S.settings.botSpeed = parseFloat(e.target.value);
+    $("botSpeedVal").textContent = "×" + S.settings.botSpeed.toFixed(1);
+    save();
+  });
+  $("clickVolSlider").addEventListener("input", e => {
+    S.settings.clickVol = parseInt(e.target.value);
+    $("clickVolVal").textContent = S.settings.clickVol + "%";
+    save();
+  });
+  $("musicVolSlider").addEventListener("input", e => {
+    S.settings.musicVol = parseInt(e.target.value);
+    $("musicVolVal").textContent = S.settings.musicVol + "%";
+    save();
+  });
+
+  $("exportSave").addEventListener("pointerup", e => {
+    e.stopPropagation();
+    const ta = $("saveTextArea");
+    ta.style.display = "block";
+    try{ ta.value = btoa(JSON.stringify(S)); }catch(err){ ta.value = ""; }
+    ta.select();
+    showToast("📤 Экспорт", "Код в поле ниже");
+  });
+  $("importSave").addEventListener("pointerup", e => {
+    e.stopPropagation();
+    const ta = $("saveTextArea");
+    ta.style.display = "block";
+    ta.placeholder = "Вставьте код и нажмите Enter";
+    ta.focus();
+  });
+  $("saveTextArea").addEventListener("keydown", e => {
+    if(e.key === "Enter"){
+      e.preventDefault();
+      try{
+        const data = JSON.parse(atob(e.target.value.trim()));
+        localStorage.setItem("ccm_v2_full", JSON.stringify(data));
+        location.reload();
+      }catch(err){ showToast("❌ Ошибка", "Неверный код"); }
+    }
+  });
+  $("copySave").addEventListener("pointerup", e => {
+    e.stopPropagation();
+    const code = btoa(JSON.stringify(S));
+    if(navigator.clipboard){
+      navigator.clipboard.writeText(code).then(()=> showToast("✅ Скопировано!", "Код в буфере"));
+    } else {
+      const ta = $("saveTextArea");
+      ta.style.display = "block";
+      ta.value = code;
+      ta.select();
+      document.execCommand("copy");
+      showToast("✅ Скопировано!", "");
+    }
+  });
+
+  $("adminCmdInput").addEventListener("keydown", e => {
+    if(e.key === "Enter"){ e.stopPropagation(); adminCommand(); }
+  });
+  $("adminUnbanAll").addEventListener("pointerup", e => {
+    e.stopPropagation();
+    S.bots.forEach((b,i) => unbanBot(i));
+  });
+  $("hackBtn").addEventListener("pointerup", e => { e.stopPropagation(); hackGame(); });
+
+  $("wipeConfirm").addEventListener("pointerup", e => {
+    e.stopPropagation();
+    $("wipeConfirm").style.display = "none";
+    $("actualWipe").style.display = "block";
+  });
+  $("actualWipe").addEventListener("pointerup", e => {
+    e.stopPropagation();
+    localStorage.removeItem("ccm_v2_full");
+    location.reload();
+  });
+}catch(e){ console.warn("Event bind error:", e); }
+
+/* ==================== КНОПКА ЧИТОВ С ПАРОЛЕМ ==================== */
+(function(){
+  try{
+    const icon = $("cheatIcon");
+    const panel = $("cheatPanel");
+    let dragging = false, moved = false, sx, sy, ix, iy;
+
+    function openCheatPanel(){
+      const px = icon.offsetLeft, py = icon.offsetTop;
+      let x = Math.min(px, window.innerWidth - 260);
+      let y = Math.min(py, window.innerHeight - 420);
+      x = Math.max(10, x); y = Math.max(10, y);
+      panel.style.left = x + "px";
+      panel.style.top = y + "px";
+      panel.classList.add("open");
+      renderCheatPanel();
+    }
+
+    function togglePanel(){
+      if(panel.classList.contains("open")){ panel.classList.remove("open"); return; }
+      if(cheatUnlocked){ openCheatPanel(); return; }
+      const pwm = $("cheatPasswordModal");
+      pwm.classList.add("open");
+      const inp = $("cheatPasswordInput");
+      inp.value = ""; inp.focus();
+      $("cheatPasswordError").style.display = "none";
+    }
+
+    icon.addEventListener("pointerdown", e => {
+      e.stopPropagation();
+      dragging = true; moved = false;
+      sx = e.clientX || 0; sy = e.clientY || 0;
+      ix = icon.offsetLeft; iy = icon.offsetTop;
+      try{ icon.setPointerCapture(e.pointerId); }catch(err){}
+    });
+
+    icon.addEventListener("pointermove", e => {
+      if(!dragging) return;
+      const dx = (e.clientX || 0) - sx, dy = (e.clientY || 0) - sy;
+      if(Math.abs(dx) > 4 || Math.abs(dy) > 4){
+        moved = true;
+        let nx = ix + dx, ny = iy + dy;
+        nx = Math.max(0, Math.min(window.innerWidth - 50, nx));
+        ny = Math.max(0, Math.min(window.innerHeight - 50, ny));
+        icon.style.left = nx + "px";
+        icon.style.top = ny + "px";
+        icon.style.right = "auto";
+        icon.style.bottom = "auto";
+      }
+    });
+
+    function endDrag(e){
+      if(!dragging) return;
+      dragging = false;
+      if(!moved){ e.stopPropagation(); togglePanel(); }
+    }
+
+    icon.addEventListener("pointerup", endDrag);
+    icon.addEventListener("pointercancel", () => { dragging = false; });
+
+    document.addEventListener("pointerup", e => {
+      if(dragging && !moved) endDrag(e);
+    });
+
+    document.addEventListener("pointerdown", e => {
+      if(panel.classList.contains("open")){
+        if(e.target !== icon && !panel.contains(e.target)) panel.classList.remove("open");
+      }
+      document.querySelectorAll(".modal.open").forEach(m => {
+        if(e.target === m) m.classList.remove("open");
+      });
+    });
+
+    $("cheatPwSubmit").addEventListener("pointerup", e => {
+      e.stopPropagation();
+      const inp = $("cheatPasswordInput");
+      if(inp.value === CHEAT_PASSWORD){
+        cheatUnlocked = true;
+        $("cheatPasswordModal").classList.remove("open");
+        openCheatPanel();
+      } else {
+        $("cheatPasswordError").style.display = "block";
+        inp.value = ""; inp.focus();
+      }
+    });
+    $("cheatPasswordInput").addEventListener("keydown", e => {
+      if(e.key === "Enter"){
+        e.preventDefault();
+        e.stopPropagation();
+        $("cheatPwSubmit").dispatchEvent(new Event("pointerup"));
+      }
+    });
+    $("cheatPwCancel").addEventListener("pointerup", e => {
+      e.stopPropagation();
+      $("cheatPasswordModal").classList.remove("open");
+    });
+
+    $("musicBtn").addEventListener("pointerup", e => { e.stopPropagation(); toggleMusic(); });
+  }catch(e){ console.warn("Cheat init error:", e); }
+})();
+
+/* ==================== ПАСХАЛКИ ==================== */
+let eggUsed = false;
+function triggerEgg(){
+  if(eggUsed) return;
+  eggUsed = true;
+  S.coins += 7777;
+  S.easterEggFound = true;
+  updateStats(); save();
+  showToast("🐔 Золотая курица!", "+7777 монет! Не спрашивай откуда");
+}
+
+document.addEventListener("keydown", e => {
+  if(e.key === "Z" || e.key === "z" || e.key === "Я" || e.key === "я"){
+    if(!eggUsed) triggerEgg();
+  }
+});
+
+try{
+  const starEl = document.querySelector(".levelBadge");
+  if(starEl){
+    let starTaps = 0, starTimer = null;
+    starEl.addEventListener("pointerdown", () => {
+      if(eggUsed) return;
+      starTaps++;
+      if(starTimer) clearTimeout(starTimer);
+      starTimer = setTimeout(() => starTaps = 0, 800);
+      if(starTaps >= 5){ starTaps = 0; triggerEgg(); }
+    });
+  }
+
+  let pressTimer = null;
+  const cookieEl = $("bigCookie");
+  cookieEl.addEventListener("pointerdown", () => {
+    if(eggUsed) return;
+    pressTimer = setTimeout(() => { triggerEgg(); }, 3000);
+  });
+  cookieEl.addEventListener("pointerup", () => { if(pressTimer){ clearTimeout(pressTimer); pressTimer = null; } });
+  cookieEl.addEventListener("pointerleave", () => { if(pressTimer){ clearTimeout(pressTimer); pressTimer = null; } });
+}catch(e){}
+
+/* ==================== FPS ==================== */
+(function(){
+  try{
+    const el = $("fpsCounter");
+    let frames = 0, last = performance.now();
+    function tick(){
+      frames++;
+      const now = performance.now();
+      if(now - last >= 500){
+        const fps = Math.round(frames * 1000 / (now - last));
+        el.textContent = "FPS: " + fps;
+        el.style.color = fps >= 50 ? "#4ade80" : fps >= 30 ? "#fbbf24" : "#ef4444";
+        frames = 0; last = now;
+      }
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }catch(e){}
+})();
+
+/* ==================== ИНИЦИАЛИЗАЦИЯ ==================== */
+try{
+  load();
+  applySkin();
+  // Убираем возможные inline-стили display
+  try{ $("cookieSection").style.display = ""; $("moneySection").style.display = ""; }catch(e){}
+  switchTab(S.activeTab || "cookies");
+  updateStats();
+  updateMoneyStats();
+  renderAch();
+  $("setNumbers").checked = S.settings.numbers;
+  $("setCrumbs").checked = S.settings.crumbs;
+  $("setBg").checked = S.settings.bg;
+  $("setVibration").checked = S.settings.vibration;
+  $("setSound").checked = S.settings.sound;
+  $("setNick").value = S.nick === "Игрок" ? "" : S.nick;
+  $("botSpeedSlider").value = S.settings.botSpeed;
+  $("botSpeedVal").textContent = "×" + S.settings.botSpeed.toFixed(1);
+  $("clickVolSlider").value = S.settings.clickVol;
+  $("clickVolVal").textContent = S.settings.clickVol + "%";
+  $("musicVolSlider").value = S.settings.musicVol;
+  $("musicVolVal").textContent = S.settings.musicVol + "%";
+  musicTrackIdx = S.settings.musicTrack || 0;
+  renderMusicSelect();
+  $("musicTrackName").textContent = musicTracks[musicTrackIdx].icon + " " + musicTracks[musicTrackIdx].name;
+  console.log("🍪 Cookie Clicker Mega v2.0 загружен!");
+}catch(err){
+  var _log = document.getElementById("errorLog");
+  if(_log){ _log.style.display = "block"; _log.textContent += "Init error: " + err.message + "\n" + err.stack + "\n"; }
+  console.error("Init error:", err);
+}
+</script>
+
+<!-- ============================================================
+     ЗАШИФРОВАННЫЙ БЛОК С СЕКРЕТНЫМИ СТРОКАМИ
+     ============================================================ -->
+<script>
+(function(){
+  try{
+    var _enc = "eyJzZWNyZXRzIjpbIvCfla4g0J/QsNGB0YXQsNC70LrQsDog0LfQsNC20LzQuCDQv9C10YfQtdC90YzQutGDINC90LAgMyDRgdC10LrRg9C90LTRiyEiLCLwn6SGINCf0L7RgtGA0Y/RgdC4INGC0LXQu9C10YTQvtC9IOKAlCDQutGD0YDQuNGG0LAg0YHQvdC10YHRkdGCINC80L7QvdC10YLRiyEiLCLirZAgNSDQsdGL0YHRgtGA0YvRhSDRgtCw0L/QvtCyINC/0L4g0LfQstC10LfQtNC1INGD0YDQvtCy0L3RjyA9INCx0L7QvdGD0YEuIiwi8J6BINCd0LDQttC80LggwastWiDQvdCwINC60LvQsNCy0LjQsNGC0YPRgNC1INC00LvRjyDRgdGO0YDQv9GA0LjQt9CwISIsIvCfkq4g0JvQtdCz0LXQvdC00LA6INGB0L7QsdC10YDQuCDQstGB0LUg0LTQvtGB0YLQuNC20LXQvdC40Y8hIiwi8J+bryDQk9C+0L8t0LzQsNCz0LDQt9C40L06INC30LDQu9C10YLQsNC5LCDQsdGA0LDRgtC40LouINCS0YHQtSDQv9C+INGH0LXRgdGC0L3QvtC80YMuIiwi8J+QriDQl9C+0LvQvtGC0LDRjyDQutGD0YDQuNGG0LAg0LTQsNC10YIgKzc3Nzcg0LzQvtC90LXRgi4iLCLwn46oIDEwINGB0LrQuNC90L7QsiDQv9C10YfQtdC90YzQutC4LiDQnNC10L3Rj9C5INC40YXQvtC00YPRjiDRgdC60LjQvdCw0LzQuCEiXSwicXVvdGVzIjpbItCf0LXRh9C10L3RjNC60LAg4oCUINCy0YHRkdC80YMg0LPQvtC70L7QstCwISIsItCd0LUg0LjQvNC10LkgMTAwINGA0YPQsdC70LXQuSwg0LAg0LjQvNC10LkgMTAwINC/0LXRh9C10LXQvdC10LouIiwi0JHRg9C00Ywg0LTRgNGD0LPQvtC8INCyINC/0LXRh9C10L3RjNC60LDRhSEiLCJDaG9jb2xhdGUg0LzQtdC00LjRhtC40L3QsC4iLCJDaG9jb2xhdGUg0LzQtdC00LjRhtC40L3QsC4uLiDRgdC70YPRh9Cw0LnQvdC+INCx0YvQu9C+ISJdLCJ2ZXJzaW9uIjoiMi4wLWZpbmFsLXBjIn0=";
+    var _data = JSON.parse(atob(_enc));
+    window.__CCM_SECRETS__ = _data;
+    if(console && console.log){
+      var _s = _data.secrets[Math.floor(Math.random()*_data.secrets.length)];
+      console.log("%c🥚 Секрет: " + _s, "color:#f5c068;font-weight:bold;font-size:12px");
+    }
+  }catch(_e){
+    console.warn("Секретный блок не загружен:", _e && _e.message);
+  }
+})();
+</script>
+
+</body>
+</html>
