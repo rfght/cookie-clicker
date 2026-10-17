@@ -61,7 +61,7 @@ body{font-family:'SF Pro Display',system-ui,-apple-system,'Segoe UI',Arial,sans-
 .upg{display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:11px 18px;cursor:pointer;transition:.3s;font-size:13px;width:100%}
 .upg:hover{background:rgba(255,255,255,.15);transform:translateX(6px)}
 .upg.disabled{opacity:.4;cursor:not-allowed}
-#cheatIcon{position:fixed;bottom:20px;right:20px;width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#9b59b6,#6c5ce7);display:flex;align-items:center;justify-content:center;font-size:26px;cursor:pointer;z-index:200;box-shadow:0 4px 20px rgba(108,92,231,.4);transition:.2s;touch-action:none}
+#cheatIcon{position:fixed;bottom:20px;right:20px;width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#9b59b6,#6c5ce7);display:none;align-items:center;justify-content:center;font-size:26px;cursor:pointer;z-index:200;box-shadow:0 4px 20px rgba(108,92,231,.4);transition:.2s;touch-action:none}
 #cheatIcon:hover{transform:scale(1.12)}
 #cheatIcon:active{transform:scale(.85)}
 #wizard{position:fixed;bottom:80px;right:22px;width:48px;height:48px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffe8b0,#a97ee8 50%,#4a1f8e);display:none;align-items:center;justify-content:center;font-size:28px;cursor:pointer;z-index:210;box-shadow:0 0 20px rgba(169,126,232,.8);animation:wizardBounce .6s ease-in-out infinite;border:2px solid #ffe8b0}
@@ -82,15 +82,6 @@ body{font-family:'SF Pro Display',system-ui,-apple-system,'Segoe UI',Arial,sans-
 .cheatTab.active{background:rgba(108,92,231,.35);color:#fff}
 .cheatTabContent{display:none;flex-direction:column;gap:6px}
 .cheatTabContent.active{display:flex}
-#cheatPasswordModal{position:fixed;inset:0;background:rgba(0,0,0,.8);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;z-index:500;padding:20px}
-#cheatPasswordModal.open{display:flex}
-#cheatPasswordBox{background:linear-gradient(135deg,#1a1a2e,#2d1b4e);border:2px solid rgba(108,92,231,.5);border-radius:20px;padding:28px;max-width:320px;width:100%;text-align:center}
-#cheatPasswordBox h3{font-size:18px;margin-bottom:8px;color:#a29bfe}
-#cheatPasswordBox p{font-size:12px;color:rgba(255,255,255,.5);margin-bottom:14px}
-#cheatPasswordInput{background:rgba(0,0,0,.4);border:1px solid rgba(108,92,231,.4);color:#fff;border-radius:10px;padding:12px 16px;font-size:14px;width:100%;margin-bottom:10px;text-align:center;letter-spacing:2px}
-#cheatPasswordError{color:#e74c3c;font-size:12px;margin-bottom:8px;display:none}
-.cheatPwBtn{width:100%;background:linear-gradient(135deg,var(--purple),#4834d4);color:#fff;border:none;border-radius:10px;padding:12px;font-size:14px;cursor:pointer}
-.cheatPwCancel{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);margin-top:8px}
 .modal{position:fixed;inset:0;background:rgba(0,0,0,.75);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;z-index:400;padding:20px}
 .modal.open{display:flex}
 .modalContent{background:linear-gradient(135deg,#1a1a2e,#16213e);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:20px;max-width:500px;width:100%;max-height:85vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.5)}
@@ -566,17 +557,6 @@ body{font-family:'SF Pro Display',system-ui,-apple-system,'Segoe UI',Arial,sans-
   <div id="hackText"></div>
 </div>
 
-<div id="cheatPasswordModal">
-  <div id="cheatPasswordBox">
-    <h3>😈 Доступ к читам</h3>
-    <p>Введите пароль</p>
-    <input type="password" id="cheatPasswordInput" placeholder="Пароль" autocomplete="off">
-    <div id="cheatPasswordError">Неверный пароль!</div>
-    <button class="cheatPwBtn" id="cheatPwSubmit">Войти</button>
-    <button class="cheatPwBtn cheatPwCancel" id="cheatPwCancel">Отмена</button>
-  </div>
-</div>
-
 <div id="achToast">
   <div class="toastIcon">🏅</div>
   <div>
@@ -626,7 +606,6 @@ body{font-family:'SF Pro Display',system-ui,-apple-system,'Segoe UI',Arial,sans-
 /* ============================================================
    COOKIE CLICKER MEGA v2.1
    ============================================================ */
-const CHEAT_PASSWORD = "iii972720pploguvd";
 const DAILY_SPIN_LIMIT = 50;
 const SPIN_COOLDOWN = 5;
 const SECRET_BASE_PRICE = 1000000;
@@ -1303,7 +1282,6 @@ function renderSkins(){
         if(S.goldEarningBlocked){ showToast("💎 Золото недоступно", ""); return; }
         const totalGold = S.gold + (S.bank ? S.bank.gold : 0);
         if(totalGold >= sk.price){
-          // сначала списываем из кармана, остаток из банка
           let need = sk.price;
           const fromPocket = Math.min(S.gold, need);
           S.gold -= fromPocket; need -= fromPocket;
@@ -1850,6 +1828,11 @@ function doSecretDeal(){
   S.secretDealDone = true;
   S.cheatRevealed = true;
   cheatUnlocked = true;
+  
+  // Показываем кнопку читов
+  const cheatBtn = $("cheatIcon");
+  if(cheatBtn) cheatBtn.style.display = "flex";
+  
   showToast("🤝 Обмен прошёл!", "+1 000 🍪");
   setTimeout(()=>{
     showToast("🎁 ТЫ ПОЛУЧИЛ ДОСТУП!", "Панель читов разблокирована");
@@ -2457,6 +2440,12 @@ function hackGame(){
     S.goldEarningBlocked = false;
     S.lab = {researched: [], spent: 0};
     eggUsed = false;
+    
+    // Скрываем кнопку читов обратно
+    const cheatBtn = $("cheatIcon");
+    if(cheatBtn) cheatBtn.style.display = "none";
+    cheatUnlocked = false;
+    
     applyGoldBlockUI();
     updateStats(); renderSkins(); renderAch(); updateMoneyStats(); updateCasinoUI(); if(!S.goldEarningBlocked) updateSecretDealUI(); renderLab(); updateBankUI();
     save();
@@ -2681,10 +2670,11 @@ try{
     }
     function toggle(){
       if(panel.classList.contains("open")){ panel.classList.remove("open"); return; }
-      if(cheatUnlocked){ openPanel(); return; }
-      $("cheatPasswordModal").classList.add("open");
-      const inp = $("cheatPasswordInput"); inp.value = ""; inp.focus();
-      $("cheatPasswordError").style.display = "none";
+      if(!cheatUnlocked){ 
+         // Если читы не разблокированы (игрок не сделал сделку) — просто ничего не делаем
+         return; 
+      }
+      openPanel();
     }
     icon.addEventListener("pointerdown", e => {
       e.stopPropagation(); dragging = true; moved = false;
@@ -2710,14 +2700,6 @@ try{
       if(panel.classList.contains("open")){ if(e.target !== icon && !panel.contains(e.target)) panel.classList.remove("open"); }
       document.querySelectorAll(".modal.open").forEach(m => { if(e.target === m) m.classList.remove("open"); });
     });
-    $("cheatPwSubmit").addEventListener("pointerup", e => {
-      e.stopPropagation();
-      const inp = $("cheatPasswordInput");
-      if(inp.value === CHEAT_PASSWORD){ cheatUnlocked = true; S.cheatRevealed = true; $("cheatPasswordModal").classList.remove("open"); openPanel(); save(); }
-      else { $("cheatPasswordError").style.display = "block"; inp.value = ""; inp.focus(); }
-    });
-    $("cheatPasswordInput").addEventListener("keydown", e => { if(e.key === "Enter"){ e.preventDefault(); e.stopPropagation(); $("cheatPwSubmit").dispatchEvent(new Event("pointerup")); } });
-    $("cheatPwCancel").addEventListener("pointerup", e => { e.stopPropagation(); $("cheatPasswordModal").classList.remove("open"); });
   }catch(e){ console.warn("Cheat init error:", e); }
 })();
 
@@ -2812,6 +2794,18 @@ try{
   $("botSpeedVal").textContent = "×" + S.settings.botSpeed.toFixed(1);
   $("clickVolSlider").value = S.settings.clickVol;
   $("clickVolVal").textContent = S.settings.clickVol + "%";
+
+  // Жесткая проверка: кнопка читов ТОЛЬКО если сделка реально была
+  if(S.secretDealDone === true){
+    cheatUnlocked = true;
+    const cheatBtn = $("cheatIcon");
+    if(cheatBtn) cheatBtn.style.display = "flex";
+  } else {
+    cheatUnlocked = false;
+    const cheatBtn = $("cheatIcon");
+    if(cheatBtn) cheatBtn.style.display = "none";
+  }
+
   console.log("🍪 Cookie Clicker Mega v2.1 загружен! Узлов дерева: " + Object.keys(LAB_NODES).length);
 }catch(err){
   var _log = document.getElementById("errorLog");
