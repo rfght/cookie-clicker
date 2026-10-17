@@ -511,7 +511,7 @@ body{font-family:'SF Pro Display',system-ui,-apple-system,'Segoe UI',Arial,sans-
         <button class="cheatBtn" id="bankAllIn" style="flex:1;text-align:center;font-size:10px">Всё в банк</button>
         <button class="cheatBtn" id="bankAllOut" style="flex:1;text-align:center;font-size:10px">Всё из банка</button>
       </div>
-      <div style="font-size:10px;color:rgba(255,255,255,.4);margin-top:8px;text-align:center;font-style:italic">Банк защищает золото от случайных трат — но благотворительность учитывает и его.</div>
+      <div style="font-size:10px;color:rgba(255,255,255,.4);margin-top:8px;text-align:center;font-style:italic"></div>
     </div>
   </div>
 </div></div>
@@ -1884,7 +1884,7 @@ function renderCharity(){
   const types = [
     {key:"cookies", icon:"🏠", name:"Детский дом", unit:"🍪", getBalance:()=>S.cookies},
     {key:"money", icon:"🏥", name:"Дом престарелых", unit:"💰", getBalance:()=>S.money},
-    {key:"gold", icon:"⛪", name:"Благотворительный фонд", unit:"💎", getBalance:()=>S.gold + (S.bank ? S.bank.gold : 0)},
+    {key:"gold", icon:"⛪", name:"Благотворительный фонд", unit:"💎", getBalance:()=>S.gold},
   ];
   types.forEach(t => {
     const box = document.createElement("div");
@@ -1910,7 +1910,7 @@ function doCharityDonate(type){
   let amount = 0, unit = "";
   if(type === "cookies"){ amount = S.cookies; if(amount<=0) return; S.charity.cookiesDonated++; S.charity.cookiesTotal += amount; S.cookies = 0; unit = "🍪"; }
   else if(type === "money"){ amount = S.money; if(amount<=0) return; S.charity.moneyDonated++; S.charity.moneyTotal += amount; S.money = 0; unit = "💰"; }
-  else if(type === "gold"){ amount = S.gold + (S.bank ? S.bank.gold : 0); if(amount<=0) return; S.charity.goldDonated++; S.charity.goldTotal += amount; S.gold = 0; if(S.bank) S.bank.gold = 0; unit = "💎"; }
+  else if(type === "gold"){ amount = S.gold; if(amount<=0) return; S.charity.goldDonated++; S.charity.goldTotal += amount; S.gold = 0; unit = "💎"; }
   S.charity.totalDonations++;
   showToast("🕊️ Пожертвование", `Ты отдал ${fmt(amount)} ${unit}`);
   const ch = getCharityRewardChance();
