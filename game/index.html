@@ -494,6 +494,26 @@ body{font-family:'SF Pro Display',system-ui,-apple-system,'Segoe UI',Arial,sans-
       <div style="font-size:9px;color:rgba(255,180,80,.7);margin-top:2px" id="secretDealTimer"></div>
     </div>
   </div>
+  <div id="bankWrap" style="margin-top:10px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px">
+    <h3 style="color:#6c5ce7;font-size:14px;text-align:center;margin-bottom:8px">🏦 БАНК ЗОЛОТА</h3>
+    <div style="background:rgba(108,92,231,.12);border:1px solid rgba(108,92,231,.35);border-radius:12px;padding:12px">
+      <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:8px">
+        <span>В кармане: <b style="color:#ffb800" id="bankPocket">0</b> 💎</span>
+        <span>В банке: <b style="color:#a29bfe" id="bankStored">0</b> 💎</span>
+      </div>
+      <input type="number" id="bankAmount" placeholder="Сумма" min="0" step="any"
+        style="width:100%;background:rgba(0,0,0,.3);border:1px solid rgba(108,92,231,.4);color:#fff;border-radius:8px;padding:8px;font-size:13px;margin-bottom:8px">
+      <div style="display:flex;gap:6px">
+        <button class="cheatBtn" id="bankDeposit" style="flex:1;text-align:center;background:rgba(46,204,113,.2);border-color:rgba(46,204,113,.4)">📥 Положить</button>
+        <button class="cheatBtn" id="bankWithdraw" style="flex:1;text-align:center;background:rgba(231,76,60,.2);border-color:rgba(231,76,60,.4)">📤 Взять</button>
+      </div>
+      <div style="display:flex;gap:6px;margin-top:6px">
+        <button class="cheatBtn" id="bankAllIn" style="flex:1;text-align:center;font-size:10px">Всё в банк</button>
+        <button class="cheatBtn" id="bankAllOut" style="flex:1;text-align:center;font-size:10px">Всё из банка</button>
+      </div>
+      <div style="font-size:10px;color:rgba(255,255,255,.4);margin-top:8px;text-align:center;font-style:italic">Банк защищает золото от случайных трат — но благотворительность учитывает и его.</div>
+    </div>
+  </div>
 </div></div>
 
 <div class="modal" id="modalCharity"><div class="modalContent" style="max-width:460px">
@@ -632,12 +652,12 @@ function isHumanClick(){
   }
   antiAutoClicker.intervals.push(delta);
   if(antiAutoClicker.intervals.length > antiAutoClicker.maxSamples) antiAutoClicker.intervals.shift();
-  if(delta < 25) return false; // быстрее 40 кликов в секунду = бот
+  if(delta < 25) return false;
   if(antiAutoClicker.intervals.length >= 6){
     const last6 = antiAutoClicker.intervals.slice(-6);
     const max = Math.max.apply(null, last6);
     const min = Math.min.apply(null, last6);
-    if(max - min < 8) return false; // слишком ровные интервалы
+    if(max - min < 8) return false;
   }
   return true;
 }
@@ -893,6 +913,7 @@ const S = {
   secretDealDone: false, cheatRevealed: false,
   secretDealStartDate: "",
   goldEarningBlocked: false,
+  bank: { gold: 0 },
   settings: {numbers:true, crumbs:true, bg:true, sound:true, vibration:true, clickVol:60, botSpeed:1},
   cheat: {autoClicker:0, multiplier:1, passiveBoost:1, botFreeze:false},
   factory: {ownedSize:0, ownedSizes:[false,false,false], selectedMachine:null, slots:[], boostUntil:0},
@@ -1107,6 +1128,20 @@ function stopMusic(){
 }
 
 /* ==================== СОХРАНЕНИЕ ==================== */
+function encodeSave(obj){
+  try{
+    const json = JSON.stringify(obj);
+    const utf8 = unescape(encodeURIComponent(json));
+    return btoa(utf8);
+  }catch(e){ return ""; }
+}
+function decodeSave(str){
+  try{
+    const bin = atob(str.trim());
+    const json = decodeURIComponent(escape(bin));
+    return JSON.parse(json);
+  }catch(e){ return null; }
+}
 function save(){
   try{ localStorage.setItem("ccm_v2_1", JSON.stringify(S)); }catch(e){}
 }
@@ -1129,6 +1164,7 @@ function load(){
       if(k === "dice"){ S.dice = {...S.dice, ...p.dice}; return; }
       if(k === "gift"){ S.gift = {...S.gift, ...p.gift}; return; }
       if(k === "lab"){ S.lab = {...S.lab, ...p.lab}; return; }
+      if(k === "bank"){ S.bank = {...S.bank, ...p.bank}; return; }
       if(k in S) S[k] = p[k];
     });
   }catch(e){ console.warn("Ошибка загрузки:", e); }
@@ -1139,7 +1175,7 @@ function updateStats(){
   try{
     $("cookieCount").textContent = fmt(S.cookies) + " печенек";
     $("coinCount").textContent = "🪙 " + fmt(S.coins) + " монет";
-    $("goldCount").textContent = "💎 " + fmt(S.gold) + " золота";
+    $("goldCount").textContent = "💎 " + fmt(S.gold + (S.bank ? S.bank.gold : 0)) + " золота";
     $("cpsDisplay").textContent = fmt(S.cps * S.cheat.passiveBoost) + "/сек";
     $("nickDisplay").textContent = S.nick && S.nick !== "Игрок" ? "👤 " + S.nick : "";
     renderUpgrades();
@@ -1153,6 +1189,7 @@ function applyGoldBlockUI(){
     if(S.activeTab === "casino") switchTab("cookies");
     if($("goldCount")) $("goldCount").style.display = "none";
     if($("secretDealWrap")) $("secretDealWrap").style.display = "none";
+    if($("bankWrap")) $("bankWrap").style.display = "none";
     const sg = $("skinGold");
     if(sg){
       sg.style.display = "none";
@@ -1166,6 +1203,7 @@ function applyGoldBlockUI(){
     if($("tabCasino")) $("tabCasino").style.display = "";
     if($("goldCount")) $("goldCount").style.display = "";
     if($("secretDealWrap")) $("secretDealWrap").style.display = "";
+    if($("bankWrap")) $("bankWrap").style.display = "";
     if($("slotGold")) $("slotGold").style.display = "";
   }
 }
@@ -1197,7 +1235,7 @@ function renderSkins(){
   if(!g) return;
   g.innerHTML = "";
   $("skinCoins").textContent = fmt(S.coins);
-  if($("skinGold")) $("skinGold").textContent = fmt(S.gold);
+  if($("skinGold")) $("skinGold").textContent = fmt(S.gold + (S.bank ? S.bank.gold : 0));
   let list = [];
   if(S.activeSkinTab === "normal") list = SKINS_NORMAL;
   else if(S.activeSkinTab === "premium"){
@@ -1218,8 +1256,9 @@ function renderSkins(){
   list.forEach(sk => {
     const owned = S.ownedSkins.includes(sk.id);
     const active = S.activeSkin === sk.id;
+    const totalGold = S.gold + (S.bank ? S.bank.gold : 0);
     const card = document.createElement("div");
-    card.className = "skinCard" + (sk.cat === "premium" ? " premium" : "") + (sk.cat === "secret" ? " secret" : "") + (owned ? " owned" : "") + (active ? " active" : "") + (!owned && sk.cat === "normal" && S.coins < sk.price ? " locked" : "") + (!owned && sk.cat === "premium" && S.gold < sk.price && !S.goldEarningBlocked ? " locked" : "");
+    card.className = "skinCard" + (sk.cat === "premium" ? " premium" : "") + (sk.cat === "secret" ? " secret" : "") + (owned ? " owned" : "") + (active ? " active" : "") + (!owned && sk.cat === "normal" && S.coins < sk.price ? " locked" : "") + (!owned && sk.cat === "premium" && totalGold < sk.price && !S.goldEarningBlocked ? " locked" : "");
     const prev = document.createElement("div");
     prev.className = "skinPreview";
     prev.textContent = sk.icon;
@@ -1262,7 +1301,15 @@ function renderSkins(){
       }
       else if(sk.cat === "premium"){
         if(S.goldEarningBlocked){ showToast("💎 Золото недоступно", ""); return; }
-        if(S.gold >= sk.price){ S.gold -= sk.price; S.ownedSkins.push(sk.id); S.activeSkin = sk.id; applySkin(); renderSkins(); updateStats(); save(); showToast("💎 Премиум!", sk.name); }
+        const totalGold = S.gold + (S.bank ? S.bank.gold : 0);
+        if(totalGold >= sk.price){
+          // сначала списываем из кармана, остаток из банка
+          let need = sk.price;
+          const fromPocket = Math.min(S.gold, need);
+          S.gold -= fromPocket; need -= fromPocket;
+          if(need > 0 && S.bank){ S.bank.gold -= need; }
+          S.ownedSkins.push(sk.id); S.activeSkin = sk.id; applySkin(); renderSkins(); updateStats(); updateBankUI(); save(); showToast("💎 Премиум!", sk.name);
+        }
         else { showToast("Не хватает золота!", `Нужно ${sk.price} 💎`); }
       }
       else {
@@ -1552,7 +1599,7 @@ function updateCasinoUI(){
   if(S.goldEarningBlocked) return;
   checkDailyReset();
   $("slotCookies").textContent = fmt(S.cookies);
-  $("slotGoldVal").textContent = fmt(S.gold);
+  $("slotGoldVal").textContent = fmt(S.gold + (S.bank ? S.bank.gold : 0));
   const limit = getCasinoDailyLimit();
   $("spinCount").textContent = Math.max(0, limit - S.casino.spinsToday);
   const cd = S.casino.casinoNoCooldown ? 0 : Math.max(0, Math.ceil((S.casino.cooldownUntil - Date.now())/1000));
@@ -1727,6 +1774,31 @@ function triggerCasinoUnlock(){
   save();
 }
 
+/* ==================== БАНК ==================== */
+function updateBankUI(){
+  const p = $("bankPocket"), s = $("bankStored");
+  if(p) p.textContent = fmt(S.gold);
+  if(s) s.textContent = fmt(S.bank.gold);
+}
+function bankDeposit(amount){
+  if(S.goldEarningBlocked){ showToast("💎 Недоступно",""); return; }
+  amount = Math.max(0, Math.min(Number(amount)||0, S.gold));
+  if(amount <= 0){ showToast("Введи сумму",""); return; }
+  S.gold -= amount;
+  S.bank.gold += amount;
+  updateStats(); updateBankUI(); save();
+  showToast("🏦 В банк", `${fmt(amount)} 💎`);
+}
+function bankWithdraw(amount){
+  if(S.goldEarningBlocked){ showToast("💎 Недоступно",""); return; }
+  amount = Math.max(0, Math.min(Number(amount)||0, S.bank.gold));
+  if(amount <= 0){ showToast("Введи сумму",""); return; }
+  S.bank.gold -= amount;
+  S.gold += amount;
+  updateStats(); updateBankUI(); save();
+  showToast("🏦 Из банка", `${fmt(amount)} 💎`);
+}
+
 /* ==================== ЛАВКА ==================== */
 function renderShop(){
   const el = $("shopItems");
@@ -1747,6 +1819,7 @@ function renderShop(){
     el.appendChild(div);
   });
   if(!S.goldEarningBlocked) updateSecretDealUI();
+  updateBankUI();
 }
 function buyShopItem(id){
   const item = SHOP_ITEMS[id];
@@ -1766,8 +1839,12 @@ function doSecretDeal(){
   if(S.secretDealDone){ showToast("🤝 Уже обменял", ""); return; }
   if(S.cheatRevealed){ showToast("😏 Ты уже взломал", ""); return; }
   const price = getSecretDealPrice();
-  if(S.gold < price){ showToast("Не хватает золота!", `Нужно ${fmt(price)} 💎`); return; }
-  S.gold -= price;
+  const totalGold = S.gold + (S.bank ? S.bank.gold : 0);
+  if(totalGold < price){ showToast("Не хватает золота!", `Нужно ${fmt(price)} 💎`); return; }
+  let need = price;
+  const fromPocket = Math.min(S.gold, need);
+  S.gold -= fromPocket; need -= fromPocket;
+  if(need > 0 && S.bank){ S.bank.gold -= need; }
   S.cookies += 1000;
   S.totalCookies += 1000;
   S.secretDealDone = true;
@@ -1778,7 +1855,7 @@ function doSecretDeal(){
     showToast("🎁 ТЫ ПОЛУЧИЛ ДОСТУП!", "Панель читов разблокирована");
     playJackpotSound();
   }, 1500);
-  updateStats(); renderSkins(); save();
+  updateStats(); updateBankUI(); renderSkins(); save();
 }
 
 /* ==================== БЛАГОТВОРИТЕЛЬНОСТЬ ==================== */
@@ -1807,7 +1884,7 @@ function renderCharity(){
   const types = [
     {key:"cookies", icon:"🏠", name:"Детский дом", unit:"🍪", getBalance:()=>S.cookies},
     {key:"money", icon:"🏥", name:"Дом престарелых", unit:"💰", getBalance:()=>S.money},
-    {key:"gold", icon:"⛪", name:"Благотворительный фонд", unit:"💎", getBalance:()=>S.gold},
+    {key:"gold", icon:"⛪", name:"Благотворительный фонд", unit:"💎", getBalance:()=>S.gold + (S.bank ? S.bank.gold : 0)},
   ];
   types.forEach(t => {
     const box = document.createElement("div");
@@ -1833,14 +1910,14 @@ function doCharityDonate(type){
   let amount = 0, unit = "";
   if(type === "cookies"){ amount = S.cookies; if(amount<=0) return; S.charity.cookiesDonated++; S.charity.cookiesTotal += amount; S.cookies = 0; unit = "🍪"; }
   else if(type === "money"){ amount = S.money; if(amount<=0) return; S.charity.moneyDonated++; S.charity.moneyTotal += amount; S.money = 0; unit = "💰"; }
-  else if(type === "gold"){ amount = S.gold; if(amount<=0) return; S.charity.goldDonated++; S.charity.goldTotal += amount; S.gold = 0; unit = "💎"; }
+  else if(type === "gold"){ amount = S.gold + (S.bank ? S.bank.gold : 0); if(amount<=0) return; S.charity.goldDonated++; S.charity.goldTotal += amount; S.gold = 0; if(S.bank) S.bank.gold = 0; unit = "💎"; }
   S.charity.totalDonations++;
   showToast("🕊️ Пожертвование", `Ты отдал ${fmt(amount)} ${unit}`);
   const ch = getCharityRewardChance();
   if(ch > 0 && !S.charity.rewardGiven){
     if(Math.random() < ch){ giveCharityReward(); }
   }
-  updateStats(); renderCharity(); save();
+  updateStats(); updateBankUI(); renderCharity(); save();
 }
 function giveCharityReward(){
   let reward = 500000;
@@ -2210,14 +2287,14 @@ function renderCheatPanel(){
   ["+1","+10","+100","+1K","+1M","+1B"].forEach(v => {
     const b = document.createElement("button"); b.className = "cheatBtn gold"; b.textContent = v;
     const n = parseFloat(v) * (v.includes("K")?1e3:v.includes("M")?1e6:v.includes("B")?1e9:1);
-    b.onclick = e => { e.stopPropagation(); S.gold += n; S.goldTotal += n; updateStats(); renderSkins(); if(!S.goldEarningBlocked) updateSecretDealUI(); save(); };
+    b.onclick = e => { e.stopPropagation(); S.gold += n; S.goldTotal += n; updateStats(); renderSkins(); if(!S.goldEarningBlocked) updateSecretDealUI(); updateBankUI(); save(); };
     rowG.appendChild(b);
   });
   gold.appendChild(rowG);
   const setG = document.createElement("input"); setG.placeholder = "Своё число золота"; setG.onpointerdown = e => e.stopPropagation();
   gold.appendChild(setG);
   const setGBtn = document.createElement("button"); setGBtn.className = "cheatBtn gold"; setGBtn.textContent = "Установить";
-  setGBtn.onclick = e => { e.stopPropagation(); const v = parseInt(setG.value); if(!isNaN(v)){ S.gold = v; updateStats(); renderSkins(); if(!S.goldEarningBlocked) updateSecretDealUI(); save(); } };
+  setGBtn.onclick = e => { e.stopPropagation(); const v = parseInt(setG.value); if(!isNaN(v)){ S.gold = v; updateStats(); renderSkins(); if(!S.goldEarningBlocked) updateSecretDealUI(); updateBankUI(); save(); } };
   gold.appendChild(setGBtn);
   const restoreBtn = document.createElement("button"); restoreBtn.className = "cheatBtn gold"; restoreBtn.textContent = "💰 Вернуть золото";
   restoreBtn.onclick = e => { e.stopPropagation(); S.goldEarningBlocked = false; S.charity.refusals = 0; applyGoldBlockUI(); renderLab(); showToast("💰 Золото вернулось!", ""); renderCheatPanel(); renderAch(); save(); };
@@ -2361,6 +2438,7 @@ function hackGame(){
     S.cookies = 0; S.totalCookies = 0; S.coins = 0; S.clicks = 0;
     S.clickPower = 1; S.cps = 0;
     S.gold = 0; S.goldTotal = 0;
+    S.bank = { gold: 0 };
     S.upgrades.forEach(u => u.count = 0);
     S.ownedSkins = [0]; S.activeSkin = 0; applySkin();
     S.bots.forEach(b => { b.total = 0; b.cps = 0; b.clicks = 0; b.clickPower = 1; b.upgrades = b.upgrades.map(()=>0); b.banned = false; b.muted = false; });
@@ -2380,7 +2458,7 @@ function hackGame(){
     S.lab = {researched: [], spent: 0};
     eggUsed = false;
     applyGoldBlockUI();
-    updateStats(); renderSkins(); renderAch(); updateMoneyStats(); updateCasinoUI(); if(!S.goldEarningBlocked) updateSecretDealUI(); renderLab();
+    updateStats(); renderSkins(); renderAch(); updateMoneyStats(); updateCasinoUI(); if(!S.goldEarningBlocked) updateSecretDealUI(); renderLab(); updateBankUI();
     save();
   }, lines.length*220 + 500);
 }
@@ -2425,6 +2503,7 @@ setInterval(() => {
     if(tickCount % 50 === 0){
       save();
       if($("modalShop").classList.contains("open") && !S.goldEarningBlocked) updateSecretDealUI();
+      if($("modalShop").classList.contains("open")) updateBankUI();
     }
     if(tickCount % 50 === 0) checkWizardAppearance();
     if(tickCount % 100 === 0) checkGoldenHourAuto();
@@ -2534,14 +2613,46 @@ try{
   $("setSound").addEventListener("change", e => { S.settings.sound = e.target.checked; save(); });
   $("botSpeedSlider").addEventListener("input", e => { S.settings.botSpeed = parseFloat(e.target.value); $("botSpeedVal").textContent = "×" + S.settings.botSpeed.toFixed(1); save(); });
   $("clickVolSlider").addEventListener("input", e => { S.settings.clickVol = parseInt(e.target.value); $("clickVolVal").textContent = S.settings.clickVol + "%"; save(); });
-  $("exportSave").addEventListener("pointerup", e => { e.stopPropagation(); const ta = $("saveTextArea"); ta.style.display = "block"; try{ ta.value = btoa(JSON.stringify(S)); }catch(err){ ta.value = ""; } ta.select(); showToast("📤 Экспорт", "Код в поле ниже"); });
-  $("importSave").addEventListener("pointerup", e => { e.stopPropagation(); const ta = $("saveTextArea"); ta.style.display = "block"; ta.placeholder = "Вставьте код и Enter"; ta.focus(); });
-  $("saveTextArea").addEventListener("keydown", e => { if(e.key === "Enter"){ e.preventDefault(); try{ const data = JSON.parse(atob(e.target.value.trim())); localStorage.setItem("ccm_v2_1", JSON.stringify(data)); location.reload(); }catch(err){ showToast("❌ Ошибка", "Неверный код"); } } });
+  $("exportSave").addEventListener("pointerup", e => {
+    e.stopPropagation();
+    const ta = $("saveTextArea");
+    ta.style.display = "block";
+    ta.value = encodeSave(S);
+    ta.select();
+    showToast("📤 Экспорт", "Код в поле ниже");
+  });
+  $("importSave").addEventListener("pointerup", e => {
+    e.stopPropagation();
+    const ta = $("saveTextArea");
+    ta.style.display = "block";
+    ta.placeholder = "Вставьте код и Enter";
+    ta.focus();
+  });
+  $("saveTextArea").addEventListener("keydown", e => {
+    if(e.key === "Enter"){
+      e.preventDefault();
+      const data = decodeSave(e.target.value);
+      if(data){
+        try{
+          localStorage.setItem("ccm_v2_1", JSON.stringify(data));
+          showToast("📥 Импорт", "Перезагрузка...");
+          setTimeout(() => location.reload(), 400);
+        }catch(err){ showToast("❌ Ошибка", "Не удалось сохранить"); }
+      } else {
+        showToast("❌ Ошибка", "Неверный код");
+      }
+    }
+  });
   $("copySave").addEventListener("pointerup", e => {
     e.stopPropagation();
-    const code = btoa(JSON.stringify(S));
-    if(navigator.clipboard){ navigator.clipboard.writeText(code).then(()=> showToast("✅ Скопировано!", "")); }
-    else { const ta = $("saveTextArea"); ta.style.display = "block"; ta.value = code; ta.select(); document.execCommand("copy"); showToast("✅ Скопировано!", ""); }
+    const code = encodeSave(S);
+    if(navigator.clipboard){
+      navigator.clipboard.writeText(code).then(()=> showToast("✅ Скопировано!", "")).catch(()=>{
+        const ta = $("saveTextArea"); ta.style.display = "block"; ta.value = code; ta.select(); document.execCommand("copy"); showToast("✅ Скопировано!", "");
+      });
+    } else {
+      const ta = $("saveTextArea"); ta.style.display = "block"; ta.value = code; ta.select(); document.execCommand("copy"); showToast("✅ Скопировано!", "");
+    }
   });
   $("adminCmdInput").addEventListener("keydown", e => { if(e.key === "Enter"){ e.stopPropagation(); const v = $("adminCmdInput").value.trim().toLowerCase(); $("adminCmdInput").value = ""; const parts = v.split(/\s+/); if(parts[0]==="/ban"&&parts[1]==="all") S.bots.forEach((b,i)=>banBot(i)); else if(parts[0]==="/mute"&&parts[1]==="all") S.bots.forEach((b,i)=>muteBot(i)); else if(parts[0]==="/unban"&&parts[1]==="all") S.bots.forEach((b,i)=>unbanBot(i)); } });
   $("adminUnbanAll").addEventListener("pointerup", e => { e.stopPropagation(); S.bots.forEach((b,i) => unbanBot(i)); });
@@ -2549,6 +2660,10 @@ try{
   $("wipeConfirm").addEventListener("pointerup", e => { e.stopPropagation(); $("wipeConfirm").style.display = "none"; $("actualWipe").style.display = "block"; });
   $("actualWipe").addEventListener("pointerup", e => { e.stopPropagation(); localStorage.removeItem("ccm_v2_1"); location.reload(); });
   $("musicBtn").addEventListener("pointerup", e => { e.stopPropagation(); toggleMusic(); });
+  $("bankDeposit").addEventListener("pointerup", e => { e.stopPropagation(); bankDeposit($("bankAmount").value); });
+  $("bankWithdraw").addEventListener("pointerup", e => { e.stopPropagation(); bankWithdraw($("bankAmount").value); });
+  $("bankAllIn").addEventListener("pointerup", e => { e.stopPropagation(); bankDeposit(S.gold); });
+  $("bankAllOut").addEventListener("pointerup", e => { e.stopPropagation(); bankWithdraw(S.bank.gold); });
 }catch(e){ console.warn("Event bind error:", e); }
 
 /* ==================== КНОПКА ЧИТОВ ==================== */
@@ -2669,6 +2784,7 @@ function checkAchievements(){
 /* ==================== ИНИЦИАЛИЗАЦИЯ ==================== */
 try{
   load();
+  if(!S.bank) S.bank = { gold: 0 };
   if(!S.secretDealStartDate){ S.secretDealStartDate = new Date().toISOString(); }
   if(S.charity.refusals >= 10 && !S.goldEarningBlocked){ S.goldEarningBlocked = true; }
   applySkin();
