@@ -52,7 +52,7 @@ body{font-family:'SF Pro Display',system-ui,-apple-system,'Segoe UI',Arial,sans-
 #bigCookie.prem_singularity{background:radial-gradient(circle at 50% 50%,#000 30%,#1a0033 60%,#000 90%);border-color:#6a0dad}
 #bigCookie.prem_void{background:radial-gradient(circle at 35% 30%,#1a1a1a,#000 70%);border-color:#6c5ce7;animation:voidPulse 2s infinite}
 @keyframes voidPulse{50%{box-shadow:0 0 60px #6c5ce7,inset 0 0 40px #6c5ce7}}
-#bigCookie.prem_god{background:radial-gradient(circle at 35% 30%,#fff,#ffd700 40%,#ff8c00 80%);border-color:#fff;animation:godShine 1s infinite}
+#bigCookie.prem_imperial{background:radial-gradient(circle at 35% 30%,#fff,#ffd700 40%,#ff8c00 80%);border-color:#fff;animation:godShine 1s infinite}
 @keyframes godShine{50%{filter:brightness(1.5)}}
 #bigCookie.prem_quantum{background:conic-gradient(from 0deg,#00ffea,#6c5ce7,#ff00ea,#6c5ce7,#00ffea);border-color:#fff;animation:rbSpin 1s linear infinite}
 #bigCookie.sec_chicken{background:radial-gradient(circle at 35% 30%,#fff7d0,#ffd700 40%,#b8860b 90%);border-color:#8b6914}
@@ -753,7 +753,7 @@ const SKINS_PREMIUM = [
   {id:108, name:"Радужная-легенда", icon:"🌈", price:50, cls:"prem_rainbow2", cat:"premium"},
   {id:109, name:"Сингулярность", icon:"⚫", price:100, cls:"prem_singularity", cat:"premium"},
   {id:110, name:"Пустота", icon:"🕳️", price:50000, cls:"prem_void", cat:"premium"},
-  {id:111, name:"Императорская", icon:"🏛️", price:100000, cls:"prem_god", cat:"premium"},
+  {id:111, name:"Императорская", icon:"🏛️", price:100000, cls:"prem_imperial", cat:"premium"},
   {id:112, name:"Квантовая", icon:"⚛️", price:500000, cls:"prem_quantum", cat:"premium"},
 ];
 const SKINS_SECRET = [
@@ -1204,10 +1204,8 @@ function updateCasinoBetVisibility(){
   });
 }
 function applyGoldBlockUI(){
-  // Никогда не трогаем body, только конкретные элементы
   const ids = ["goldCount","tabCasino","slotGold","bankWrap","secretDealWrap"];
   if(S.goldEarningBlocked){
-    // Если игрок был в казино — принудительно на печеньки
     if(S.activeTab === "casino"){
       S.activeTab = "cookies";
       const tabC = $("tabCookies"); if(tabC) tabC.classList.add("active");
@@ -1302,7 +1300,7 @@ function renderSkins(){
     if(sk.cls==="prem_rainbow2") bg="conic-gradient(from 0deg,#ff0000,#ffff00,#00ff00,#0000ff,#ff0000)";
     if(sk.cls==="prem_singularity") bg="radial-gradient(circle,#000,#6a0dad)";
     if(sk.cls==="prem_void") bg="radial-gradient(circle,#1a1a1a,#000)";
-    if(sk.cls==="prem_god") bg="radial-gradient(circle,#fff,#ffd700)";
+    if(sk.cls==="prem_imperial") bg="radial-gradient(circle,#fff,#ffd700)";
     if(sk.cls==="prem_quantum") bg="conic-gradient(from 0deg,#00ffea,#6c5ce7,#ff00ea,#6c5ce7,#00ffea)";
     if(sk.cls==="sec_chicken") bg="radial-gradient(circle,#ffd700,#b8860b)";
     if(sk.cls==="sec_hacker") bg="linear-gradient(135deg,#0f0,#000)";
@@ -1963,7 +1961,6 @@ function doCharityRefuse(){
     if(!S.goldEarningBlocked){
       S.goldEarningBlocked = true;
       S.charity.refusals = 10;
-      // Сначала уходим с казино, потом применяем блокировку
       if(S.activeTab === "casino"){
         S.activeTab = "cookies";
         const tabC = $("tabCookies"); if(tabC) tabC.classList.add("active");
@@ -2866,4 +2863,4 @@ try{
 </script>
 
 </body>
-</html>
+                                                          </html>
